@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Individual work 3</title>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+
+  <style>
+    h3 {
+      display: flex;
+      flex-direction: row;
+    }
+
+    h3:before,
+    h3:after {
+      content: "";
+      flex: 1 1;
+      border-bottom: 2px solid #000;
+      margin: auto;
+    }
+
+    a:visited {
+      color: #f44336;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    .flip-img:hover {
+      transform: scaleX(-1);
+    }
+
+    .img-fit {
+      width: 200px;
+      height: 140px;
+      object-fit: cover;
+      object-position: 80% 80%
+    }
+
+    .mask {
+      -webkit-mask-image: radial-gradient(circle, black 50%, rgba(0, 0, 0, 0.5) 30%);
+      mask-image: radial-gradient(circle, black 50%, rgba(0, 0, 0, 0.5) 50%);
+    }
+
+    @media screen {
+      .media-example {
+        background-color: antiquewhite;
+        width: 150px;
+        height: 30px;
+        border: 3px solid yellow;
+      }
+    }
+  </style>
+</head>
+<body>
+<div style="text-align: center">
+  <h1>САМОСТІЙНА РОБОТА №3</h1>
+  <h2>
+    до теми: СТИЛЬОВЕ ОФОРМЛЕННЯ HTML-ДОКУМЕНТУ
+  </h2>
+  <p>Виконав: <b>Фєтісов Гліб Андрійович</b></p>
+  <p>Група: <b>IO-05</b></p>
+  <br>
+  <nav>
+    <a class="spacing" href="#part1">Межі</a>
+    <a class="spacing" href="#part2">Поля</a>
+    <a class="spacing" href="#part3">Padding</a>
+    <a class="spacing" href="#part4">Висота, ширина і максимальна ширина</a>
+    <a class="spacing" href="#part5">Блочна модель</a>
+    <a class="spacing" href="#part6">Іконки</a>
+    <br>
+    Макет CSS:
+    <a class="spacing" href="#part7">Властивість, відображення</a>
+    <a class="spacing" href="#part7">Ширина та максимальна ширина</a>
+    <a class="spacing" href="#part9">Властивість position</a>
+    <a class="spacing" href="#part10">Властивість z-index</a>
+    <a class="spacing" href="#part11">Переповнення</a>
+    <a class="spacing" href="#part12">Плаваючий і очищений</a>
+    <a class="spacing" href="#part13">Розмітка</a>
+    <a class="spacing" href="#part14">Приклади Float</a>
+    <br>
+    Просунутий CSS:
+    <a class="spacing" href="#part15">2D Трансформації</a>
+    <a class="spacing" href="#part15">3D Перетворення</a>
+    <a class="spacing" href="#part15">Зображення стилів</a>
+    <a class="spacing" href="#part15">Image Reflection</a>
+    <a class="spacing" href="#part15">Властивість підгонки об'єкта</a>
+    <a class="spacing" href="#part15">Властивість object-position</a>
+    <a class="spacing" href="#part21">Маскування</a>
+    <a class="spacing" href="#part22">Розмір блоку</a>
+    <a class="spacing" href="#part23">Медіа-запит</a>
+    <a class="spacing" href="#part24">Flexbox</a>
+    <a class="spacing" href="#part25">Flex Container</a>
+    <a class="spacing" href="#part26">CSS Flex</a>
+  </nav>
+</div>
+<br>
+<h3 id="part1">Межі</h3>
+<p>Щоб створити кордон навколо будь-якого html-тегу, треба використати атрибут <i><b>border-style</b></i> та задати
+  бажаний вигляд. Наприклад:</p>
+<p style="text-indent: 70px; border: double blue 2px; border-radius: 6px; width: 400px">Текст, навколо якого буде
+  кордон</p>
+<h3 id="part2">Поля</h3>
+<p>Поля дозволяють задавати бажані відступити з певних сторін для обраного елемента. Досягається за допомогою атрибуту
+  <i><b>margin</b></i>. Приклад:</p>
+<p style="margin: 15px 40px">Даний текст має відступи 15 пікселів зверху та знизу, і 40 пікселів праворуч і ліворуч</p>
+<h3 id="part3">Padding</h3>
+<p>Також, CSS надає можливість встановлювати внутрішні відступи за допомогою атрибуту <i><b>padding</b></i>. Приклад:
+</p>
+<div style="border: solid black 2px; width: 480px">
+  <p style="padding: 20px">Має внутрішній відступ у розмірі 20 пікселів з кожної сторони</p>
+</div>
+<h3 id="part4">Висота, ширина і максимальна ширина</h3>
+<p>В загальному, висота та ширина елементів встановлюються за допомогою атрибутів <i><b>width</b></i> та
+  <i><b>height</b></i>. Існує декілька визначити бажану ширину/висоту:</p>
+<dl>
+  <dt>Значення для атрибутів <i><b>auto</b></i> - браузер сам визначає необхідну ширину та висоту. Приклад:</dt>
+  <dd style="width: auto; background-color: #008CBA">Текст і автоматично встановленою шириною</dd>
+  <dt>Ручне задавання бажаних розмірів у пікселях/сантиметрах. Приклад:</dt>
+  <dd style="width: 300px; height: 60px; background-color: #b3d4fc">Ширина 300 пікселів, висота - 60</dd>
+  <dt>Можливість задавати ширину та висоту у <i><b>%</b></i> від загального розміру блоку, де розміщується елемент.
+    Приклад:
+  </dt>
+  <dd style="width: 10%; background-color: #999999">Текст, що займає 10% від загального розміру екрана</dd>
+  <dt>Існує можливість визначати ширину/висоту за замовчуванням за допомогою значення <i><b>initial</b></i>. Приклад:
+  </dt>
+  <dd style="width: initial; background-color: violet">Текст, із шириною за замовчуванням</dd>
+  <dt>Також, існує можливість успадкувати параметри ширину, висоти від батьківського елемента. Приклад:</dt>
+  <div style="width: 800px; height: 50px">
+    <dd style="width: inherit; height: inherit; background-color: cadetblue">Спадкування розмірів: 800 пікселів ширина
+      та 50 пікселів висота
+    </dd>
+  </div>
+</dl>
+<h3 id="part5">Блочна модель</h3>
+<p>Блочна модель складається із поєднання всіх вищезгаданих атрибутів разом. Приклад:</p>
+<div style="margin: 30px; border: groove 1px aquamarine; border-radius: 10px; padding: 12px; width: 26%;">
+  <p>Створення блочної моделі за допомогою комбінування всіх елементів</p>
+</div>
+<h3 id="part6">Іконки</h3>
+<p>Щоб використати іконки, слід додати посилання (link) на місцерозташування іконок. Наприклад візьмемо гліфіконки
+  Bootstrap:</p>
+<dl>
+  <dt>
+    Для цього слід у тезі <i><b>head</b></i> додати наступний тег &lt;script
+    src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"&gt;&lt;/script&gt;
+    та використовувати далі бажані іконки. Наприклад:
+  </dt>
+  <dd class="fas fa-band-aid"></dd>
+  <dd class="fas fa-cat"></dd>
+  <dd class="fas fa-dragon"></dd>
+</dl>
+<br>
+<br>
+<br>
+<h2 style="text-align: center">Макет CSS</h2>
+<h3 id="part7">Властивість відображення</h3>
+<p>Існує два види відображення елементів:</p>
+<ol>
+  <li>
+    Блочні - завжди відтворюється з нового рядка та займає всю доступну ширину сторінки. Приклад на основі тегу &lt;p&gt;:
+    <p style="background-color: #b3d4fc">Блочний тип елементів</p>
+  </li>
+  <li>
+    Рядкові елементи - відтворюються з місця завершення попереднього тегу та займають стільки місця, скільки необхідно.
+    Приклад на основі тегу &lt;img&gt; та &lt;a&gt; одразу після: <br>
+    <img src="data:image/jpeg;base64,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" alt="star_wars">
+    <a href="individual_work_3.html">Рядкові елемент</a>
+  </li>
+</ol>
+<p>За допомогою атрибуту <i><b>display</b></i> можна змінювати типи відображення, застосовуючи відповідні параметри <i>inline</i> та <i>block</i></p>
+<p>Також, CSS надає можливість приховувати елементи та повністю видаляти їх зі сторінки використовуючи наступні атрибути та пааметри:</p>
+<ul>
+  <li>
+    <i>display: <b>none</b></i> - дозволяє видалити певний елемент з html-сторінки. Наприклад, ви на побачити наступний абзац:
+    <p style="display: none">Його не існує</p>
+  </li>
+  <li>
+    <i>visibility: <b>hidden</b> - приховує елемент зі сторінки, резервуючи місце під нього</i>
+    <p style="visibility: hidden">Прихований параграф із зарезервованим місцем</p>
+  </li>
+</ul>
+<h3 id="part8">Ширина та максимальна ширина</h3>
+<p>
+  Як згадувалось раніше, можна встановлювати ширину елементів за допомогою атрибуту <i>width</i>,
+  проте даний спосіб не є ефективним, адже на менших присторях текст буде займати встановлену ширину <br>та його треба буде гортати, щоб побачити повінстю.
+</p>
+<p>Тож на допомогу приходить атрибут <i><b>max-width</b></i>, котрий автоматично змінює відображення при зменшенні вікон браузера.</p>
+<p>Приклад для порівняння:</p>
+<div style="margin: auto; width: 800px; border: dotted violet; text-align: center">Стабільна ширина в 800 пікселів</div>
+<br>
+<div style="margin: auto; max-width: 800px; border: dotted blueviolet; text-align: center">Максимальна ширина в 800 пікселів</div>
+<p style="font-size: 12px; text-align: center">Для порівняння зменішть розмір вікна</p>
+<h3 id="part9">Властивість position</h3>
+<p>За допомогою атрибуту <i><b>position</b></i> можна керувати позиціонуванням елементів. Існує декілька можливих значень:</p>
+<ul>
+  <li>
+    <b>static</b> - значення за замовчуванням. Звичайне позиціонування для тегів. Приклад:
+    <div style="border: 1px darkkhaki">Позиціонування за замовчуванням</div>
+  </li>
+  <li>
+    <b>relative</b> - позиціонується відносно свого початкового значення. Зазвичай використовується разом із атрибутами <i>right, left, top, botton</i>. Приклад:
+    <div style="position: relative; left: 100px; top: 20px">Текст з здвинутий направо на 100 пікселів та вниз на 20 віднсовно свого звичайного положення</div>
+  </li>
+  <br>
+  <br>
+  <li>
+    <b>fixed</b> - фіксоване позиціонування елемента. Тобто елемент залишається на місці, навіть при гортанні сторінки вниз/догори. Приклад (відображається в лівому кутку сторінки):
+    <br>
+    <br>
+    <p style="position: fixed; top: 20px; font-size: 12px">Текст, з фіксованим місцем для відображення</p>
+  </li>
+  <li>
+    <b>absolute</b> - позиціонувається відносно батьківського елемента. Приклад:
+    <div style="position:absolute; right: 200px; font-size: 20px">Текст з абсолютним місцем розташування</div>
+  </li>
+  <br>
+  <li>
+    <b>sticky</b> - позиціонування, що застосовує відносне або фіксоване позиціонування залежно від положення гортання. Приклад:
+    <div style="position: -webkit-sticky; position: sticky; left: 0; padding: 5px; background-color: #cae8ca; border: 2px solid #4CAF50;">Клейке позиціонування</div>
+  </li>
+</ul>
+<h3 id="part10">Властивість z-index</h3>
+<p>
+  При розміщенні елементів на сторінці, може трапитись так, що елементи будуть накладатись один на одного. У такому випадку стає у нагоді атрибут <i><b>z-index</b></i>,
+  котрий визначає порядок елементів. Приклад:</p>
+  <p style="position: relative; top: 90px; left: 50px; color: white">Текст поверх картинки</p>
+  <img style="z-index: -1"
+    src="data:image/jpeg;base64,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" alt="lonely-tree">
+<h3 id="part11">Переповнення</h3>
+<p>За допомогою параметру <i><b>overflow</b></i> можна визначити дії у випадку переповнення відведеної для текста зони. Існує декілька можливих значень:</p>
+<ul>
+  <li>
+    <b>visible</b> - текст, що не помістився відображається нижче. Приклад:
+    <div style="width: 300px; height: 30px; overflow: visible; background-color: #999999">У випадку, якщо не поміщається у зону відведену для нього, відображається нижче</div>
+  </li>
+  <li>
+    <b>hidden</b> - приховує весь текст, котрому не вистачило місця. Приклад:
+    <div style="overflow: hidden; width: 200px; height: 30px; background-color: cadetblue">Весь інший текст, буде приховано</div>
+  </li>
+  <li>
+    <b>scroll</b> - додає можливість прокручувати текст горизонтально та вертикально, навіть у випадках, коли це не треба. Приклад:
+    <div style="overflow: scroll; width: 500px; background-color: bisque">Текст, буде мати горизонтальне та вертикальне прокручування</div>
+  </li>
+  <li>
+    <b>auto</b> - додає прокрутки за необхідності. Приклад:
+    <div style="width: 300px; height: 50px; overflow: auto; background-color: aqua">До тексту, буде додана вертикальна прокрутка, адже текст не поміститься повністю через невеликий векртикальний розмір</div>
+  </li>
+</ul>
+<h3 id="part12">Плаваючий і очищений</h3>
+<p>Задля можливості позиціонування та покращення форматування застосовують атрибут <b><i>float</i></b>, котрий дозволяє задати місце розташування елементу та його тип відображення з іншими елементами. Приклад:</p>
+<div>
+  <img style="float: right" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9YYh5Fk1u9VsWWr1MhkyQeOzeNbtnnMO96g&usqp=CAU" alt="forest-round">
+  <p>Текст, буде відтворюватись ліворуч від картинки. Також, до тексту буде застосовуватись форматування, тобто у випадку, коли текст дійде до між картинки, він автоматично буде перенесений на новий рядок, що дозволяє значно покращити візуальне сприйняття інформації</p>
+</div>
+<p>Також, за допомогою атрибуту <b>float</b> можна розміщувати елементи поруч. Приклад:</p>
+<div style="float: left; margin: 0 30px; width: 150px; background-color: #008CBA">Перший елемент</div>
+<div style="float: left; margin: 0 30px; width: 150px; background-color: #4CAF50">Другий елемент</div>
+<div style="float: left; margin: 0 30px; width: 150px; background-color: violet">Третій елемент</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h3 id="part13">Розмітка</h3>
+<p>При розташуванні елементів за допомогою атрибуту <i>float</i> елементи розташовуються один за одним. При бажанні задати нове позиціонування слід використовувати атрибут <b>clear</b>. Приклад:</p>
+<div style="margin-right: 25px; float: left; width: 100px; height: 20px; background-color: coral">Div_1</div>
+<div style="float: left; width: 100px; height: 20px; background-color: darkgoldenrod">Div_2</div>
+<div style="clear: left; width: 100px; height: 30px; background-color: cadetblue">New_line</div>
+<h3 id="part14">Приклади Float</h3>
+<p>Макети відображень:</p>
+<div>
+  <img style="width: 32%; height: 250px; padding: 5px; float: left" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsYWoQIj4S37bMrdOk66DzLfO5CBmemLpNpg&usqp=CAU" alt="calm-ocean">
+  <img style="width: 32%; height: 250px; padding: 5px; float: left" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStcLJjW4q3WawvgG5l1h-DWsZI0SuMEUgeRg&usqp=CAU" alt="mountain-tree">
+  <img style="width: 32%; height: 250px; padding: 5px; float: left" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaSlC5NEH60CTgwgBpXYJTI37o3jNNQImqhw&usqp=CAU" alt="mountain-tree">
+</div>
+<br style="clear: both">
+<br>
+<div>
+  <div style="float: left; width: 50%; background-color: #999999; height: 100px;">
+    <p>Тут можна розміщувати різну інформацію</p>
+    <p>Наприклад параграф з текстом</p>
+  </div>
+  <div style="float: left; width: 50%; background-color: cadetblue; height: 100px">
+    <p>Друга половина сторінки</p>
+    <p>Параграф для другої полови сторінки</p>
+  </div>
+</div>
+<br style="clear: both">
+<br>
+<br>
+<h2 style="text-align: center">CSS ПРОСУНУТИЙ</h2>
+<h3 id="part15">2D Трансформації</h3>
+<p>Повертання елементів досягається за допомогою атрибуту <i><b>transform</b></i>. Наприклад:</p>
+<div style="width: 300px; height: 50px; border: solid 1px; background-color: #008CBA">Перший елемент</div>
+<div style="width: 200px; border: solid 1px; transform: rotate(30deg); background-color: #008CBA">Другий елемент</div>
+<p>Створити нахил для елементів:</p>
+<div style="width: 400px; height: 30px; background-color: #f44336; float: left">Звичайний елемент</div>
+<div style="width: 400px; background-color: #f44336; transform: skewX(30deg); float: left">Нахилений елемент</div>
+<br style="clear:both;">
+<h3 id="part16">3D Перетворення</h3>
+<p>3D перетворення надають можливість обертати елементи довкола трьох осей - x, y, z. Приклад оберту навколо осі х:</p>
+<div style="width: 500px; text-align: center; margin: auto; background-color: #4CAF50">Звичайний тег</div>
+<br>
+<div style="width: 300px; margin: auto; background-color: #008CBA; transform: rotateX(180deg);">Тег з 3D-перетвореннями</div>
+<h3 id="part17">Зображення стилів</h3>
+<p>За допомогою CSS можна проводити певні маніпуляції над картинками, зокрема:</p>
+<ul>
+  <li>
+    Додавати заокруглення країв зображення
+    <img style="border-radius: 50%; vertical-align: middle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFYm4aut-s01aXN53gm0eR6FASLFe9uQTydw&usqp=CAU" alt="nature">
+  </li>
+  <li>Віддзеркалювати зображення при наведенні курсору
+    <img class="flip-img" style="vertical-align: middle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFYm4aut-s01aXN53gm0eR6FASLFe9uQTydw&usqp=CAU" alt="nature">
+  </li>
+  <li>Створення палароїдів
+    <div style="width: 275px; background-color: white; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin-bottom: 25px;">
+      <img style="vertical-align: middle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFYm4aut-s01aXN53gm0eR6FASLFe9uQTydw&usqp=CAU" alt="nature">
+      <div style="text-align: center; padding: 10px 20px;">A Path through forest</div>
+    </div>
+  </li>
+</ul>
+<h3 id="part18">Image Reflection</h3>
+<p>CSS надає можливість повторно відтворювати зображення у з обраної сторони завдяки атрибуту <i><b>box-reflection</b></i>. Приклад відтворення праворуч:</p>
+<img style="-webkit-box-reflect: right 10px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_0YktZumnDWz05vaoM9zkHdSjYj21A7_38A&usqp=CAU" alt="night-city">
+<h3 id="part19">Властивість підгонки об'єкта</h3>
+<p>За допомогою атрибуту <i><b>object-fit</b></i> можна визначити як саме фото/відео об'єкт має змінити свій розмір. Існує декілька можливих варіантів:</p>
+<ul>
+  <li>
+    <i><b>cover</b></i> - картинка залишає початкове співвідношення сторін, але зменшується під певні розміри, обрізаючи зайве
+    <img style="vertical-align: middle; width: 600px; height: 250px; object-fit: cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCZlf5lc5tX-0gY-y94pGS0mQdL-D0lCH2OQ&usqp=CAU" alt="river">
+  </li>
+  <li>
+    <i><b>contain</b></i> - зберігає співвідношення сторін, зменшуючись до потрібних габаритів
+    <img style="vertical-align: middle; width: 200px; height: 120px; object-fit: contain" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCZlf5lc5tX-0gY-y94pGS0mQdL-D0lCH2OQ&usqp=CAU" alt="river">
+  </li>
+  <li>
+    <i><b>fill</b> - об'єкт заповнює весь необхідний простір, звужуючись/збільшуючись при цьому</i>
+    <img style="vertical-align: middle; width: 400px; height: 120px; object-fit: fill" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCZlf5lc5tX-0gY-y94pGS0mQdL-D0lCH2OQ&usqp=CAU" alt="river">
+  </li>
+  <li>
+    <i><b>scale-down</b></i> - зменшується до найменшої можливої версії
+    <img style="vertical-align: middle; width: 300px; height: 200px; object-fit: scale-down" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCZlf5lc5tX-0gY-y94pGS0mQdL-D0lCH2OQ&usqp=CAU" alt="river">
+  </li>
+</ul>
+<h3 id="part20">Властивість object-position</h3>
+<p>Щоб помістити бажану частину фотокартки, у обмежений простір використовується атрибут <i><b>object-position</b></i>. Приклад:</p>
+<img style="padding-right: 50px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfq5_xJlxMXpyrf662GNlMwsGjAxjuFOJN_A&usqp=CAU" alt="lens">
+<img class="img-fit" style="width: 400px; height: 270px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfq5_xJlxMXpyrf662GNlMwsGjAxjuFOJN_A&usqp=CAU" alt="lens">
+<h3 id="part21">Маскування</h3>
+<p>Маскування - створення шару маски поверх іншого елемента з метою повністю, або частково приховати його. Це робиться за допомогою атрибуту <i><b>mask-image</b></i>. Приклад:</p>
+<div class="mask">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYIX4fdymadei7FiL-19pxFAWPLEJgQlNEww&usqp=CAU" alt="forest-deer" width="600" height="400">
+</div>
+<h3 id="part22">Розміри блоку</h3>
+<p>За допомогою атрибуту <i><b>box-sizing</b></i> можна відступи, кордони у загальний розмір елементу. Приклад:</p>
+<div style="box-sizing: border-box; width: 50%; height: 20px; background-color: #f44336; float: left;">Перший дів</div>
+<div style="box-sizing: border-box; width: 50%; height: 20px; background-color: hotpink; float: left">Другий дів</div>
+<br style="clear: both">
+<h3 id="part23">Медіа-запит</h3>
+<p>За допомогою <i><b>@media</b></i> можна задавати різні стилі для різних пристроїв перегляду. Приклад:</p>
+<div class="media-example">Щось зображене тут</div>
+<h3 id="part24">Flexbox</h3>
+<p>Flexbox дозволяє гнучко створювати дизайн для елементів, не використовуючи при цьому позиціонування. Приклад:</p>
+<div style="display: flex; background-color: #b3d4fc">
+  <div style="background-color: brown; margin: 15px; padding: 5px; font-size: 15px">1</div>
+  <div style="background-color: brown; margin: 15px; padding: 5px; font-size: 15px">2</div>
+  <div style="background-color: brown; margin: 15px; padding: 5px; font-size: 15px">3</div>
+  <div style="background-color: brown; margin: 15px; padding: 5px; font-size: 15px">4</div>
+</div>
+<h3 id="part25">Flex Container</h3>
+<p>Flex Container - дозволяє задавати місце додавання наступного елемента. Наприклад створити контейнер з елементами, що додаються в колонку знизу догори:</p>
+<div style="display: flex; flex-direction: column-reverse; background-color: #4CAF50; width: 90px; margin: auto">
+  <div style="background-color: bisque; margin: 20px; font-size: 17px; width: 25px">1</div>
+  <div style="background-color: bisque; margin: 20px; font-size: 17px; width: 25px">2</div>
+  <div style="background-color: bisque; margin: 20px; font-size: 17px; width: 25px">3</div>
+  <div style="background-color: bisque; margin: 20px; font-size: 17px; width: 25px">4</div>
+</div>
+<h3 id="part26">CSS Flex</h3>
+<p>Все елементи Flexbox контейнеру, автоматично становляться гнучкими (flexible), що в свою чергу означає можливість застосування інших атрибутів до них. Приклад застосування вирівнювання по центру:</p>
+<div style="display: flex; height: 120px; background-color: cornflowerblue">
+  <div style="background-color: black; color: white; margin: 20px; height: 90px; width: 80px; text-align: center;">1</div>
+  <div style="background-color: black; color: white; margin: 20px; height: 90px; width: 80px; text-align: center; align-self: center">2</div>
+  <div style="background-color: black; color: white; margin: 20px; height: 90px; width: 80px; text-align: center;">3</div>
+</div>
+</body>
+</html>
