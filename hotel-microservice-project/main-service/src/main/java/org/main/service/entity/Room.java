@@ -28,7 +28,8 @@ public class Room implements Serializable {
     @Column(name = "img_reference")
     private String imageReference;
 
-    private double rate;
+    @Column(name = "total_rate")
+    private double totalRate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hotel_id")

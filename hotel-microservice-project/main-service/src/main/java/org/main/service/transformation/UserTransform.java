@@ -19,6 +19,7 @@ public class UserTransform {
                 .build();
     }
 
+    // TODO: think whether userDTO should have balance, because db has default value for insertions (but what about balance replenishment??)
     public User entityTake(UserDTO userDTO) {
         return User.builder()
                 .id(userDTO.getId())

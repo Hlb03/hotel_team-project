@@ -23,7 +23,6 @@ public class UserResponseTransform {
         return UserResponse.builder()
                 .id(userResponseDTO.getId())
                 .comment(userResponseDTO.getComment())
-                .dateTime(userResponseDTO.getDateTimeResponse())
                 .rate(userResponseDTO.getRate())
                 .user(
                         User.builder()

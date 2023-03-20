@@ -16,7 +16,7 @@ public class RoomTransform implements Serializable {
                 .description(room.getDescription())
                 .price(room.getPrice())
                 .imageReference(room.getImageReference())
-                .rate(room.getRate())
+                .rate(room.getTotalRate())
                 .hotel(room.getHotel().getId())
                 .build();
     }
@@ -27,7 +27,6 @@ public class RoomTransform implements Serializable {
                 .description(roomDTO.getDescription())
                 .imageReference(roomDTO.getImageReference())
                 .price(roomDTO.getPrice())
-                .rate(roomDTO.getRate())
                 .hotel(
                         Hotel.builder()
                                 .id(roomDTO.getHotel())

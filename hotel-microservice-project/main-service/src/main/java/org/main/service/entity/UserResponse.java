@@ -28,7 +28,7 @@ public class UserResponse implements Serializable {
     @Column(name = "date_time")
     private Timestamp dateTime;
 
-    private byte rate;
+    private double rate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

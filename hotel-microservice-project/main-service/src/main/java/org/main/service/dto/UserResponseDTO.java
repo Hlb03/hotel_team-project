@@ -16,7 +16,7 @@ public class UserResponseDTO implements Serializable {
     private int id;
     private String comment;
     private Timestamp dateTimeResponse;
-    private byte rate;
+    private double rate;
     private int userId;
     private String userLogin;
     private int room;
