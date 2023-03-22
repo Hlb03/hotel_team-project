@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+<style>
+	body{
+		font-family:"Montserrat", sans-serif;
+	}
+	.header	{
+		justify-content: center;
+		display: inline-flex;
+		align-items: center;
+		gap: 20px;
+		width: 100%;
+	}
+	.item{
+		height: 35px;
+		background-color: black;
+		color: white;
+		width: 195px;
+		text-align: center;
+		display: grid;
+		padding-bottom: 15px;
+	}
+	.header :hover{
+		background-color: #484848;
+	}
+	.uppart{
+		display: inline-flex;
+		gap: 100px;
+		width: 100%;
+		padding-top: 20px;
+		justify-content: center;
+	}
+	@media all and (max-width: 1200px){
+		.part1, .logo {
+    		display: none;
+		}
+	}
+
+	.main h1{
+		text-align: center;
+		font-size: 30px;
+	    font-weight: 900;
+	    line-height: 36px;
+	}
+	.text{
+		justify-content: center;
+		display: flex;
+	}
+	.text p{
+		width:800px;
+		text-align: justify;
+	}
+	.main{
+		width:70%;
+		background-color: #EBF5FB;
+		margin: 0 auto;
+	}
+	.graypart{
+		background-color:#414142;
+		margin: 0 auto;
+		width:70%;
+	}
+	.graypart h1{
+		text-align: center;
+		font-size: 30px;
+	    font-weight: 900;
+	    line-height: 36px;
+	    justify-content: center;
+	    display: flex;
+	}
+	table{
+		border: 1px solid gray;
+		border-radius: 20px;
+		background-color: #363638;
+		margin-bottom: 18px;
+	}
+	tr, td{
+		/*border: 1px solid black;*/
+		border-collapse: collapse;
+		width: 300px;
+
+	}
+	.one{
+		display: inline-flex;
+		
+		padding-left: 25px;
+	}
+	ul, li{
+		color: white;
+		list-style-type: none;
+		font-size: 12px;
+		padding-right: 10px;
+	}
+	button{
+		color: white; 
+		text-align: center; 
+		background-color: #555558;
+		width: 300px;
+		height: 50px;
+		border-radius: 20px;
+		box-shadow: none;
+	}
+.footer{
+	justify-content: center;
+		align-items: center;
+		gap: 20px;
+		width: 100%;
+		padding-top: 20px;
+		display: flex;
+  align-items: center;
+}
+.itemfoot{
+		height: 50px;
+		background-color: black;
+		color: white;
+		width: 50px;
+		
+		background-color: black;
+		color: white;
+	}	
+.mainitem{
+	height: 50px;
+	background-color: black;
+	color: white;
+	background-color: black;
+	color: white;
+	width: 700px;
+}
+
+</style>
+</head>
+<body>
+	<header class="header">
+		<div class="item"><p>Форми навчання</p></div>
+		<div class="item"><p>Заходи</p></div>
+		<div class="item"><p>Про Академію</p></div>
+		<div class="item"><p>Контакти</p></div>
+		<div class="item"><p>Київ</p></div>
+	</header>
+	<div class="uppart">
+		<div class="part1" ><p style="font-size: 20px;">КУРСИ ПРОГРАМУВАННЯ <br><a href="#" style=" text-decoration: none;color: skyblue;"> З 100% ГАРАНТІЄЮ</a> ПРАЦЕВЛАШТУВАННЯ</p>
+			<br>
+			<p style="font-size: 10px;">З SCHDOL ти отримаєш висоокплачувану роботу своєї мрії.<br> Ми готуємо висококласних IT-спеціалістів</p></div>
+		<div class="part" style="line-height: 0; font-size: 30px;"><h1 style="color: skyblue;">ШКОЛА</h1> <br><h1>ПРОГРАМУВАННЯ</h1></div>
+	</div>
+	<div class="main">
+		<h1 style="padding-top: 20px;">ВІДГУКИ ВІД РОБОТОДАВЦІВ</h1>
+		<h1 style="color: orange; ">ПІДТВЕРДЖЕНА ЯКІСТЬ</h1>
+		<div class="text"><p>Школа програмування - єдина, що має відгуки від роботтодавців, які входять до списку найкращих компаній DOU.UA. А випускники курсів з інкубатором отримують гарантії працевлаштування впродовж 6 місяців після закінчення навчання. Але зазвичай їх забирають до себе наші офіційні партнери, ще до закінчення курсу </p></div>
+		<img class="video" src="зображення/відео.png" style="width: 300px; margin-left: 30px;">
+		<img class="logo" src="https://owu.com.ua/image/brand/webp/all.webp" style="width:600px; margin-left:30px; padding-bottom: 15px;">
+		<p style="color: gray; font-size: 12px;margin-left: 35px;">Відгуки INKCORA про випускників Okten</p>
+	</div>
+	<div class="graypart">
+		<h1  style="padding-top: 20px;">ПОПУЛЯРНІ НАПРЯМКИ</h1>
+		<h1 style="color: orange; ">КУРСІВ ПРОГРАМУВАННЯ</h1>
+		<div class="one">
+			<table>
+				<tr>
+					<td>
+						<img src="зображення/JavaScript-logo.png" style="width:70px; height:70px; margin-left: 110px; margin-top: 30px;">
+					<h1 style="color: white; ">JAVASCRIPT</h1>
+					<p style="color: orange; text-align: center; ">Комплексний курс</p>
+					<ul>
+						<li>Стартовий рівень: початківець</li>
+						<li>Тривалість: 5-11 місяців</li>
+						<li>Ціна: від 145000грн</li>
+					</ul>
+					<p style="color: skyblue; text-align: center; ">Залишилось 3 місця</p>
+				</td>
+				</tr>
+				<tr>
+					<td><button>ДЕТАЛЬНІШЕ</button></td>
+				</tr>
+			</table>
+			
+		</div>
+		<div class="one">
+			<table>
+				<tr>
+					<td>
+					<img src="зображення/java.png" style="width:70px; height:70px; margin-left: 110px; margin-top: 30px;">	
+					<h1 style="color: white; ">JAVA</h1>
+					<p style="color: orange; text-align: center; ">Комплексний курс</p>
+					<ul>
+						<li>Стартовий рівень: початківець</li>
+						<li>Тривалість: 5-11 місяців</li>
+						<li>Ціна: від 145000грн</li>
+					</ul>
+					<p style="color: skyblue; text-align: center; ">Залишилось 6 місця</p>
+				</td>
+				</tr>
+				<tr>
+					<td><button>ДЕТАЛЬНІШЕ</button></td>
+				</tr>
+			</table>
+			
+		</div>
+		<div class="one">
+			<table>
+				<tr>
+					<td>
+					<img src="зображення/python-logo-vector.svg" style="width:70px; height:70px; margin-left: 110px; margin-top: 30px;">
+					<h1 style="color: white; ">PYTHON</h1>
+					<p style="color: orange; text-align: center; ">Комплексний курс</p>
+					<ul>
+						<li>Стартовий рівень: початківець</li>
+						<li>Тривалість: 5-11 місяців</li>
+						<li>Ціна: від 145000грн</li>
+					</ul>
+					<p style="color: skyblue; text-align: center; ">Залишилось 4 місця</p>
+				</td>
+				</tr>
+				<tr>
+					<td><button>ДЕТАЛЬНІШЕ</button></td>
+				</tr>
+			</table>
+			
+		</div>
+	</div>
+<footer class="footer">
+	<div class="mainitem"><p>2021</p></div>
+	<div class="itemfoot"><img src='зображення/facebook.png' style="heigh: 50px; width: 50px "></div>
+	<div class="itemfoot"><img src='зображення/vk.png' style="heigh: 50px; width: 50px"></div>
+	<div class="itemfoot"><img src='зображення/youtube.png' style="heigh: 50px; width: 50px"></div>
+	<div class="itemfoot"><img src='зображення/telegram.png' style="heigh: 50px; width: 50px"></div>
+	<div class="itemfoot"><img src='зображення/instagram.png' style="heigh: 50px; width: 50px"></div>
+</footer>
+</body>
+</html>
