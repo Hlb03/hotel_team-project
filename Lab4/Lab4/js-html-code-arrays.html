@@ -90,6 +90,61 @@
                     </pre>
                     <h2 class="temp-headings">HTML/JavaScript-код сторінки Богдани:</h2>
                     <pre class="html-code">
+&lt;h1&gt;JS Array Operations&lt;/h1&gt;
+&lt;h2&gt;Task 1: Finding Minimum Value in Two Arrays&lt;/h2&gt;
+&lt;p&gt;Enter the number of elements in the arrays:&lt;/p&gt;
+&lt;input type="number" id="numOfElements"&gt;&lt;br&gt;&lt;br&gt;
+&lt;button onclick="findMin()"&gt;Find Minimum Value&lt;/button&gt;
+&lt;h2&gt;Task 2: Bubble Sort&lt;/h2&gt;
+&lt;p&gt;Enter the elements of the array (separated by commas):&gt;/p&lt;
+&lt;input type="text" id="arrayInput"&gt;&lt;br&gt;&lt;br&gt;
+&lt;button onclick="bubbleSort()"&gt;Sort&lt;/button&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;p&gt;Sorted Array:&lt;/p&gt;
+&lt;div id="sortedArray"&gt;&lt;/div&gt;
+&lt;script&gt;
+    // Task 1: Finding Minimum Value in Two Arrays
+    function findMin() {
+        let n = document.getElementById("numOfElements").value;
+        let arr1 = [];
+        let arr2 = [];
+        for (let i = 0; i < n; i++) {
+            arr1.push(parseInt(prompt("Enter element " + (i+1) + " of array 1:")));
+            arr2.push(parseInt(prompt("Enter element " + (i+1) + " of array 2:")));
+        }
+        let min = Infinity;
+        for (let i = 0; i < n; i++) {
+            if (arr2.includes(arr1[i]) && arr1[i] < min) {
+                min = arr1[i];
+            }
+        }
+        alert("The minimum value in array 1 that matches an element in array 2 is: " + min);
+    }
+
+    // Task 2: Bubble Sort
+    function bubbleSort() {
+        let input = document.getElementById("arrayInput").value;
+        let arr = input.split(",");
+        for (let i = 0; i < arr.length; i++) {
+            arr[i] = parseInt(arr[i]);
+        }
+        let n = arr.length;
+        for (let i = 0; i < n-1; i++) {
+            for (let j = 0; j < n-i-1; j++) {
+                if (arr[j] > arr[j+1]) {
+                    let temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                }
+            }
+        }
+
+        document.getElementById("sortedArray").innerHTML = arr;
+    }
+
+&lt;/script&gt;
+
                     </pre>
                     <h2 class="temp-headings">HTML/JavaScript-код сторінки Гліба:</h2>
                     <pre class="html-code">
