@@ -88,7 +88,57 @@
                     <h3 style="text-align: center">HTML/JavaScript код виконання завдань</h3>
 
                     <h2 class="temp-headings">HTML/JavaScript-код сторінки Антона:</h2>
+                    <p style="font-weight: bold">Приклад коду однієї зі сторінок.</p>
                     <pre class="html-code">
+&lt;head&gt;
+    ...
+    &lt;script&gt;
+        let listMenu = ["Головна", "Про нас", "Портфоліо", "Відгуки", "Контакти"];
+    &lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;nav&gt;
+            &lt;a href="#" class="currectPage" id="main"&gt;
+                        &lt;script&gt; document.getElementById("main").innerHTML = listMenu[0];  &lt;/script&gt;
+            &lt;/a&gt;
+            &lt;a href="aboutUs.html" id="aboutUs"&gt;
+                        &lt;script&gt; document.getElementById("aboutUs").innerHTML = listMenu[1];  &lt;/script&gt;
+            &lt;/a&gt;
+            &lt;a href="portfolio.html" id="portfolio"&gt;
+                        &lt;script&gt; document.getElementById("portfolio").innerHTML = listMenu[2];  &lt;/script&gt;
+            &lt;/a&gt;
+            &lt;a href="reviews.html" id="reviews"&gt;
+                        &lt;script&gt; document.getElementById("reviews").innerHTML = listMenu[3];  &lt;/script&gt;
+            &lt;/a&gt;
+            &lt;a href="contacts.html" id="contacts"&gt;
+                        &lt;script&gt; document.getElementById("contacts").innerHTML = listMenu[4];  &lt;/script&gt;
+            &lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+
+
+    &lt;div class="verticalHeader"&gt;
+        &lt;nav&gt;
+            &lt;a href="#" class="currectPageMobile" id="mainMobile"&gt;
+                        &lt;script&gt; document.getElementById("mainMobile").innerHTML = listMenu[0];  &lt;/script&gt;
+            &lt;/a&gt;
+            &lt;a href="aboutUs.html" id="aboutUsMobile"&gt;
+                        &lt;script&gt; document.getElementById("aboutUsMobile").innerHTML = listMenu[1];  &lt;/script&gt;
+            &lt;/a&gt;
+            &lt;a href="portfolio.html" id="portfolioMobile"&gt;
+                        &lt;script&gt; document.getElementById("portfolioMobile").innerHTML = listMenu[2];  &lt;/script&gt;
+            &lt;/a&gt;
+            &lt;a href="reviews.html" id="reviewsMobile"&gt;
+                        &lt;script&gt; document.getElementById("reviewsMobile").innerHTML = listMenu[3];  &lt;/script&gt;
+            &lt;/a&gt;
+            &lt;a href="contacts.html" id="contactsMobile"&gt;
+                        &lt;script&gt; document.getElementById("contactsMobile").innerHTML = listMenu[4];  &lt;/script&gt;
+            &lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
                     </pre>
                     <h2 class="temp-headings">HTML/JavaScript-код сторінки Богдани:</h2>
                     <pre class="html-code">
