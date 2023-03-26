@@ -70,7 +70,7 @@ CREATE TABLE "user_response"
 (
     id        SERIAL,
     comment VARCHAR(256) NOT NULL,
-    date_time TIMESTAMP DEFAULT NOW()::timestamp(0),
+    date_time TIMESTAMP DEFAULT NOW(),
     rate      NUMERIC(2,1)     NOT NULL,
     PRIMARY KEY (id),
     user_id   INT REFERENCES "user" (id) ON DELETE CASCADE NOT NULL,
@@ -79,3 +79,6 @@ CREATE TABLE "user_response"
 );
 
 INSERT INTO "role" (rolename) VALUES ('USER'), ('ADMIN');
+
+ALTER TABLE "user_response"
+ALTER COLUMN date_time DROP NOT NULL;

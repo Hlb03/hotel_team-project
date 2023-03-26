@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,8 +39,10 @@ public class UserResponseController {
     }
 
     @GetMapping("/room/rate/{roomId}")
-    public byte calculateRoomRate(@PathVariable int roomId) {
-        return userResponseService.findAverageRoomRating(roomId);
+    public double calculateRoomRate(@PathVariable int roomId) {
+        return BigDecimal.valueOf(userResponseService.findAverageRoomRating(roomId))
+                .setScale(1, RoundingMode.HALF_UP)
+                .doubleValue();
     }
 
     @PutMapping

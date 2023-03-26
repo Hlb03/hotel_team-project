@@ -28,7 +28,7 @@ public class UserRoomsTransform {
                 .build();
     }
 
-    public UserRooms entityTake(UserRoomsDTO userRoomsDTO) {
+    public UserRooms entityTake(UserRoomsDTO userRoomsDTO, int roomId) {
         return UserRooms.builder()
                 .id(userRoomsDTO.getId())
                 .startRent(userRoomsDTO.getStartRent())
@@ -40,7 +40,7 @@ public class UserRoomsTransform {
                 )
                 .room(
                         Room.builder()
-                                .id(userRoomsDTO.getRoomDTO().getId())
+                                .id(roomId)
                                 .build()
                 )
                 .build();

@@ -15,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Entity
+@Table(name = "user", schema = "public")
 public class User implements Serializable {
     @Id
     @SequenceGenerator(name = "user_id_seq", sequenceName = "user_id_seq", allocationSize = 1)
@@ -30,7 +31,7 @@ public class User implements Serializable {
     private String login;
     private String password;
     private BigDecimal balance;
-    private int age;
+    private Integer age;
     @Column(name = "phone_number")
     private String phoneNumber;
 

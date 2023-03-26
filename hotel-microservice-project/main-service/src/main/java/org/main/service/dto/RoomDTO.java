@@ -18,5 +18,5 @@ public class RoomDTO implements Serializable {
     private String description;
     private String imageReference;
     private int hotel;
-    private double rate;
+    private Double rate;
 }

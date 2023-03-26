@@ -17,7 +17,7 @@ import java.sql.Date;
 @Table(name = "user_has_room")
 public class UserRooms implements Serializable {
     @Id
-    @SequenceGenerator(name = "user_has_room_id_seq", sequenceName = "user_has_room_seq", allocationSize = 1)
+    @SequenceGenerator(name = "user_has_room_id_seq", sequenceName = "user_has_room_id_seq", allocationSize = 1)
     @GeneratedValue(generator = "user_has_room_id_seq", strategy = GenerationType.SEQUENCE)
     private int id;
 

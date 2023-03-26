@@ -13,6 +13,7 @@ public interface UserResponseRepository extends JpaRepository<UserResponse, Inte
 
     List<UserResponse> getAllByRoomId(int roomId);
 
-    @Query("SELECT AVG(ur.rate) FROM UserResponse ur WHERE ur.id = :id")
-    byte getAverageRatingForRoom(@Param("id") int roomId);
+    @Query("SELECT AVG(ur.rate) FROM UserResponse ur WHERE ur.room.id = :id")
+    double getAverageRatingForRoom(@Param("id") int roomId);
+
 }

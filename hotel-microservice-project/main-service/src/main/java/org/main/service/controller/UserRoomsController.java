@@ -20,9 +20,10 @@ public class UserRoomsController {
     private final UserRoomsTransform userRoomsTransform;
 
     @PostMapping
-    public ResponseEntity<Integer> rentNewRoom(@ModelAttribute UserRoomsDTO userRoomsDTO) {
+    public ResponseEntity<Integer> rentNewRoom(@ModelAttribute UserRoomsDTO userRoomsDTO,
+                                               @RequestParam int roomId) {
         userRoomsService.addNewRoomToUser(
-                userRoomsTransform.entityTake(userRoomsDTO)
+                userRoomsTransform.entityTake(userRoomsDTO, roomId)
         );
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -36,9 +37,10 @@ public class UserRoomsController {
     }
 
     @PutMapping
-    public ResponseEntity<Integer> updateUserRooms(@ModelAttribute UserRoomsDTO userRoomsDTO) {
+    public ResponseEntity<Integer> updateUserRooms(@ModelAttribute UserRoomsDTO userRoomsDTO,
+                                                   @RequestParam int roomId) {
         userRoomsService.updateUserRoom(
-                userRoomsTransform.entityTake(userRoomsDTO)
+                userRoomsTransform.entityTake(userRoomsDTO, roomId)
         );
         return ResponseEntity.ok().build();
     }

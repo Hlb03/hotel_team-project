@@ -25,7 +25,7 @@ public class UserResponseServiceImpl implements UserResponseService {
     }
 
     @Override
-    public byte findAverageRoomRating(int roomId) {
+    public double findAverageRoomRating(int roomId) {
         return userResponseRepository.getAverageRatingForRoom(roomId);
     }
 

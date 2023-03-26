@@ -6,6 +6,9 @@ import org.main.service.entity.User;
 import org.main.service.entity.UserResponse;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 @Component
 public class UserResponseTransform {
 
@@ -24,9 +27,10 @@ public class UserResponseTransform {
                 .id(userResponseDTO.getId())
                 .comment(userResponseDTO.getComment())
                 .rate(userResponseDTO.getRate())
+                .dateTime(Timestamp.valueOf(LocalDateTime.now()))
                 .user(
                         User.builder()
-                                .id(userResponseDTO.getId())
+                                .id(userResponseDTO.getUserId())
                                 .login(userResponseDTO.getUserLogin())
                                 .build()
                 )

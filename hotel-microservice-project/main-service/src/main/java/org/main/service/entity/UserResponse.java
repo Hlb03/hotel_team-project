@@ -19,7 +19,7 @@ public class UserResponse implements Serializable {
 
 
     @Id
-    @SequenceGenerator(name = "user_response_id_seq", sequenceName = "user_response_id_seq")
+    @SequenceGenerator(name = "user_response_id_seq", sequenceName = "user_response_id_seq", allocationSize = 1)
     @GeneratedValue(generator = "user_response_id_seq", strategy = GenerationType.SEQUENCE)
     private int id;
 

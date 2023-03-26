@@ -10,7 +10,7 @@ public interface UserResponseService {
 
     List<UserResponse> findAllResponsesOnRoom(int roomId);
 
-    byte findAverageRoomRating(int roomId);
+    double findAverageRoomRating(int roomId);
 
     void updateResponse(UserResponse userResponse);
 
