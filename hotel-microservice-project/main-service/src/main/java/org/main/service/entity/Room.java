@@ -23,6 +23,9 @@ public class Room implements Serializable {
 
     private BigDecimal price;
 
+    @Column(name = "brief_description")
+    private String briefDescription;
+
     private String description;
 
     @Column(name = "img_reference")

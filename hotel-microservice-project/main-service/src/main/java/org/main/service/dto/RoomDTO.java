@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 public class RoomDTO implements Serializable {
     private int id;
     private BigDecimal price;
+    private String briefDescription;
     private String description;
     private String imageReference;
     private int hotel;

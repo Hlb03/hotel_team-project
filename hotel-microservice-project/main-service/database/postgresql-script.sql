@@ -46,6 +46,7 @@ CREATE TABLE "room"
 (
     id            SERIAL,
     price         NUMERIC(5, 2) NOT NULL,
+    brief_description varchar(128) NOT NULL,
     description   VARCHAR(256)  NOT NULL,
     img_reference VARCHAR(256)  NOT NULL,
     total_rate    NUMERIC(2,1),
