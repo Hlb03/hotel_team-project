@@ -1,4 +1,4 @@
-package org.eureka.serivce;
+package org.eureka.service;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
