@@ -9,8 +9,11 @@
 
     <name>hotel-microservice-project</name>
     <url>https://maven.apache.org</url>
+
     <modules>
         <module>main-service</module>
+        <module>mail-service</module>
+        <module>eureka-service</module>
     </modules>
 
     <properties>
@@ -19,6 +22,7 @@
         <maven.compiler.targer>17</maven.compiler.targer>
         <spring.boot.dependencies.version>3.0.4</spring.boot.dependencies.version>
         <spring.boot.maven.plugin.version>3.0.4</spring.boot.maven.plugin.version>
+        <spring-cloud.version>2022.0.2</spring-cloud.version>
     </properties>
 
     <dependencyManagement>
@@ -27,6 +31,13 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring.boot.dependencies.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
@@ -41,6 +52,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
 
