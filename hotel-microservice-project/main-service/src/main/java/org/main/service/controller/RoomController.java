@@ -30,6 +30,14 @@ public class RoomController {
         return transform.dtoTaking(roomService.findRoomById(roomId));
     }
 
+    @GetMapping
+    public List<RoomDTO> getAllRooms(@RequestParam int page) {
+        return roomService.findAllRooms(page)
+                .stream()
+                .map(transform::dtoTaking)
+                .toList();
+    }
+
     @GetMapping("/hotel/{hotelId}")
     public List<RoomDTO> findAllHotelRooms(@PathVariable int hotelId) {
         return roomService.findAllRoomsInHotel(hotelId)
