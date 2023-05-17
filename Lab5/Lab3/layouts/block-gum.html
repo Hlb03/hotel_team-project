@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title> Гумова блокова </title>
+
+    <link rel="stylesheet" type="text/css" href="../../general/css/styles.css">
+
+    <style>
+        .temp-headings {
+            text-align: left;
+            margin-left: 50px
+        }
+
+        .flexibleBlockWrapper{
+            width: 50%;
+
+            border: 2px solid #000;
+            margin: 0 auto;
+
+            margin-bottom: 70px;
+        }
+        .flexibleBlockWrapper .fixBlockTop{
+            border-bottom: 2px solid #000;
+            width: 100%;
+        }
+        .flexibleBlockWrapper .fixBlockTop .fixBlockTopInner{
+            background-color: #fff;
+            display: inline-block;
+            width: 100px;
+            height: 20px;
+            border: 2px solid #000;
+
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+        .flexibleBlockWrapper .fixBlockMedium{
+            width: 100%;
+            display: flex;
+
+            justify-content: space-between;
+        }
+        .flexibleBlockWrapper .fixBlockMedium .stable-block {
+            width: 22%;
+            height: 200px;
+
+            border: 2px solid #000;
+            border-bottom: 0px;
+            border-top: 0px;
+        }
+        .flexibleBlockWrapper .fixBlockMedium .stable-blockFirst {
+            width: 22%;
+            height: 200px;
+
+            border: 2px solid #000;
+            border-bottom: 0px;
+            border-top: 0px;
+            border-left: 0px;
+        }
+        .flexibleBlockWrapper .fixBlockMedium .stable-blockLast {
+            width: 22%;
+            height: 200px;
+
+            border: 2px solid #000;
+            border-bottom: 0px;
+            border-top: 0px;
+            border-right: 0px;
+        }
+
+
+        .flexibleBlockWrapper .fixBlockBottom{
+            border-top: 2px solid #000;
+
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<h1> ЗВІТИ З ЛАБОРАТОРНИХ РОБІТ <br> З ДИСЦИПЛІНИ "WEB-ОРІЄНТОВАНІ ТЕХНЛОГІЇ.<br>ОСНОВИ FRONTEND ТА BACKEND РОЗРОБОК"
+    <img class="photo-members3" src="../../general/images/bohdana.png" alt="first" width="90px" height="150px">
+    <img class="photo-members2" src="../../general/images/anton.png" alt="first" width="90px" height="150px">
+    <img class="photo-members1" src="../../general/images/hlib.png" alt="first" width="90px" height="150px">
+</h1>
+<h2> БРИГАДА №11 <br>Студенти(-ки): гр. ІО-03 Опалько Богдана, гр. ІО-05: Садловський Антон, гр. ІО-05 Фєтісов Гліб </h2>
+<br>
+<table style="width:100%">
+    <tr class="labs">
+        <th class="labs"><a href="../../Lab1/Lab1.html">Лабораторна <br>робота №1</a></th>
+        <th class="labs"><a href="../../Lab2/Lab2.html">Лабораторна <br>робота №2</a></th>
+        <th class="labs"><a href="../Lab3.html">Лабораторна <br>робота №3</a></th>
+        <th class="labs"><a href="../../Lab4/Lab4.html">Лабораторна <br>робота №4</a></th>
+        <th class="labs"><a href="Lab5.html">Лабораторна <br>робота №5</a></th>
+        <th class="labs"><a href="Lab6.html">Лабораторна <br>робота №6</a></th>
+        <th class="labs"><a href="Lab7.html">Лабораторна <br>робота №7</a></th>
+        <th class="labs"><a href="Lab8.html">Лабораторна <br>робота №8</a></th>
+        <th class="labs"><a href="Lab9.html">Лабораторна <br>робота №9</a></th>
+    </tr>
+</table>
+<h4>Лабораторна робота №3</h4>
+<table>
+    <tr>
+        <td class="navigation">
+            <dl>
+                <dt class="labs"><a href="../about-lab.html">Тема, мета і <br> місце розташування роботи
+                </a></dt>
+            </dl>
+            <dl>
+                <dt class="labs"><a href="../task2.html">ЗАВДАННЯ №2</a></dt>
+            </dl>
+            <dl>
+                <dt class="labs smaller"><a href="table-fixed.html">Фіксована таблична верстка</a></dt>
+            </dl>
+            <dl>
+                <dt class="labs smaller"><a href="table-gum.html">Гумова таблична верстка</a></dt>
+            </dl>
+            <dl>
+                <dt class="labs smaller"><a href="block-fixed.html">Фіксована блокова верстка</a></dt>
+            </dl>
+            <dl>
+                <dt class="labs smaller"><a href="block-gum.html">Гумова блокова верстка</a></dt>
+            </dl>
+            <dl>
+                <dt class="labs"><a href="../task3.html">ЗАВДАННЯ №3 FLEXBOX</a></dt>
+            </dl>
+            <dl>
+                <dt class="labs smaller"><a href="../task3-views.html">Скріншот сторінки (Flexbox)</a></dt>
+            </dl>
+            <dl>
+                <dt class="labs smaller"><a href="../task3-htmls.html">HTML-код (Flexbox)</a></dt>
+            </dl>
+            <dl>
+                <dt class="labs smaller"><a href="../task3-css.html">CSS-код (Flexbox)</a></dt>
+            </dl>
+            <dl>
+                <dt class="labs"><a href="../finalize.html">ВИСНОВКИ ДО ЛР №3</a></dt>
+            </dl>
+        </td>
+
+        <td>
+            <div class="text-part">
+                <h3 style="text-align: center">Фіксована блокова</h3>
+
+                <h2 class="temp-headings">HTML-код:</h2>
+                <pre class="html-code">
+&lt;div class="flexibleBlockWrapper"&gt;
+  &lt;div class="fixBlockTop" style="background-color: darkgoldenrod; height: 50px; "&gt;
+    &lt;div class="fixBlockTopInner"&lt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="fixBlockMedium"&gt;
+    &lt;div class="stable-blockFirst" style="display: inline-block; background-color: blue; "&gt;&lt;/div&gt;
+    &lt;div class="stable-block" style="display: inline-block; background-color: #f44336; "&gt;&lt;/div&gt;
+    &lt;div class="stable-block" style="display: inline-block; background-color: #fff;"&gt;&lt;/div&gt;
+    &lt;div class="stable-blockLast" style="display: inline-block; background-color: #f44336; "&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="fixBlockBottom" style="height: 50px; background-color: darkgoldenrod"&gt;&lt;/div&gt;
+&lt;/div&gt;
+                </pre>
+
+                <h2 class="temp-headings">CSS-код:</h2>
+                <pre class="html-code">
+.flexibleBlockWrapper{
+  width: 50%;
+
+  border: 2px solid #000;
+  margin: 0 auto;
+
+  margin-bottom: 70px;
+}
+.flexibleBlockWrapper .fixBlockTop{
+  border-bottom: 2px solid #000;
+  width: 100%;
+}
+.flexibleBlockWrapper .fixBlockTop .fixBlockTopInner{
+  background-color: #fff;
+  display: inline-block;
+  width: 100px;
+  height: 20px;
+  border: 2px solid #000;
+
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.flexibleBlockWrapper .fixBlockMedium{
+  width: 100%;
+  display: flex;
+
+  justify-content: space-between;
+}
+.flexibleBlockWrapper .fixBlockMedium .stable-block {
+  width: 22%;
+  height: 200px;
+
+  border: 2px solid #000;
+  border-bottom: 0px;
+  border-top: 0px;
+}
+.flexibleBlockWrapper .fixBlockMedium .stable-blockFirst {
+  width: 22%;
+  height: 200px;
+
+  border: 2px solid #000;
+  border-bottom: 0px;
+  border-top: 0px;
+  border-left: 0px;
+}
+.flexibleBlockWrapper .fixBlockMedium .stable-blockLast {
+  width: 22%;
+  height: 200px;
+
+  border: 2px solid #000;
+  border-bottom: 0px;
+  border-top: 0px;
+  border-right: 0px;
+}
+
+.flexibleBlockWrapper .fixBlockBottom{
+  border-top: 2px solid #000;
+
+  width: 100%;
+}
+                </pre>
+
+                <h2 class="temp-headings">Зовнішній вигляд:</h2>
+                <div class="flexibleBlockWrapper">
+                    <div class="fixBlockTop" style="background-color: darkgoldenrod; height: 50px; ">
+                        <div class="fixBlockTopInner"></div>
+                    </div>
+
+                    <div class="fixBlockMedium">
+                        <div class="stable-blockFirst" style="display: inline-block; background-color: blue; "></div>
+                        <div class="stable-block" style="display: inline-block; background-color: #f44336; "></div>
+                        <div class="stable-block" style="display: inline-block; background-color: #fff;"></div>
+                        <div class="stable-blockLast" style="display: inline-block; background-color: #f44336; "></div>
+                    </div>
+
+                    <div class="fixBlockBottom" style="height: 50px; background-color: darkgoldenrod"></div>
+                </div>
+                <br>
+                <br>
+                <br>
+            </div>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

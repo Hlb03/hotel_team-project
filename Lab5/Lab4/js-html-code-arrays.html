@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title> Коди виконання завдань </title>
+
+    <link rel="stylesheet" type="text/css" href="../general/css/styles.css">
+
+    <style>
+        .temp-headings {
+            text-align: left;
+            margin-left: 50px
+        }
+    </style>
+</head>
+<body>
+<h1> ЗВІТИ З ЛАБОРАТОРНИХ РОБІТ <br> З ДИСЦИПЛІНИ "WEB-ОРІЄНТОВАНІ ТЕХНЛОГІЇ.<br>ОСНОВИ FRONTEND ТА BACKEND РОЗРОБОК"
+    <img class="photo-members3" src="../general/images/bohdana.png" alt="first" width="90px" height="150px">
+    <img class="photo-members2" src="../general/images/anton.png" alt="first" width="90px" height="150px">
+    <img class="photo-members1" src="../general/images/hlib.png" alt="first" width="90px" height="150px">
+</h1>
+<h2> БРИГАДА №11 <br>Студенти(-ки): гр. ІО-03 Опалько Богдана, гр. ІО-05: Садловський Антон, гр. ІО-05 Фєтісов Гліб
+</h2>
+<br>
+<table style="width:100%">
+    <tr class="labs">
+        <th class="labs"><a href="../Lab1/Lab1.html">Лабораторна <br>робота №1</a></th>
+        <th class="labs"><a href="../Lab2/Lab2.html">Лабораторна <br>робота №2</a></th>
+        <th class="labs"><a href="../Lab3/Lab3.html">Лабораторна <br>робота №3</a></th>
+        <th class="labs"><a href="Lab4.html">Лабораторна <br>робота №4</a></th>
+        <th class="labs"><a href="Lab5.html">Лабораторна <br>робота №5</a></th>
+        <th class="labs"><a href="Lab6.html">Лабораторна <br>робота №6</a></th>
+        <th class="labs"><a href="Lab7.html">Лабораторна <br>робота №7</a></th>
+        <th class="labs"><a href="Lab8.html">Лабораторна <br>робота №8</a></th>
+        <th class="labs"><a href="Lab9.html">Лабораторна <br>робота №9</a></th>
+    </tr>
+</table>
+<h4>Лабораторна робота №4</h4>
+<table>
+    <tr>
+        <td class="navigation">
+            <dl>
+                <dt class="labs"><a href="about-lab.html">Тема, мета і <br> місце розташування роботи
+                </a></dt>
+            </dl>
+            <dl>
+                <dt class="labs"><a href="javascript-usage.html">Способи функціонального<br>застосування JavaScript </a>
+                </dt>
+            </dl>
+            <dl>
+                <dt class="labs smaller"><a href="js_url-schemas.html">Схеми URL</a></dt>
+            </dl>
+            <dl>
+                <dt class="labs smaller"><a href="js-actions.html">Обробник подій</a></dt>
+            </dl>
+            <dl>
+                <dt class="labs smaller"><a href="js-substitution.html">Підстановка (entity)</a></dt>
+            </dl>
+            <dl>
+                <dt class="labs smaller"><a href="js-parts.html">Вставка (тег SCRIPT)</a></dt>
+            </dl>
+            <dl>
+                <dt class="labs"><a href="arrays-js.html">МАСИВИ 4 ПУНКТ</a></dt>
+            </dl>
+            <dl>
+                <dt class="labs smaller"><a href="js-html-code-arrays.html">HTML/JavaScript-код<br>виконання завдання</a></dt>
+            </dl>
+            <dl>
+                <dt class="labs smaller"><a href="arrays-results.html">Скріншоти виконання</a></dt>
+            </dl>
+            <dl>
+                <dt class="labs"><a href="task-six.html">Виконання 6 пункту</a></dt>
+            </dl>
+            <dl>
+                <dt class="labs smaller"><a href="task-six-html-js.html">HTML/JavaScript-код<br>виконання завдання</a></dt>
+            </dl>
+            <dl>
+                <dt class="labs"><a href="finalize.html">ВИСНОВКИ ДО ЛР №4</a></dt>
+            </dl>
+        </td>
+
+        <td>
+            <div class="text-part">
+                <div class="text-part">
+                    <h3 style="text-align: center">HTML/JavaScript код виконання завдань</h3>
+
+                    <h2 class="temp-headings">HTML/JavaScript-код сторінки Антона:</h2>
+                    <pre class="html-code">
+&lt;body&gt;
+&lt;script&gt;
+  let firstArraySize = takeDataFromUser();
+  console.log(`First array size is ${firstArraySize}`)
+  let arrOne = initArrayWithRandomValues(firstArraySize);
+  console.log(`First array has ${arrOne}`)
+
+  let results = firstTaskSearch(arrOne);
+  console.log(`Array even number sum is ${results[0]}`)
+  console.log(`Array max even number is ${results[1]} with index ${results[2]}`)
+  console.log(`Array min odd number is ${results[3]} with index ${results[4]}`)
+
+
+  let secondArraySize = takeDataFromUser();
+  console.log(`\nSecond array size is ${secondArraySize}`);
+  let arrTwo = initArrayWithRandomValues(secondArraySize);
+  console.log(`Second array - ${arrTwo}`);
+
+  console.log(`Array after sorting - ${arrTwo.sort()}`)
+
+  function takeDataFromUser() {
+      return prompt("Enter array size: ");
+  }
+
+  function initArrayWithRandomValues(size) {
+      let arr = [];
+      for (let i = 0; i < size; i++) {
+          arr[i] = Math.round(Math.random() * 10);
+      }
+      return arr;
+  }
+
+  function firstTaskSearch(arr) {
+      let sum = 0;
+      let maxEven = 0;
+      let maxEvenIdx;
+      let minOdd = 10;
+      let minOddIdx;
+
+      for (let i = 0; i < arr.length; i++) {
+          if (i % 2 === 0) {
+              sum += arr[i];
+              if (maxEven < arr[i]) {
+                  maxEven = arr[i];
+                  maxEvenIdx = i;
+              }
+          } else {
+              if (arr[i] < minOdd) {
+                  minOdd = arr[i];
+                  minOddIdx = i;
+              }
+          }
+      }
+      return [sum, maxEven, maxEvenIdx, minOdd, minOddIdx];
+  }
+&lt;/script&gt;
+&lt;/body&gt;
+                    </pre>
+                    <h2 class="temp-headings">HTML/JavaScript-код сторінки Богдани:</h2>
+                    <pre class="html-code">
+&lt;h1&gt;JS Array Operations&lt;/h1&gt;
+&lt;h2&gt;Task 1: Finding Minimum Value in Two Arrays&lt;/h2&gt;
+&lt;p&gt;Enter the number of elements in the arrays:&lt;/p&gt;
+&lt;input type="number" id="numOfElements"&gt;&lt;br&gt;&lt;br&gt;
+&lt;button onclick="findMin()"&gt;Find Minimum Value&lt;/button&gt;
+&lt;h2&gt;Task 2: Bubble Sort&lt;/h2&gt;
+&lt;p&gt;Enter the elements of the array (separated by commas):&gt;/p&lt;
+&lt;input type="text" id="arrayInput"&gt;&lt;br&gt;&lt;br&gt;
+&lt;button onclick="bubbleSort()"&gt;Sort&lt;/button&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;p&gt;Sorted Array:&lt;/p&gt;
+&lt;div id="sortedArray"&gt;&lt;/div&gt;
+&lt;script&gt;
+    // Task 1: Finding Minimum Value in Two Arrays
+    function findMin() {
+        let n = document.getElementById("numOfElements").value;
+        let arr1 = [];
+        let arr2 = [];
+        for (let i = 0; i < n; i++) {
+            arr1.push(parseInt(prompt("Enter element " + (i+1) + " of array 1:")));
+            arr2.push(parseInt(prompt("Enter element " + (i+1) + " of array 2:")));
+        }
+        let min = Infinity;
+        for (let i = 0; i < n; i++) {
+            if (arr2.includes(arr1[i]) && arr1[i] < min) {
+                min = arr1[i];
+            }
+        }
+        alert("The minimum value in array 1 that matches an element in array 2 is: " + min);
+    }
+
+    // Task 2: Bubble Sort
+    function bubbleSort() {
+        let input = document.getElementById("arrayInput").value;
+        let arr = input.split(",");
+        for (let i = 0; i < arr.length; i++) {
+            arr[i] = parseInt(arr[i]);
+        }
+        let n = arr.length;
+        for (let i = 0; i < n-1; i++) {
+            for (let j = 0; j < n-i-1; j++) {
+                if (arr[j] > arr[j+1]) {
+                    let temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                }
+            }
+        }
+
+        document.getElementById("sortedArray").innerHTML = arr;
+    }
+
+&lt;/script&gt;
+
+                    </pre>
+                    <h2 class="temp-headings">HTML/JavaScript-код сторінки Гліба:</h2>
+                    <pre class="html-code">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Lab 4 point 4&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;script&gt;
+
+  alert('Task 1')
+  let firstSize = userInput();
+
+  console.log(`Task 1\nArrays size is ${firstSize}`);
+  array = initArrayWithRandomValues(firstSize);
+
+  console.log(`Arrays is ${array}`);
+
+  let results = findMinAndMax(array);
+  if (results === undefined) {
+      alert('Failed to find mins and maxes. Array size is too small.')
+  } else {
+      console.log(`According to generated array values, results are the following:\nMin odd -
+                        ${results[0]}\nMax odd - ${results[1]}\nMin even - ${results[2]}\nMax even - ${results[3]}`);
+      alert(`Min odd value is ${results[0]}\nMax odd value is ${results[1]}\nMin even value is ${results[2]}
+                        \nMax even value is ${results[3]}`)
+  }
+  // ------------------------------------------------------------------------------------------------------------
+  alert('Task 2')
+  let secondSize = userInput();
+  console.log(`\n\nTask 2\nArray size is ${secondSize}`)
+
+  let secondArray = initArrayWithRandomValues(secondSize);
+  console.log(`Primary array is ${secondArray}`)
+
+  alert(`Primary array is ${secondArray}`);
+  console.log(`Sorted array is ${sortArray(secondArray)}`)
+
+
+
+  function initArrayWithRandomValues(size) {
+      let array = [];
+      for (let i = 0; i < size; i++) {
+          array[i] = Math.round(Math.random() * 10);
+      }
+      return array;
+  }
+
+  function findMinAndMax(array) {
+      let minOdd, maxOdd;
+      let minEven, maxEven;
+
+      if (array.length < 2)
+          return undefined;
+
+      minOdd = array[0];
+      maxOdd = array[0];
+      minEven = array[1];
+      maxEven = array[1];
+
+      for (let i = 2; i < array.length; i++) {
+          if (i % 2 === 0) {
+              if (array[i] < minOdd)
+                  minOdd = array[i];
+              if (array[i] > maxOdd)
+                  maxOdd = array[i];
+          } else {
+              if (array[i] < minEven)
+                  minEven = array[i];
+              if (array[i] > maxEven)
+                  maxEven = array[i];
+          }
+      }
+      return [minOdd, maxOdd, minEven, maxEven];
+  }
+
+  function findMaxInArray(array, start) {
+      let max = array[start];
+      let index = start;
+      for (let i = start + 1; i < array.length; i++) {
+          if (array[i] > max) {
+              max = array[i];
+              index = i;
+          }
+      }
+
+      return index;
+  }
+
+  function sortArray(array) {
+      for (let i = 0; i < array.length; i++) {
+          let maxIdx = findMaxInArray(array, i);
+          let temp = array[i];
+          array[i] = array[maxIdx];
+          array[maxIdx] = temp;
+      }
+
+      return array;
+  }
+
+  function userInput() {
+      let size = prompt("Enter an array size:");
+      while (!size.match("[0-9]+"))
+          size = prompt("Incorrect input. Please try again:")
+
+      return size;
+  }
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+
+                    </pre>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
