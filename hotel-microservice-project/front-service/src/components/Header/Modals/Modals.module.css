@@ -1,0 +1,286 @@
+
+
+
+
+
+
+
+/* ------------- Modal ------------- */
+
+.modal_wrapper{
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 150px);
+    font-family: 'Montserrat', sans-serif;
+  
+    overflow-y: auto;
+  }
+  .modal_wrapper h2{
+    text-align: center;
+    font-size: 38px;
+    margin: 0;
+  }
+  .modal_wrapper .close_icon{
+    width: 25px;
+    height: 25px;
+  
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  
+    cursor: pointer;
+  }
+  
+    
+  
+    
+  .modal_wrapper .headerOfModal{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+   }
+   .modal_wrapper .headerOfModal .city_icon{
+    width: 70px;
+    margin: 0 auto;
+  }
+  .modal_wrapper .headerOfModalEnter{
+    margin-top: 86px;
+  }
+  .modal_wrapper .headerOfModal h4{
+    margin-top: 20px;
+    font-size: 23px;
+    text-align: center;
+
+    font-weight: 400;
+
+    margin-bottom: 0;
+  }
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  /* -------- Modal Auth Form -------- */
+  
+  .modalAuthForm{
+    position: fixed;
+    top: -800px;
+    transition: 0.7s all ease;
+  }
+  
+  .modalAuthForm.open{
+    position: relative;
+    top: 0;
+  }
+  
+  
+  
+  
+  .modalAuthForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    justify-content: start;
+  
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+
+
+
+  
+
+
+  .modalAuthForm input{
+    width: 350px;
+    height: 45px;
+
+    border: none;
+    border-bottom: 1px solid #000;
+    color: #000;
+    margin-top: 15px;
+  
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+  }
+  .modalAuthForm input::placeholder{
+    font-family: 'Montserrat', sans-serif;
+    color: #6A6A6A;
+    font-weight: 500;
+    font-size: 15px;
+  }
+  .modalAuthForm .passwordInput{
+    margin-bottom: 15px;
+  }
+
+
+
+
+  .modalAuthForm .errorMessageLogin{
+    margin-top: 10px;
+    color: #E84747;
+  }
+  .modalAuthForm .loginButton, .loginButton_DeActive{
+    background-color: #B6A27B;
+    width: 100%;
+    color: #222;
+    margin-top: 30px;
+    margin-bottom: 15px;
+
+    font-size: 23px;
+    font-weight: 400;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    text-align: center;
+  }
+  .modalAuthForm .loginButton .login_button_text, .loginButton_DeActive .login_button_text{
+    margin: 0 auto;
+  }
+
+  .modalAuthForm .reg_button_text {
+    margin: 0 auto;
+    margin-top: 15px;
+
+  }
+  .modalAuthForm .reg_button_text span{
+    border-bottom: 1px solid #000;
+    font-size: 19px;
+
+    cursor: pointer;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+/* ---------- Modal Regis Form ---------- */
+
+.modalRegisForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    justify-content: start;
+  
+    margin: 0 auto;
+    margin-top: 10px;
+
+    height: 1300px;
+  }
+  .modalRegisForm form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  
+    width: 730px;
+  }
+  .modalRegisForm input{
+    width: 350px;
+    height: 45px;
+
+    border: none;
+    border-bottom: 1px solid #000;
+    color: #000;
+    margin-top: 15px;
+  
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+  }
+  .modalRegisForm input::placeholder{
+    font-family: 'Montserrat', sans-serif;
+    color: #6A6A6A;
+    font-weight: 500;
+    font-size: 15px;
+   }
+
+
+
+
+
+
+    .modalRegisForm .inputFormWrapper{
+        display: flex;
+        flex-direction: column;
+    }
+  .modalRegisForm .errorMessageReg{
+    margin-top: 10px;
+    color: #E84747;
+
+    display: block;
+  }
+
+
+
+
+  .modalRegisForm .regButton, .modalRegisForm .regButton_DeActive{
+    background-color: #B6A27B;
+    display: block;
+    width: 70%;
+    margin: 0 auto;
+    color: #222;
+    margin-top: 30px;
+    margin-bottom: 15px;
+
+    font-size: 23px;
+    font-weight: 400;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    text-align: center;
+
+    cursor: pointer;
+  }
+
+
+
+  .modalRegisForm .regButton .reg_button_text, .regButton_DeActive .reg_button_text{
+    margin: 0 auto;
+  }
+
+  .modalRegisForm .login_button_text {
+    margin-top: 25px;
+
+    display: block;
+    margin: 0 auto;
+
+  }
+  .modalRegisForm .login_button_text span{
+    border-bottom: 1px solid #000;
+    font-size: 19px;
+
+    cursor: pointer;
+  }
+  
+  
+  
+  
+  
+  
+  
+  

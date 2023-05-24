@@ -1,0 +1,130 @@
+body{
+    margin: 0;
+  }
+
+  h3 {
+    text-align: center;
+  }
+
+  .add-image {
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStKbI0JYZFAXrGNHlamCl4dnYSmopYS1bBfw&usqp=CAU");
+    background-repeat: no-repeat;
+    background-size: 100% ;
+  }
+
+  table, form, ul, .link{
+    margin-left: 20px;
+  }
+  .link{
+    margin-bottom: 30px;
+  }
+  label{
+    font-weight: 500;
+  }
+
+  button{
+    width: 150px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+
+    cursor: pointer;
+  }
+  table, th, td {
+    border: 1px solid black;
+  }
+  .special-border {
+    border: double;
+  }
+
+
+
+
+
+
+
+
+
+  /* ---------- Header ---------- */
+
+  header .topHeader{
+    display: flex;
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+    
+  }
+  header .topHeader .infoBlock{
+    display: flex;
+    align-items: center;
+
+    margin-left: 20px;
+    margin-top: 10px;
+  }
+  header .topHeader .infoBlock span{
+    margin-right: 25px;
+
+    font-size: 18px;
+  }
+  header .topHeader .languageBlock{
+    display: flex;
+    align-items: center;
+
+    margin-right: 20px;
+    margin-top: 10px;
+  }
+  header .topHeader .languageBlock img{
+    width: 23px;
+  }
+  header .topHeader .languageBlock span{
+    margin-left: 15px;
+
+    cursor: pointer;
+  }
+
+
+
+
+
+
+
+
+
+  
+
+  header .bottomHeader{
+    background-color: #222222;
+    display: flex;
+    justify-content: space-between;
+
+    align-items: center;
+  }
+  header .bottomHeader div img{
+    display: inline-block;
+
+    margin-left: 20px;
+  }
+  header .bottomHeader div h2{
+    display: inline-block;
+    color: #fff;
+
+    font-size: 20px;
+  }
+
+  header .bottomHeader nav a{
+    margin-left: 40px;
+
+    color: #fff;
+    text-decoration: none;
+    font-size: 19px;
+  }
+  header .bottomHeader nav .loginLink{
+    margin-left: 120px;
+  }
+  header .bottomHeader nav .registrationLink{
+    margin-right: 30px;
+  }
+
+

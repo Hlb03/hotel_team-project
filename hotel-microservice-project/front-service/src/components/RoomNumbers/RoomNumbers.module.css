@@ -1,0 +1,658 @@
+body{
+    margin: 0;
+  }
+
+  h3 {
+    text-align: center;
+  }
+
+  .add-image {
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStKbI0JYZFAXrGNHlamCl4dnYSmopYS1bBfw&usqp=CAU");
+    background-repeat: no-repeat;
+    background-size: 100% ;
+  }
+
+  table, form, ul, .link{
+    margin-left: 20px;
+  }
+  .link{
+    margin-bottom: 30px;
+  }
+  label{
+    font-weight: 500;
+  }
+
+  button{
+    width: 150px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+
+    cursor: pointer;
+  }
+
+  table, th, td {
+    border: 1px solid black;
+  }
+  .special-border {
+    border: double;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+/* ---------- Banner ---------- */
+
+ .bannerBlock{
+    position: relative;
+  }
+  .bannerBlock img{
+    width: 100%;
+  }
+  .bannerBlock h2{
+    position: absolute;
+    text-align: center;
+    color: #fff;
+    font-size: 50px;
+    width: 600px;
+
+
+    left: 0;
+    right: 0;
+
+    top: 33%;
+    bottom: 0;
+    margin: 0 auto;
+
+  }
+
+
+
+
+
+
+
+
+
+/* ---------- From to Search Room  ---------- */
+  
+.formBookingRoom{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.formBookingRoom select{
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 30px;
+
+}
+.formBookingRoom .formBookingRoomInputWrapper{
+  display: flex;
+  align-items: center;
+}
+.formBookingRoom div img{
+  margin-right: 6px;
+  width: 25px;
+}
+
+.formBookingRoom div input{
+  height: 30px;
+  /* border-radius: 10px; */
+}
+.formBookingRoom div .locationInput{
+  width: 250px;
+}
+
+.formBookingRoom .buttonToFind{
+  background-color: #222222;
+  width: 240px;
+  margin-right: 30px;
+  /* margin: 0 auto; */
+  color: #B6A27B;
+  margin-top: 10px;
+  margin-bottom: 15px;
+
+  font-size: 23px;
+  font-weight: 400;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  border-radius: 18px;
+
+  justify-content: center;
+
+  cursor: pointer;
+
+  text-align: center;
+
+}
+
+.formWrapper{
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.formWrapper .errorMessageForm{
+  color: red;
+  margin-left: 40px;
+}
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ---------- Rooms in Hotel ---------- */
+
+
+  .roomsInHotelWrapper{
+    background-color: #1E1E1E;
+
+    padding-bottom: 70px;
+    padding-top: 20px;
+  }
+  .roomsInHotelWrapper h2{
+    font-size: 41px;
+    font-weight: 400;
+    text-align: center;
+    color: #fff;
+
+    margin-top: 20px;
+  }
+  .roomsInHotelWrapper h4{
+    font-size: 20px;
+    font-weight: 400;
+    color: #B6A27B;
+    text-align: center;
+
+    margin-top: 10px;
+    margin-bottom: 40px;
+  }
+  .roomsInHotelWrapper .roomsWrapper{
+    /* width: 80%; */
+    margin-bottom: 10px;
+    display: flex;
+
+    justify-content: center;
+  }
+  .roomsInHotelWrapper .roomsWrapper .room_1, .roomsInHotelWrapper .roomsWrapper .room_2{
+    margin-right: 10px;
+  }
+  .roomsInHotelWrapper .roomsWrapper .room_1, .roomsInHotelWrapper .roomsWrapper .room_2, .roomsInHotelWrapper .roomsWrapper .room_3{
+    background-color: #B6A27B;
+
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .roomsInHotelWrapper .roomsWrapper .room_1, .roomsInHotelWrapper .roomsWrapper .room_2, .roomsInHotelWrapper .roomsWrapper .room_3{
+    width: 400px;
+  }
+  .roomsInHotelWrapper .roomsWrapper .room_1 .photoRoom, .roomsInHotelWrapper .roomsWrapper .room_2 .photoRoom, .roomsInHotelWrapper .roomsWrapper .room_3 .photoRoom{
+    width: 100%;
+  }
+  .roomsInHotelWrapper .roomsWrapper .room_1 .iconStars, .roomsInHotelWrapper .roomsWrapper .room_2 .iconStars, .roomsInHotelWrapper .roomsWrapper .room_3 .iconStars{
+    width: 30%;
+
+    margin: 0 auto;
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+  .roomsInHotelWrapper .roomsWrapper .room_1 .descriptionOfRoom, .roomsInHotelWrapper .roomsWrapper .room_2 .descriptionOfRoom, .roomsInHotelWrapper .roomsWrapper .room_3 .descriptionOfRoom{
+    text-align: center;
+  }
+  .roomsInHotelWrapper .roomsWrapper .room_1 .priceOfRoom, .roomsInHotelWrapper .roomsWrapper .room_2 .priceOfRoom, .roomsInHotelWrapper .roomsWrapper .room_3 .priceOfRoom{
+    text-align: center;
+  }
+  .roomsInHotelWrapper .roomsWrapper .room_1 .buttonToReserve, .roomsInHotelWrapper .roomsWrapper .room_2 .buttonToReserve, .roomsInHotelWrapper .roomsWrapper .room_3 .buttonToReserve{
+    background-color: #222222;
+    width: 70%;
+    margin: 0 auto;
+    color: #B6A27B;
+    margin-top: 10px;
+    margin-bottom: 15px;
+
+    font-size: 23px;
+    font-weight: 400;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    text-align: center;
+
+    cursor: pointer;
+
+
+    text-decoration: none;
+  }
+
+  .roomsInHotelWrapper .buttonAddNewRoom{
+ 
+    margin: 0 auto;
+    width: 400px;
+    height: 60px;
+    border-radius: 40px;
+    background-color: #B6A27B;
+
+    text-align: center;
+    font-size: 31px;
+    padding-top: 13px;
+
+    cursor: pointer;
+
+    margin-top: 40px;
+
+    color: #000;
+  }
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+/* ---------- About one room ---------- */
+
+  .aboutRoomWrapper .aboutRoom{
+    display: flex;
+  }
+
+  .aboutRoomWrapper .aboutRoom .aboutRoomPhotoRates{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+    background-color: #B6A27B;
+    width: 45%;
+  }
+  .aboutRoomWrapper .aboutRoom .aboutRoomPhotoRates .iconStars{
+    width: 50%;
+
+    margin: 0 auto;
+    margin-top: 4px;
+    margin-bottom: 25px;
+  }
+  .aboutRoomWrapper .aboutRoom .aboutRoomPhotoRates .descriptionOfRoom{
+    text-align: center;
+
+    font-size: 33px;
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 30px;
+  }
+  .aboutRoomWrapper .aboutRoom .aboutRoomPhotoRates .priceOfRoom{
+    text-align: center;
+    font-size: 29px;
+    margin-bottom: 20px;
+  }
+  .aboutRoomWrapper .aboutRoom .aboutRoomPhotoRates .buttonToReserve{
+    background-color: #222222;
+    width: 70%;
+    margin: 0 auto;
+    color: #B6A27B;
+    margin-top: 10px;
+    margin-bottom: 15px;
+
+    font-size: 31px;
+    font-weight: 400;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    text-decoration: none;
+  }
+  a{
+    text-decoration: none;
+  }
+
+
+
+
+
+  .aboutRoomDescription{
+    background-color: #000;
+    color: #B6A27B;
+
+    /* margin-top: -19px; */
+
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+.aboutRoomDescription h3{
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-top: 20px;
+
+    font-size: 31px;
+}
+
+.aboutRoomDescription .fieldToAddComment{
+    display: flex;
+    justify-content: space-between;
+}
+.aboutRoomDescription .fieldToAddComment input{
+    width: 70%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    font-size: 25px;
+    padding-left: 20px;
+}
+.aboutRoomDescription .fieldToAddComment .buttonSend{
+    width: 25%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    background-color: #B6A27B;
+    color: #000;
+
+    text-align: center;
+    font-size: 25px;
+
+    cursor: pointer;
+}
+.aboutRoomDescription .errorComment{
+  color: red;
+  font-size: 22px;
+  margin-top: 15px;
+  padding-left: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ---------- List Of Comments ---------- */
+
+.listOfComments{
+    margin-top: 30px;
+    padding-bottom: 35px;
+}
+.listOfComments .comment{
+    background-color: #B6A27B;
+    color: #000;
+    margin-bottom: 5px;
+    padding-left: 15px;
+    padding-bottom: 10px;
+}
+.listOfComments .comment h5{
+    margin: 0;
+    font-size: 21px;
+    padding-top: 7px;
+    margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ---------- Form TO Add New Room ---------- */
+
+
+
+
+.formToAddNewRoomWrapper{
+    background-color: #000;
+}
+.formToAddNewRoom{
+    color: #B6A27B;
+
+    width: 40%;
+    margin: 0 auto;
+
+    padding-bottom: 40px;
+}
+.formToAddNewRoom h3{
+    text-align: center;
+    color: #fff;
+    margin-top: 0;
+
+    padding-top: 20px;
+    font-size: 31px;
+}
+
+
+
+
+
+
+.formToAddNewRoom label{
+    font-size: 23px;
+    font-weight: 400;
+
+    margin-right: 20px;
+}
+
+
+
+
+
+  .formToAddNewRoom .priceFieldWrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 20px;
+
+    position: relative;
+  }
+  .formToAddNewRoom .priceFieldWrapper label{
+    width: 13%;
+  }
+  .formToAddNewRoom .priceFieldWrapper span{
+    position: absolute;
+    font-size: 24px;
+    font-weight: 500;
+    color: #000;
+
+    left: 19%;
+  }
+  .formToAddNewRoom .priceFieldWrapper input{
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    width: 80%;
+
+    font-size: 17px;
+    padding-left: 37px;
+  }
+
+
+
+
+
+  .formToAddNewRoom .shortDescriptiondWrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 20px;
+  }
+  .formToAddNewRoom .shortDescriptiondWrapper label{
+    width: 31%;
+  }
+  .formToAddNewRoom .shortDescriptiondWrapper input{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    font-size: 17px;
+
+    width: 65%;
+  }
+
+
+
+
+
+  .formToAddNewRoom .longDescriptiondWrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 20px;
+  }
+  .formToAddNewRoom .longDescriptiondWrapper label{
+    width: 31%;
+  }
+  .formToAddNewRoom .longDescriptiondWrapper textarea{
+    resize: none;
+    height: 80px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    font-size: 17px;
+
+    width: 65%;
+  }
+
+
+
+
+
+
+  .formToAddNewRoom .photoOfRoomdWrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 20px;
+  }
+  .formToAddNewRoom .photoOfRoomdWrapper label{
+    width: 31%;
+  }
+  .formToAddNewRoom .photoOfRoomdWrapper input{
+
+    resize: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 17px;
+
+    width: 66%;
+  }
+
+
+
+
+  .formToAddNewRoom .selectHotelWrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 20px;
+  }
+  .formToAddNewRoom .selectHotelWrapper label{
+    width: 47%;
+  }
+  .formToAddNewRoom .selectHotelWrapper select{
+    padding-left: 10px;
+    resize: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 17px;
+
+    width: 48%;
+  }
+  
+
+
+
+
+
+
+.formToAddNewRoom .buttonAddNewRoom{
+    background-color: #B6A27B;
+    width: 40%;
+    margin: 0 auto;
+    color: #000;
+    margin-top: 40px;
+    margin-bottom: 15px;
+
+    font-size: 23px;
+    font-weight: 400;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    text-align: center;
+
+    cursor: pointer;
+
+
+    text-decoration: none;
+  }
+
+
+
+
+
+
+
+
+  .formToAddNewRoom .errorMessageForm{
+    color: red;
+    display: flex;
+    justify-content: center;
+    margin-top: -15px;
+    margin-bottom: 15px;
+  }

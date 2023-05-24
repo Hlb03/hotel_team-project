@@ -1,0 +1,370 @@
+body{
+    margin: 0;
+  }
+
+  h3 {
+    text-align: center;
+  }
+
+  .add-image {
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStKbI0JYZFAXrGNHlamCl4dnYSmopYS1bBfw&usqp=CAU");
+    background-repeat: no-repeat;
+    background-size: 100% ;
+  }
+
+  table, form, ul, .link{
+    margin-left: 20px;
+  }
+  .link{
+    margin-bottom: 30px;
+  }
+  label{
+    font-weight: 500;
+  }
+
+  button{
+    width: 150px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+
+    cursor: pointer;
+  }
+  table, th, td {
+    border: 1px solid black;
+  }
+  .special-border {
+    border: double;
+  }
+
+
+
+
+
+
+
+
+
+
+/* ---------- Banner ---------- */
+ .bannerBlock{
+    position: relative;
+  }
+  .bannerBlock img{
+    width: 100%;
+  }
+  .bannerBlock h2{
+    position: absolute;
+    text-align: center;
+    color: #fff;
+    font-size: 50px;
+    width: 600px;
+
+
+    left: 0;
+    right: 0;
+
+    top: 33%;
+    bottom: 0;
+    margin: 0 auto;
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* ---------- From to Search Room  ---------- */
+  
+  .formBookingRoom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .formBookingRoom select{
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 30px;
+
+  }
+  .formBookingRoom .formBookingRoomInputWrapper{
+    display: flex;
+    align-items: center;
+  }
+  .formBookingRoom div img{
+    margin-right: 6px;
+    width: 25px;
+  }
+
+  .formBookingRoom div input{
+    height: 30px;
+    /* border-radius: 10px; */
+  }
+  .formBookingRoom div .locationInput{
+    width: 250px;
+  }
+
+  .formBookingRoom .buttonToFind{
+    background-color: #222222;
+    width: 240px;
+    margin-right: 30px;
+    /* margin: 0 auto; */
+    color: #B6A27B;
+    margin-top: 10px;
+    margin-bottom: 15px;
+
+    font-size: 23px;
+    font-weight: 400;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    border-radius: 18px;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    text-align: center;
+
+  }
+
+  .formWrapper{
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+  .formWrapper .errorMessageForm{
+    color: red;
+    margin-left: 40px;
+  }
+
+
+
+
+
+
+
+
+
+
+
+  /* ---------- Description About Hotel ---------- */
+
+  .descriptionAboutHotelWrapper{
+    display: flex;
+    background-color: #1E1E1E;
+    padding-left: 10%;
+    padding-right: 10%;
+
+    padding-top: 110px;
+    padding-bottom: 180px;
+  }
+  .descriptionAboutHotelWrapper .descriptionAboutHotelText{
+    color: #B6A27B;
+
+    text-align: center;
+
+    width: 35%;
+    margin-right: 10%;
+  }
+  .descriptionAboutHotelWrapper .descriptionAboutHotelText h3{
+    font-size: 17px;
+    font-weight: 200;
+
+    margin-top: 80px;
+  }
+  .descriptionAboutHotelWrapper .descriptionAboutHotelText h2{
+    font-size: 35px;
+    font-weight: 400;
+    margin-top: 10px;
+    margin-bottom: 15px;
+  }
+  .descriptionAboutHotelWrapper .descriptionAboutHotelText span{
+    line-height: 1.4;
+    font-size: 18px;
+    font-weight: 300;
+  }
+  .descriptionAboutHotelWrapper .descriptionAboutHotelImages{
+    width: 55%;
+
+    position: relative;
+
+  }
+  .descriptionAboutHotelWrapper .descriptionAboutHotelImages .descriptionPhoto_1{
+    width: 200px;
+    margin-left: 40px;
+  }
+  .descriptionAboutHotelWrapper .descriptionAboutHotelImages .descriptionPhoto_2{
+    position: absolute;
+    width: 220px;
+    margin-top: 40px;
+    margin-left: -40px;
+  }
+  .descriptionAboutHotelWrapper .descriptionAboutHotelImages .descriptionPhoto_3{
+    position: absolute;
+    width: 290px;
+
+    margin-top: 173px;
+    margin-left: -240px;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* ---------- Rooms In Hotel List ---------- */
+
+  .roomsInHotelWrapper{
+    background-color: #fff;
+
+    margin-bottom: 40px;
+  }
+  .roomsInHotelWrapper h2{
+    font-size: 35px;
+    font-weight: 400;
+    text-align: center;
+
+    margin-bottom: 10px;
+  }
+  .roomsInHotelWrapper h4{
+    font-size: 20px;
+    font-weight: 400;
+    color: #B6A27B;
+    text-align: center;
+
+    margin-top: 10px;
+    margin-bottom: 40px;
+  }
+  .roomsInHotelWrapper .roomsWrapper{
+    /* width: 80%; */
+    display: flex;
+
+    justify-content: center;
+  }
+  .roomsInHotelWrapper .roomsWrapper .room_1, .roomsInHotelWrapper .roomsWrapper .room_2{
+    margin-right: 10px;
+  }
+  .roomsInHotelWrapper .roomsWrapper .room_1, .roomsInHotelWrapper .roomsWrapper .room_2, .roomsInHotelWrapper .roomsWrapper .room_3{
+    background-color: #B6A27B;
+
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .roomsInHotelWrapper .roomsWrapper .room_1, .roomsInHotelWrapper .roomsWrapper .room_2, .roomsInHotelWrapper .roomsWrapper .room_3{
+    width: 400px;
+  }
+  .roomsInHotelWrapper .roomsWrapper .room_1 .photoRoom, .roomsInHotelWrapper .roomsWrapper .room_2 .photoRoom, .roomsInHotelWrapper .roomsWrapper .room_3 .photoRoom{
+    width: 100%;
+  }
+  .roomsInHotelWrapper .roomsWrapper .room_1 .iconStars, .roomsInHotelWrapper .roomsWrapper .room_2 .iconStars, .roomsInHotelWrapper .roomsWrapper .room_3 .iconStars{
+    width: 30%;
+
+    margin: 0 auto;
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+  .roomsInHotelWrapper .roomsWrapper .room_1 .descriptionOfRoom, .roomsInHotelWrapper .roomsWrapper .room_2 .descriptionOfRoom, .roomsInHotelWrapper .roomsWrapper .room_3 .descriptionOfRoom{
+    text-align: center;
+  }
+  .roomsInHotelWrapper .roomsWrapper .room_1 .priceOfRoom, .roomsInHotelWrapper .roomsWrapper .room_2 .priceOfRoom, .roomsInHotelWrapper .roomsWrapper .room_3 .priceOfRoom{
+    text-align: center;
+  }
+  .roomsInHotelWrapper .roomsWrapper .room_1 .buttonToReserve, .roomsInHotelWrapper .roomsWrapper .room_2 .buttonToReserve, .roomsInHotelWrapper .roomsWrapper .room_3 .buttonToReserve{
+    background-color: #222222;
+    width: 70%;
+    margin: 0 auto;
+    color: #B6A27B;
+    margin-top: 10px;
+    margin-bottom: 15px;
+
+    font-size: 23px;
+    font-weight: 400;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    text-align: center;
+  }
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  /* ---------- List Of Cities ---------- */
+
+
+  .listOfCitiesWrapper{
+    background-color: #1E1E1E;
+
+    padding-bottom: 70px;
+  }
+  
+  .listOfCitiesWrapper h2{
+    color: #B6A27B;
+    text-align: center;
+    font-size: 30px;
+
+    margin: 0;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .citiesWrapper{
+    display: flex;
+    justify-content: center;
+  }
+  .listOfCities{
+    color: #B6A27B;
+
+    padding: 15px;
+    border: 1px solid #B6A27B;
+    width: 33%;
+    margin-right: 30px;
+
+    display: flex;
+  }
+  .listOfCities li{
+    padding-bottom: 10px;
+    font-size: 19px;
+  }
+
+  .photoOfCities{
+    display: flex;
+    flex-wrap: wrap;
+
+    width: 300px;
+  }
+
+
+
+
+
+
+

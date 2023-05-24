@@ -1,0 +1,251 @@
+body{
+    margin: 0;
+  }
+
+  h3 {
+    text-align: center;
+  }
+
+  .add-image {
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStKbI0JYZFAXrGNHlamCl4dnYSmopYS1bBfw&usqp=CAU");
+    background-repeat: no-repeat;
+    background-size: 100% ;
+  }
+
+  table, form, ul, .link{
+    margin-left: 20px;
+  }
+  .link{
+    margin-bottom: 30px;
+  }
+  label{
+    font-weight: 500;
+  }
+
+  button{
+    width: 150px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+
+    cursor: pointer;
+  }
+/* 
+  input{
+    border: 1px solid grey;
+  } */
+
+
+  table, th, td {
+    border: 1px solid black;
+  }
+  .special-border {
+    border: double;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ---------- Sidebar ---------- */
+
+  .mainWrapper{
+    display: flex;
+  }
+  .mainWrapper .sidebar{
+    width: 30%;
+
+    background-color: #B6A27B;
+
+    border-right: 2px solid #000000;
+  }
+  .mainWrapper .sidebar a{
+    border-bottom: 2px solid #000000;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+
+    font-size: 23px;
+
+    cursor: pointer;
+
+    text-decoration: none;
+    display: block;
+    color: #000000;
+  }
+
+
+
+
+
+
+
+
+
+
+/* ---------- Booked Room ---------- */
+  
+  .mainWrapper .bookedRoom{
+    display: flex;
+  }
+  .mainWrapper .bookedRoomPhotoRates{
+    background-color: #B6A27B;
+    width: 40%;
+  }
+
+  .mainWrapper .bookedRoomPhotoRates{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+    background-color: #B6A27B;
+    width: 45%;
+  }
+  .mainWrapper .bookedRoomPhotoRates .iconStars{
+    width: 30%;
+
+    margin: 0 auto;
+    margin-top: 4px;
+    margin-bottom: 25px;
+  }
+  .mainWrapper .bookedRoomPhotoRates .descriptionOfRoom{
+    text-align: center;
+
+    font-size: 33px;
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 30px;
+  }
+  .mainWrapper .bookedRoomPhotoRates .priceOfRoom{
+    text-align: center;
+    font-size: 29px;
+    margin-bottom: 20px;
+  }
+  .mainWrapper .bookedRoomPhotoRates .buttonToReserved{
+    background-color: #222222;
+    width: 70%;
+    margin: 0 auto;
+    color: #B6A27B;
+    margin-top: 10px;
+    margin-bottom: 15px;
+
+    font-size: 31px;
+    font-weight: 400;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    text-align: center;
+
+    cursor: pointer;
+  }
+  .mainWrapper .bookedRoomPhotoRates .buttonToCancel{
+    background-color: #222222;
+    width: 70%;
+    margin: 0 auto;
+    color: #B6A27B;
+    margin-top: 10px;
+    margin-bottom: 15px;
+
+    font-size: 31px;
+    font-weight: 400;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    text-align: center;
+
+    cursor: pointer;
+  }
+
+
+
+
+
+
+
+
+/* ---------- Personal Data ---------- */
+
+
+  .mainWrapper .formOfPerfonalData{
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 100%;
+
+    margin-bottom: 50px;
+  }
+  .mainWrapper .formOfPerfonalData input{
+    margin-top: 20px;
+    padding-top: 20px;
+    border: none;
+
+    border-bottom: 1px solid #000000;
+    display: block;
+    width: 100%;
+
+
+
+    font-size: 21px;
+  }
+  .mainWrapper .formOfPerfonalData .buttonToChangePassword{
+    background-color: #222222;
+    width: 70%;
+    margin: 0 auto;
+    color: #B6A27B;
+    margin-top: 10px;
+    margin-bottom: 15px;
+
+    font-size: 31px;
+    font-weight: 400;
+    padding-top: 16px;
+    padding-bottom: 16px;
+
+    text-align: center;
+
+    cursor: pointer;
+
+
+    margin-top: 40px;
+  }
+  .mainWrapper .formOfPerfonalData .buttonToChangeData{
+    background-color: #222222;
+    width: 70%;
+    margin: 0 auto;
+    color: #B6A27B;
+    margin-top: 10px;
+    margin-bottom: 15px;
+
+    font-size: 31px;
+    font-weight: 400;
+    padding-top: 16px;
+    padding-bottom: 16px;
+
+    text-align: center;
+
+    cursor: pointer;
+  }
+

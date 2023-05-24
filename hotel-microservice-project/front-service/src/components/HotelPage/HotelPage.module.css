@@ -1,0 +1,111 @@
+body{
+    margin: 0;
+  }
+
+  h3 {
+    text-align: center;
+  }
+
+  .add-image {
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStKbI0JYZFAXrGNHlamCl4dnYSmopYS1bBfw&usqp=CAU");
+    background-repeat: no-repeat;
+    background-size: 100% ;
+  }
+
+  table, form, ul, .link{
+    margin-left: 20px;
+  }
+  .link{
+    margin-bottom: 30px;
+  }
+  label{
+    font-weight: 500;
+  }
+
+  button{
+    width: 150px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+
+    cursor: pointer;
+  }
+  table, th, td {
+    border: 1px solid black;
+  }
+  .special-border {
+    border: double;
+  }
+
+
+
+
+
+
+
+
+
+
+/* ---------- Description About Hotel ---------- */
+
+  .descriptionAboutHotelWrapper{
+    display: flex;
+    background-color: #1E1E1E;
+    padding-left: 10%;
+    padding-right: 10%;
+
+    padding-top: 110px;
+    padding-bottom: 180px;
+  }
+  .descriptionAboutHotelWrapper .descriptionAboutHotelText{
+    color: #B6A27B;
+
+    text-align: center;
+
+    width: 35%;
+    margin-right: 10%;
+  }
+  .descriptionAboutHotelWrapper .descriptionAboutHotelText h3{
+    font-size: 17px;
+    font-weight: 200;
+
+    margin-top: 80px;
+  }
+  .descriptionAboutHotelWrapper .descriptionAboutHotelText h2{
+    font-size: 35px;
+    font-weight: 400;
+    margin-top: 10px;
+    margin-bottom: 15px;
+  }
+  .descriptionAboutHotelWrapper .descriptionAboutHotelText span{
+    line-height: 1.4;
+    font-size: 18px;
+    font-weight: 300;
+  }
+  .descriptionAboutHotelWrapper .descriptionAboutHotelImages{
+    width: 55%;
+
+    position: relative;
+
+  }
+  .descriptionAboutHotelWrapper .descriptionAboutHotelImages .descriptionPhoto_1{
+    width: 200px;
+    margin-left: 40px;
+  }
+  .descriptionAboutHotelWrapper .descriptionAboutHotelImages .descriptionPhoto_2{
+    position: absolute;
+    width: 220px;
+    margin-top: 40px;
+    margin-left: -40px;
+  }
+  .descriptionAboutHotelWrapper .descriptionAboutHotelImages .descriptionPhoto_3{
+    position: absolute;
+    width: 290px;
+
+    margin-top: 173px;
+    margin-left: -240px;
+  }
+
+
+
+
