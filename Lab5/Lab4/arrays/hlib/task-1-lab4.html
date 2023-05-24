@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lab 4 point 4</title>
+</head>
+<body>
+<script>
+
+  alert('Task 1')
+  let firstSize = userInput();
+
+  console.log(`Task 1\nArrays size is ${firstSize}`);
+  array = initArrayWithRandomValues(firstSize);
+
+  console.log(`Arrays is ${array}`);
+
+  let results = findMinAndMax(array);
+  if (results === undefined) {
+    alert('Failed to find mins and maxes. Array size is too small.')
+  } else {
+    console.log(`According to generated array values, results are the following:\nMin odd - ${results[0]}\nMax odd - ${results[1]}\nMin even - ${results[2]}\nMax even - ${results[3]}`);
+    alert(`Min odd value is ${results[0]}\nMax odd value is ${results[1]}\nMin even value is ${results[2]}\nMax even value is ${results[3]}`)
+  }
+// ------------------------------------------------------------------------------------------------------------
+  alert('Task 2')
+  let secondSize = userInput();
+  console.log(`\n\nTask 2\nArray size is ${secondSize}`)
+
+  let secondArray = initArrayWithRandomValues(secondSize);
+  console.log(`Primary array is ${secondArray}`)
+  
+  alert(`Primary array is ${secondArray}`);
+  console.log(`Sorted array is ${sortArray(secondArray)}`)
+
+
+
+  function initArrayWithRandomValues(size) {
+    let array = [];
+    for (let i = 0; i < size; i++) {
+      array[i] = Math.round(Math.random() * 10);
+    }
+    return array;
+  }
+
+  function findMinAndMax(array) {
+    let minOdd, maxOdd;
+    let minEven, maxEven;
+
+    if (array.length < 2)
+      return undefined;
+
+    minOdd = array[0];
+    maxOdd = array[0];
+    minEven = array[1];
+    maxEven = array[1];
+
+    for (let i = 2; i < array.length; i++) {
+      if (i % 2 === 0) {
+        if (array[i] < minOdd)
+          minOdd = array[i];
+        if (array[i] > maxOdd)
+          maxOdd = array[i];
+      } else {
+        if (array[i] < minEven)
+          minEven = array[i];
+        if (array[i] > maxEven)
+          maxEven = array[i];
+      }
+    }
+    return [minOdd, maxOdd, minEven, maxEven];
+  }
+
+  function findMaxInArray(array, start) {
+    let max = array[start];
+    let index = start;
+    for (let i = start + 1; i < array.length; i++) {
+      if (array[i] > max) {
+        max = array[i];
+        index = i;
+      }
+    }
+
+    return index;
+  }
+
+  function sortArray(array) {
+    for (let i = 0; i < array.length; i++) {
+      let maxIdx = findMaxInArray(array, i);
+      let temp = array[i];
+      array[i] = array[maxIdx];
+      array[maxIdx] = temp;
+    }
+
+    return array;
+  }
+
+  function userInput() {
+    let size = prompt("Enter an array size:");
+    while (!size.match("[0-9]+"))
+      size = prompt("Incorrect input. Please try again:")
+
+    return size;
+  }
+</script>
+
+</body>
+</html>

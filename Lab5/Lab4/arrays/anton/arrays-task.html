@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array task</title>
+</head>
+<body>
+<script>
+    let firstArraySize = takeDataFromUser();
+    console.log(`First array size is ${firstArraySize}`)
+    let arrOne = initArrayWithRandomValues(firstArraySize);
+    console.log(`First array has ${arrOne}`)
+
+    let results = firstTaskSearch(arrOne);
+    console.log(`Array even number sum is ${results[0]}`)
+    console.log(`Array max even number is ${results[1]} with index ${results[2]}`)
+    console.log(`Array min odd number is ${results[3]} with index ${results[4]}`)
+
+
+    let secondArraySize = takeDataFromUser();
+    console.log(`\nSecond array size is ${secondArraySize}`);
+    let arrTwo = initArrayWithRandomValues(secondArraySize);
+    console.log(`Second array - ${arrTwo}`);
+
+    console.log(`Array after sorting - ${arrTwo.sort()}`)
+
+    function takeDataFromUser() {
+        return prompt("Enter array size: ");
+    }
+
+    function initArrayWithRandomValues(size) {
+        let arr = [];
+        for (let i = 0; i < size; i++) {
+            arr[i] = Math.round(Math.random() * 10);
+        }
+        return arr;
+    }
+
+    function firstTaskSearch(arr) {
+        let sum = 0;
+        let maxEven = 0;
+        let maxEvenIdx;
+        let minOdd = 10;
+        let minOddIdx;
+
+        for (let i = 0; i < arr.length; i++) {
+            if (i % 2 === 0) {
+                sum += arr[i];
+                if (maxEven < arr[i]) {
+                    maxEven = arr[i];
+                    maxEvenIdx = i;
+                }
+            } else {
+                if (arr[i] < minOdd) {
+                    minOdd = arr[i];
+                    minOddIdx = i;
+                }
+            }
+        }
+        return [sum, maxEven, maxEvenIdx, minOdd, minOddIdx];
+    }
+</script>
+</body>
+</html>
