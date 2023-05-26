@@ -85,7 +85,6 @@ const Header = (props) => {
         alert("Your data: \n" + "Email: " + values.mail + "\n" + "Password: " + values.password);
        
         document.body.style.overflow = 'unset';
-        // history.push('/profile')
     }
 
     const onReg = (values) => {

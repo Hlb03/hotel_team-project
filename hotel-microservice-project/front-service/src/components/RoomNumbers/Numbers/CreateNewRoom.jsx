@@ -22,7 +22,7 @@ import * as yup from 'yup';
 import PreviewImage from './PreviewImage';
 
 
-import * as RNFS from 'react-native-fs';
+// import * as RNFS from 'react-native-fs';
 
 // import fs from 'fs';
 

@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
 import Modal from 'react-modal';
-// import './Modal.scss'
 import s from './Modals.module.css';
 
 
@@ -8,31 +7,9 @@ import close_icon from '../../../assets/images/close.svg';
 import city_icon from '../../../assets/images/city_icon.png';
 
 
-// import btnLogin_Modal from '../../assets/images/StartPage/btnLogin_Modal.svg';
-// import btnRegis_Modal from '../../assets/images/StartPage/btnRegis_Modal.svg';
-
-
-// import singUpWithGoogle from '../../assets/images/StartPage/singUpWithGoogle.svg';
-// import singUpWithFacebook from '../../assets/images/StartPage/singUpWithFacebook.svg';
-
-
 
 import { Formik } from 'formik';
 import * as yup from 'yup';
-// import MaskInput from 'react-maskinput';
-
-
-
-
-
-
-
-// import axios from 'axios';
-// import { BASE_URL } from '../../constants';
-// import { useDispatch } from 'react-redux';
-// import { setUserAction } from '../../redux/reducers/auth-reducer';
-import { unstable_HistoryRouter, useHistory } from 'react-router-dom';
-
 
 
 const ModalRegAuth = ({ type, isOpen, onAfterOpen, onRequestClose, style, contentLabel, funcClick, subtitle, errorText }) => {    
@@ -40,35 +17,12 @@ const ModalRegAuth = ({ type, isOpen, onAfterOpen, onRequestClose, style, conten
     const [typeOfModal, setTypeOfModal] = useState(type)
     const [redirectModal, setRedirectModal] = useState(type)
 
-    // const [codeToResetPass, setCodeToResetPass] = useState(false)
-    // const [forgotPass, setForgotPass] = useState(false)
-    // const [newPassword, setNewPassword] = useState(false)
-    
-
-
-    // const history = unstable_HistoryRouter()
-
-    // const [redirectModal, setRedirectModal] = useState(type)
-
-
-    
- 
 
     // // Auth Form
     const validationsSchemaAuth = yup.object().shape({
         mail: yup.string().email('Невірна адреса').required(`Поле обов’язкове`),
         password: yup.string().typeError('Повинен бути текст').required(`Поле обов’язкове`).min(8, "Мінімум 8 символів"),
     })
-
-    // Fast Registration Form
-    const validationsSchemaFastReg = yup.object().shape({
-        name: yup.string().typeError('Повинен бути текст').required(`Поле обов’язкове`),
-        surname: yup.string().typeError('Повинен бути текст').required(`Поле обов’язкове`),
-        phone: yup.string().typeError('Повинен бути текст').required(`Поле обов’язкове`),
-    })
-
-
-
 
     // Registration Form
     const validationsSchemaReg = yup.object().shape({
@@ -83,27 +37,6 @@ const ModalRegAuth = ({ type, isOpen, onAfterOpen, onRequestClose, style, conten
         password: yup.string().typeError('Повинен бути текст').required(`Поле обов’язкове`).min(8, "Мінімум 8 символів"),
         confirmPassword: yup.string().min(8, "Мінімум 8 символів").oneOf([yup.ref('password')], 'Паролі не співпадають').required(`Поле обов’язкове`)
     })
-    
-    // // Validations Schema Reset Code
-    // const validationsSchemaCodeToResetPass = yup.object().shape({
-    //     firstCode: yup.string().typeError('Повинен бути текст').required(`Ввведіть код`),
-    //     secondCode: yup.string().typeError('Повинен бути текст').required(`Ввведіть код`),
-    //     thirdCode: yup.string().typeError('Повинен бути текст').required(`Ввведіть код`),
-    //     fourthCode: yup.string().typeError('Повинен бути текст').required(`Ввведіть код`),
-    // })
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -140,20 +73,10 @@ const ModalRegAuth = ({ type, isOpen, onAfterOpen, onRequestClose, style, conten
                 })() }
                 </div>
 
-                
-                
-              
 
-
-
-                
                 <img onClick={() => {
-                    // setCodeToResetPass(false)
-                    // setForgotPass(false)
-                    // setNewPassword(false)
                     onRequestClose()
-                    // setRedirectModal('')
-                    
+
                     setTypeOfModal(redirectModal)
                 }} src={close_icon} className={s.close_icon}></img> 
 
@@ -172,6 +95,9 @@ const ModalRegAuth = ({ type, isOpen, onAfterOpen, onRequestClose, style, conten
                                 phone: '',
                                 password: '',
                                 confirmPassword: '',
+
+                            //     POST
+                            //     localhost:8080/hotel-rent/users?name=value.name&
                             }}
                             validateOnBlur
                             onSubmit={(values) => funcClick(values)}
@@ -329,7 +255,6 @@ const ModalRegAuth = ({ type, isOpen, onAfterOpen, onRequestClose, style, conten
 
 
                                     <div className={!isValid || !dirty ? s.regButton_DeActive : s.regButton} onClick={handleSubmit}>
-                                            {/* <img className={s.btnLogin_Modal} src={btnLogin_Modal} /> */}
                                            <span className={s.reg_button_text}>Зареєструватись</span>
                                     </div>
 
