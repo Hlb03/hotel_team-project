@@ -2,18 +2,12 @@ import React, { useEffect } from 'react';
 import s from './RoomNumbers.module.css';
 
 
-import iconGlobus from '../../assets/images/iconGlobus.png';
-import iconHotel from '../../assets/images/iconHotel.png';
-
 import mainBanner from '../../assets/images/mainBanner.png';
 import iconLocation from '../../assets/images/iconLocation.png';
 import iconCalendar from '../../assets/images/iconCalendar.png';
 import iconMoney from '../../assets/images/iconMoney.png';
 import iconPersonal from '../../assets/images/iconPersonal.png';
 
-import descriptionPhoto_1 from '../../assets/images/descriptionPhoto_1.png';
-import descriptionPhoto_2 from '../../assets/images/descriptionPhoto_2.png';
-import descriptionPhoto_3 from '../../assets/images/descriptionPhoto_3.png';
 
 import photoRoom_1 from '../../assets/images/photoRoom_1.png';
 import photoRoom_2 from '../../assets/images/photoRoom_2.png';
@@ -24,17 +18,6 @@ import photoRoom_6 from '../../assets/images/photoRoom_6.png';
 import iconStars_5 from '../../assets/images/iconStars_5.png';
 
 
-
-import photo_1 from '../../assets/images/photo_1.png';
-import photo_2 from '../../assets/images/photo_2.png';
-import photo_3 from '../../assets/images/photo_3.png';
-
-
-import footer_image from '../../assets/images/footer_image.png';
-
-import facebook from '../../assets/images/facebook.png';
-import instagram from '../../assets/images/instagram.png';
-import twitter from '../../assets/images/twitter.png';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import { Link, NavLink } from 'react-router-dom';
@@ -43,6 +26,9 @@ import { Link, NavLink } from 'react-router-dom';
 import * as yup from 'yup';
 import { Formik } from 'formik';
 import DatePicker from "react-datepicker";
+
+
+import axios from 'axios';
 
 
 
@@ -80,10 +66,24 @@ const RoomNumbers = (props) => {
         "maxPrice: " + values.maxPrice +'\n' + 
         "Amount of person: " + values.amountOfPerson +'\n' + 
         "City: " + values.selectedCity);
-
-        console.log(values);
-    
-        // history.push('/cabinet')
+        
+        
+        // -------------------  TODO ----------------------------
+        axios.post('/find-rooms', { 
+                dateStart: values.dateStart,
+                dateEnd: values.dateEnd,
+                minPrice: values.minPrice,
+                maxPrice: values.maxPrice,
+                amountOfPerson: values.amountOfPerson, 
+                selectedCity: values.selectedCity,
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            }
+        );
       }
 
 

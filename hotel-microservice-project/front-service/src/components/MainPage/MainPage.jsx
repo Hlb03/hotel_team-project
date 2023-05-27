@@ -42,6 +42,8 @@ import * as yup from 'yup';
 import { Formik } from 'formik';
 import DatePicker from "react-datepicker";
 
+import axios from 'axios';
+
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -81,9 +83,23 @@ const MainPage = (props) => {
         "Amount of person: " + values.amountOfPerson +'\n' + 
         "City: " + values.selectedCity);
 
-        console.log(values);
-    
-        // history.push('/cabinet')
+
+        // -------------------  TODO ----------------------------
+        axios.post('/find-rooms', { 
+                dateStart: values.dateStart,
+                dateEnd: values.dateEnd,
+                minPrice: values.minPrice,
+                maxPrice: values.maxPrice,
+                amountOfPerson: values.amountOfPerson, 
+                selectedCity: values.selectedCity,
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            }
+        );
       }
 
 

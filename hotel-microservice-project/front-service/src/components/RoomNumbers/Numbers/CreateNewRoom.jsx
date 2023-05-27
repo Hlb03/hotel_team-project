@@ -20,11 +20,11 @@ import { Field, ErrorMessage, useFormik, Formik, Form  } from 'formik';
 
 import * as yup from 'yup';
 import PreviewImage from './PreviewImage';
+import { Link } from 'react-router-dom';
 
 
-// import * as RNFS from 'react-native-fs';
+import axios from 'axios';
 
-// import fs from 'fs';
 
 
 
@@ -64,15 +64,28 @@ const RoomNumbers_1 = (props) => {
     "Photo size: " + values.photoRoom.size +'\n' + 
     "City: " + values.selectedCity);
 
+
+    //TODO
+    axios.post('/new-room', { 
+        price: values.price,
+        shortDescription: values.shortDescription,
+        longDescription: values.longDescription,
+        photoRoom: values.photoRoom, // values.photoRoom.name - назва фото
+        // values.photoRoom.type - тип фото 
+        // values.photoRoom.size - розмір фото
+        selectedCity: values.selectedCity,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      }
+    );
+
     
   }
 
-
-
-  const [avatarPreview, setAvatarPreview] = useState('/avatars/default.png');
-
-
-  
 
 
 
@@ -213,7 +226,7 @@ const RoomNumbers_1 = (props) => {
                     <span className={s.descriptionOfRoom} >Номер з ліжком розміру king-size і балконом</span>
                     <span className={s.priceOfRoom} >Ціна: 3 300 грн</span>
 
-                    <div className={s.buttonToReserve} >Забронювати</div>
+                    <Link to='/rooms-numbers/1' preventScrollReset={true} activeClassName={s.activeLink} ><div className={s.buttonToReserve} >Забронювати</div></Link>
                 </div>
 
                 <div className={s.room_2}>
@@ -222,7 +235,7 @@ const RoomNumbers_1 = (props) => {
                     <span className={s.descriptionOfRoom} >Номер-студіо з гідромасажною ванною</span>
                     <span className={s.priceOfRoom} >Ціна: 1 400 грн</span>
 
-                    <div className={s.buttonToReserve} >Забронювати</div>
+                    <Link to='/rooms-numbers/2' preventScrollReset={true} activeClassName={s.activeLink} ><div className={s.buttonToReserve} >Забронювати</div></Link>
                 </div>
 
                 <div className={s.room_3} >
@@ -231,7 +244,7 @@ const RoomNumbers_1 = (props) => {
                     <span className={s.descriptionOfRoom} >Люкс з гідромасажною ванною</span>
                     <span className={s.priceOfRoom} >Ціна: 1 500 грн</span>
 
-                    <div className={s.buttonToReserve} >Забронювати</div>
+                    <Link to='/rooms-numbers/3' preventScrollReset={true} activeClassName={s.activeLink} ><div className={s.buttonToReserve} >Забронювати</div></Link>
                 </div>
             </div>
 
@@ -244,7 +257,7 @@ const RoomNumbers_1 = (props) => {
                     <span className={s.descriptionOfRoom} >Номер з ліжком розміру king-size і балконом</span>
                     <span className={s.priceOfRoom} >Ціна: 3 300 грн</span>
 
-                    <div className={s.buttonToReserve} >Забронювати</div>
+                    <Link to='/rooms-numbers/4' preventScrollReset={true} activeClassName={s.activeLink} ><div className={s.buttonToReserve} >Забронювати</div></Link>
                 </div>
 
                 <div className={s.room_2}>
@@ -253,7 +266,7 @@ const RoomNumbers_1 = (props) => {
                     <span className={s.descriptionOfRoom} >Номер-студіо з гідромасажною ванною</span>
                     <span className={s.priceOfRoom} >Ціна: 1 400 грн</span>
 
-                    <div className={s.buttonToReserve} >Забронювати</div>
+                    <Link to='/rooms-numbers/5' preventScrollReset={true} activeClassName={s.activeLink} ><div className={s.buttonToReserve} >Забронювати</div></Link>
                 </div>
 
                 <div className={s.room_3} >
@@ -262,7 +275,7 @@ const RoomNumbers_1 = (props) => {
                     <span className={s.descriptionOfRoom} >Люкс з гідромасажною ванною</span>
                     <span className={s.priceOfRoom} >Ціна: 1 500 грн</span>
 
-                    <div className={s.buttonToReserve} >Забронювати</div>
+                    <Link to='/rooms-numbers/6' preventScrollReset={true} activeClassName={s.activeLink} ><div className={s.buttonToReserve} >Забронювати</div></Link>
                 </div>
             </div>
 

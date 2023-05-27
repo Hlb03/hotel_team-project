@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import s from './ContactPage.module.css';
 
-
-
 import footer_image from '../../assets/images/footer_image.png';
 
 import facebook from '../../assets/images/facebook.png';
@@ -26,7 +24,6 @@ const ContactPage = (props) => {
     <div>
 
        <Header />
-
 
 
         <footer>

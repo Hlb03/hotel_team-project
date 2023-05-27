@@ -182,7 +182,7 @@ const RoomNumbers_2 = (props) => {
             </div>
 
 
-            <div className={s.buttonAddNewRoom}>Додати номер</div>
+            <Link to="/rooms-numbers/create-new-room" preventScrollReset={true} activeClassName={s.activeLink} ><div className={s.buttonAddNewRoom}>Додати номер</div></Link>
         </div>
 
 

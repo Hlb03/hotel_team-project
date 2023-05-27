@@ -2,36 +2,11 @@ import React, { useEffect } from 'react';
 import s from './ProfileUser.module.css';
 
 
-import iconGlobus from '../../assets/images/iconGlobus.png';
-import iconHotel from '../../assets/images/iconHotel.png';
-
-import mainBanner from '../../assets/images/mainBanner.png';
-import iconLocation from '../../assets/images/iconLocation.png';
-import iconCalendar from '../../assets/images/iconCalendar.png';
-import iconMoney from '../../assets/images/iconMoney.png';
-import iconPersonal from '../../assets/images/iconPersonal.png';
-
-import descriptionPhoto_1 from '../../assets/images/descriptionPhoto_1.png';
-import descriptionPhoto_2 from '../../assets/images/descriptionPhoto_2.png';
-import descriptionPhoto_3 from '../../assets/images/descriptionPhoto_3.png';
 
 import photoRoom_1 from '../../assets/images/photoRoom_1.png';
-import photoRoom_2 from '../../assets/images/photoRoom_2.png';
-import photoRoom_3 from '../../assets/images/photoRoom_3.png';
 import iconStars_5 from '../../assets/images/iconStars_5.png';
 
 
-
-import photo_1 from '../../assets/images/photo_1.png';
-import photo_2 from '../../assets/images/photo_2.png';
-import photo_3 from '../../assets/images/photo_3.png';
-
-
-import footer_image from '../../assets/images/footer_image.png';
-
-import facebook from '../../assets/images/facebook.png';
-import instagram from '../../assets/images/instagram.png';
-import twitter from '../../assets/images/twitter.png';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -41,6 +16,8 @@ import Footer from '../Footer/Footer';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
+import axios from 'axios';
+
 
 
 
@@ -49,16 +26,10 @@ const ProfileUser = (props) => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-      }, []);
+    }, []);
 
 
-
-
-      const [profileFormAbleToChange, setProfileFormAbleToChange] = React.useState(false);
-      const [passwordFormAbleToChange, setPasswordFormAbleToChange] = React.useState(false);
-
-
-
+    const [profileFormAbleToChange, setProfileFormAbleToChange] = React.useState(false);
 
 
     const validationsSchemaProfileData = yup.object().shape({
@@ -79,16 +50,35 @@ const ProfileUser = (props) => {
 
         setProfileFormAbleToChange(false);
         alert("Your data: \n" + 
-                "Name: " + values.name + "\n" + 
-                "Surname: " + values.surname + "\n" + 
-                "Nickname: " + values.nickname + "\n" +
-                "Mail: " + values.mail + "\n" +
-                "YearsOld: " + values.yearsOld + "\n" +
-                "Phone: " + values.phone
-            );
-    
-        console.log(values);
-        // history.push('/cabinet')
+            "Name: " + values.name + "\n" + 
+            "Surname: " + values.surname + "\n" + 
+            "Nickname: " + values.nickname + "\n" +
+            "Mail: " + values.mail + "\n" +
+            "YearsOld: " + values.yearsOld + "\n" +
+            "Phone: " + values.phone +"\n" +
+            "Password: " + values.password + "\n" +
+            "Confirm Password: " + values.confirmPassword
+        );
+
+
+        //TODO
+        axios.post('/profile-edit', { 
+                name: values.name,
+                surname: values.surname,
+                nickname: values.nickname,
+                mail: values.mail,
+                yearsOld: values.yearsOld,
+                phone: values.phone,
+                password: values.password,
+                confirmPassword: values.confirmPassword,      
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            }
+        );
     }
 
 
@@ -105,8 +95,6 @@ const ProfileUser = (props) => {
             <div className={s.sidebar}>
                 <NavLink to="/profile" activeClassName={s.activeLink} >Бронювання</NavLink>
                 <NavLink to="/profile/personal-data" activeClassName={s.activeLink} >Особиста інформація</NavLink>
-                {/* <div>Бронювання</div>
-                <div>Особиста інформація</div> */}
             </div>
 
             {props.tab === 'booked-rooms' ? 
@@ -293,7 +281,9 @@ const ProfileUser = (props) => {
                             { touched.phone && errors.phone && <span className={s.errorMessageProfileData}>{errors.phone}</span> }
 
 
-                            {passwordFormAbleToChange ?
+
+
+                            {profileFormAbleToChange ?
                                 <input 
                                     type={`password`} 
                                     name={`password`}
@@ -318,7 +308,7 @@ const ProfileUser = (props) => {
                             { touched.password && errors.password && <span className={s.errorMessageProfileData}>{errors.password}</span> }
 
 
-                            {passwordFormAbleToChange ?
+                            {profileFormAbleToChange ?
                                 <input 
                                     type={`password`} 
                                     name={`confirmPassword`}
@@ -342,45 +332,13 @@ const ProfileUser = (props) => {
                             }
                             { touched.confirmPassword && errors.confirmPassword && <span className={s.errorMessageProfileData}>{errors.confirmPassword}</span> }
 
-
-
-{/* 
-
-                            <input type="text" name="name" value={'Григорій'} disabled/>
-                            <input type="text" name="surname" value={'Онищенко'} disabled/>
-                            <input type="text" name="nickname" value={'Gru02'} disabled/>
-                            <input type="text" name="mail" value={"hryhoriyonishchenko@gmail.com"} disabled/>
-                            <input type="text" name="yearsOld" value={'32 роки'} disabled/>
-                            <input type="text" name="phone" value={'+380985606565'} disabled/>
-
-                            <input type="text" name="password" value={'+380985606565'} disabled/>
-                            <input type="text" name="confirmPassword" value={'+380985606565'} disabled/>
-         */}
-                            {passwordFormAbleToChange ?
-                                <div className={s.buttonToChangePassword} onClick={() => {
-                                    setPasswordFormAbleToChange(false);
-                                    alert(values.password + '\n' + values.confirmPassword);
-                                }}>Зберегти пароль пароль</div>
-                                :
-                                <div className={s.buttonToChangePassword} onClick={() => setPasswordFormAbleToChange(true)}>Змінити пароль</div> 
-                            }
-
                             {profileFormAbleToChange ? 
                                 <div className={s.buttonToChangeData} onClick={handleSubmit}>Зберегти зміни</div>
                                 : 
                                 <div className={s.buttonToChangeData} onClick={() => setProfileFormAbleToChange(true)} >Змінити особисті дані</div>
                             }
                         </div> 
-
-
-                        // <div>
-                        //     <div className={s.fieldToAddComment}>
-                        //         <input type="text" placeholder='Додайте коментар' name="commentInput"  onChange={handleChange} />
-                        //         <div className={s.buttonSend} onClick={handleSubmit}>Надіслати</div>
-                        //     </div>
-
-                        //     { touched.commentInput && errors.commentInput && <span className={s.errorComment}>Введіть коментар!</span> }
-                        // </div>
+                        
                     )}
                 </Formik>
                 

@@ -8,6 +8,8 @@ import { NavLink, unstable_HistoryRouter, useHistory } from 'react-router-dom';
 import ModalRegAuth from './Modals/ModalRegAuth';
 
 
+import axios from 'axios';
+
 
 
 
@@ -53,7 +55,9 @@ const Header = (props) => {
         window.scrollTo(0, 0);
       }, []);
 
-    // const history = unstable_HistoryRouter()
+
+
+
     const [errorText, setErrorText] = useState('')
     const [registrationFormIsOpen, setRegistrationFormIsOpen] = React.useState(false);
     const [loginFormIsOpen, setLoginFormIsOpen] = React.useState(false);
@@ -61,11 +65,11 @@ const Header = (props) => {
     let openRegistrationForm = () => {
         setRegistrationFormIsOpen(true);
         document.body.style.overflow = 'hidden';
-      }
-      let closeRegistrationForm = () => {
-        setRegistrationFormIsOpen(false);
-        document.body.style.overflow = 'unset';
-      }
+    }
+    let closeRegistrationForm = () => {
+      setRegistrationFormIsOpen(false);
+      document.body.style.overflow = 'unset';
+    }
 
     let openLoginForm = () => {
         setLoginFormIsOpen(true);
@@ -82,45 +86,69 @@ const Header = (props) => {
 
 
     const onAuth = (values) => {
-        alert("Your data: \n" + "Email: " + values.mail + "\n" + "Password: " + values.password);
-       
+        alert("Your data: \n" + 
+              "Email: " + values.mail + "\n" + 
+              "Password: " + values.password
+        );
+        
         document.body.style.overflow = 'unset';
+
+
+        // -------------------  TODO ----------------------------
+        axios.post('/auth', { 
+              mail: values.mail,
+              password: values.password,
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            }
+        );
     }
 
     const onReg = (values) => {
         alert("Your data: \n" + 
-                "Name: " + values.name + "\n" + 
-                "Surname: " + values.surname + "\n" + 
-                "Nickname: " + values.nickname + "\n" +
-                "Mail: " + values.mail + "\n" +
-                "YearsOld: " + values.yearsOld + "\n" +
-                "Phone: " + values.phone + "\n" +
-                "Password: " + values.password + "\n" +
-                "Confirm Password: " + values.confirmPassword
-            );
+              "Name: " + values.name + "\n" + 
+              "Surname: " + values.surname + "\n" + 
+              "Nickname: " + values.nickname + "\n" +
+              "Mail: " + values.mail + "\n" +
+              "YearsOld: " + values.yearsOld + "\n" +
+              "Phone: " + values.phone + "\n" +
+              "Password: " + values.password + "\n" +
+              "Confirm Password: " + values.confirmPassword
+        );
        
         document.body.style.overflow = 'unset';
-        // localStorage.setItem('auth', 2)
-        // localStorage.setItem('name', name)
-        // // localStorage.setItem('surname', surname)
-        // localStorage.setItem('phone', phone)
-    
-        // history.push('/cabinet')
-        // console.log('click reg', name, phone);
+
+
+        // -------------------  TODO ----------------------------
+        axios.post('/auth', { 
+              name: values.name,
+              surname: values.surname,
+              nickname: values.nickname,
+              mail: values.mail,
+              yearsOld: values.yearsOld,
+              phone: values.phone,
+              password: values.password,
+              confirmPassword: values.confirmPassword,
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            }
+        );
       }
 
 
 
 
 
-    let afterOpenLoginForm = () => {
-        // references are now sync'd and can be accessed.
-        // subtitle.style.color = '#f00';
-    }
-    let afterOpenRegistrationForm = () => {
-        // references are now sync'd and can be accessed.
-        // subtitle.style.color = '#f00';
-      }
+    let afterOpenLoginForm = () => {}
+    let afterOpenRegistrationForm = () => {}
 
 
 

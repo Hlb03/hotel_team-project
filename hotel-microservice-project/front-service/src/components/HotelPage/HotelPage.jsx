@@ -28,8 +28,6 @@ const HotelPage = (props) => {
         <Header />
 
 
-
-
         <div className={s.descriptionAboutHotelWrapper}>
             <div className={s.descriptionAboutHotelText}>
                 <h3>Ласкаво просимо</h3>
@@ -44,9 +42,6 @@ const HotelPage = (props) => {
                 <img className={s.descriptionPhoto_3} src={descriptionPhoto_3} alt="" />
             </div>
         </div>
-
-
-
 
 
         <Footer />
