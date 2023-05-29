@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@CrossOrigin(origins = "http://localhost:3000/")
 @RestController
 @RequestMapping("/hotels")
 @AllArgsConstructor
@@ -21,7 +22,7 @@ public class HotelController {
     private final HotelTransform transform;
 
     @PostMapping
-    public ResponseEntity<Integer> createNewHotel(@ModelAttribute HotelDTO hotelDTO) {
+    public ResponseEntity<Integer> createNewHotel(@RequestBody HotelDTO hotelDTO) {
         System.out.println("HOTEL IS: " + hotelDTO);
         Hotel hotel = transform.entityTake(hotelDTO);
         hotelService.addNewHotel(hotel);
@@ -37,7 +38,7 @@ public class HotelController {
     }
 
     @GetMapping("/name/{hotelName}")
-    public HotelDTO getAllHotels(@PathVariable String hotelName) {
+    public HotelDTO getHotelInfo(@PathVariable String hotelName) {
         Hotel hotel = hotelService.findHotelByName(hotelName);
         return transform.dtoTaking(hotel);
     }
@@ -50,8 +51,16 @@ public class HotelController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping
+    public List<HotelDTO> getAllHotels() {
+        return hotelService.findAllHotels()
+                .stream()
+                .map(transform::dtoTaking)
+                .toList();
+    }
+
     @PutMapping
-    public ResponseEntity<Integer> updateHotelInfo(@ModelAttribute HotelDTO hotelDTO) {
+    public ResponseEntity<Integer> updateHotelInfo(@RequestBody HotelDTO hotelDTO) {
         hotelService.updateHotel(transform.entityTake(hotelDTO));
         return ResponseEntity.ok().build();
     }

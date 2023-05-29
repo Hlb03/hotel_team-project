@@ -23,7 +23,7 @@ public class UserResponseController {
     private final UserResponseTransform userResponseTransform;
 
     @PostMapping
-    public ResponseEntity<Integer> createNewResponse(@ModelAttribute UserResponseDTO userResponse) {
+    public ResponseEntity<Integer> createNewResponse(@RequestBody UserResponseDTO userResponse) {
         userResponseService.addNewResponse(
                 userResponseTransform.entityTake(userResponse)
         );
@@ -36,13 +36,6 @@ public class UserResponseController {
                 .stream()
                 .map(userResponseTransform::dtoTaking)
                 .collect(Collectors.toList());
-    }
-
-    @GetMapping("/room/rate/{roomId}")
-    public double calculateRoomRate(@PathVariable int roomId) {
-        return BigDecimal.valueOf(userResponseService.findAverageRoomRating(roomId))
-                .setScale(1, RoundingMode.HALF_UP)
-                .doubleValue();
     }
 
     @PutMapping

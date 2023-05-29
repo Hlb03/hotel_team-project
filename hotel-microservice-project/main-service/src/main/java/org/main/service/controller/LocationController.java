@@ -21,7 +21,7 @@ public class LocationController {
     private final LocationTransform transform;
 
     @PostMapping
-    public ResponseEntity<Integer> addNewLocation(@ModelAttribute LocationDTO location) {
+    public ResponseEntity<Integer> addNewLocation(@RequestBody LocationDTO location) {
         locationService.addLocation(transform.entityTake(location));
         return ResponseEntity.status(HttpStatusCode.valueOf(201)).build();
     }
@@ -41,7 +41,7 @@ public class LocationController {
     }
 
     @PutMapping
-    public ResponseEntity<Integer> updateLocation(@ModelAttribute LocationDTO location) {
+    public ResponseEntity<Integer> updateLocation(@RequestBody LocationDTO location) {
         locationService.updateLocation(transform.entityTake(location));
         return ResponseEntity.ok().build();
     }

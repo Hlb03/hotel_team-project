@@ -20,7 +20,7 @@ public class UserRoomsController {
     private final UserRoomsTransform userRoomsTransform;
 
     @PostMapping
-    public ResponseEntity<Integer> rentNewRoom(@ModelAttribute UserRoomsDTO userRoomsDTO,
+    public ResponseEntity<Integer> rentNewRoom(@RequestBody UserRoomsDTO userRoomsDTO,
                                                @RequestParam int roomId) {
         userRoomsService.addNewRoomToUser(
                 userRoomsTransform.entityTake(userRoomsDTO, roomId)
@@ -37,7 +37,7 @@ public class UserRoomsController {
     }
 
     @PutMapping
-    public ResponseEntity<Integer> updateUserRooms(@ModelAttribute UserRoomsDTO userRoomsDTO,
+    public ResponseEntity<Integer> updateUserRooms(@RequestBody UserRoomsDTO userRoomsDTO,
                                                    @RequestParam int roomId) {
         userRoomsService.updateUserRoom(
                 userRoomsTransform.entityTake(userRoomsDTO, roomId)

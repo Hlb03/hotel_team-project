@@ -8,9 +8,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.sql.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/rooms")
 @AllArgsConstructor
@@ -19,8 +23,10 @@ public class RoomController {
     private final RoomService roomService;
     private final RoomTransform transform;
 
+
     @PostMapping
-    public ResponseEntity<Integer> addNewRoom(@ModelAttribute RoomDTO room) {
+    public ResponseEntity<Integer> addNewRoom(@RequestBody RoomDTO room, @RequestParam String selectedCity) {
+        System.out.println("NEW ROOM INFO " + room + " and is located in " + selectedCity);
         roomService.addNewRoom(transform.entityTake(room));
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -31,8 +37,20 @@ public class RoomController {
     }
 
     @GetMapping
-    public List<RoomDTO> getAllRooms(@RequestParam int page) {
+    public List<RoomDTO> getAllRooms(@RequestParam(name = "page", defaultValue = "1") int page) {
         return roomService.findAllRooms(page)
+                .stream()
+                .map(transform::dtoTaking)
+                .toList();
+    }
+
+    @GetMapping("/search")
+    public List<RoomDTO> findAllSuitableRooms(@RequestParam BigDecimal minPrice, @RequestParam BigDecimal maxPrice,
+                                              @RequestParam Date dateStart, @RequestParam Date dateEnd,
+                                              @RequestParam int amountOfPerson) {
+
+        System.out.println("SEARCHING PARAMS ARE: " + dateStart + " " + dateEnd);
+        return roomService.findAllByParams(dateStart, dateEnd, minPrice, maxPrice, amountOfPerson)
                 .stream()
                 .map(transform::dtoTaking)
                 .toList();
@@ -47,7 +65,7 @@ public class RoomController {
     }
 
     @PutMapping
-    public ResponseEntity<Integer> updateRoomInfo(@ModelAttribute RoomDTO room) {
+    public ResponseEntity<Integer> updateRoomInfo(@RequestBody RoomDTO room) {
         roomService.updateRoom(transform.entityTake(room));
         return ResponseEntity.ok().build();
     }
