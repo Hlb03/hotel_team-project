@@ -39,6 +39,11 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
+    public List<Hotel> findAllHotels() {
+        return hotelRepository.findAll();
+    }
+
+    @Override
     public void updateHotel(Hotel hotel) {
         hotelRepository.save(hotel);
     }
