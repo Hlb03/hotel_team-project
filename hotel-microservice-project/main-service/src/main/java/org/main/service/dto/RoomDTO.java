@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Builder
 @Data
@@ -15,9 +16,11 @@ import java.math.BigDecimal;
 public class RoomDTO implements Serializable {
     private int id;
     private BigDecimal price;
-    private String briefDescription;
-    private String description;
-    private String imageReference;
+    private String shortDescription;
+    private String longDescription;
+    private int amountOfPerson;
+    private Object photoRoom;
     private int hotel;
     private Double rate;
+    private List<String> comment;
 }
