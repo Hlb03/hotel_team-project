@@ -28,6 +28,9 @@ public class Room implements Serializable {
 
     private String description;
 
+    @Column(name = "person_amount")
+    private int personAmount;
+
     @Column(name = "img_reference")
     private String imageReference;
 
