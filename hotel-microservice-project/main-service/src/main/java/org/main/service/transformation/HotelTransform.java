@@ -19,10 +19,11 @@ public class HotelTransform {
                 .id(hotel.getId())
                 .name(hotel.getName())
                 .location(hotel.getLocation().getId())
-                .rooms(hotel.getRooms()
-                        .stream()
-                        .map(roomTransform::dtoTaking)
-                        .collect(Collectors.toList()))
+//                .rooms(hotel.getRooms()
+//                        .stream()
+//                        .map(roomTransform::dtoTaking)
+//                        .collect(Collectors.toList()))
+                .locationName(hotel.getLocation().getName())
                 .build();
     }
 
