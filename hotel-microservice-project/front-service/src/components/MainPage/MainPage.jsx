@@ -76,23 +76,24 @@ const MainPage = (props) => {
     
       const bookingRoomFunc = (values) => {
         alert("Data: \n" + 
-        "Date start: " + values.dateStart + '\n' +
-        "Date end: " + values.dateEnd + '\n' +
+        "Date start: " + values.dateStart.toISOString() + '\n' +
+        "Date end: " + values.dateEnd.toISOString() + '\n' +
         "minPrice: " + values.minPrice + '\n' +
         "maxPrice: " + values.maxPrice +'\n' + 
         "Amount of person: " + values.amountOfPerson +'\n' + 
         "City: " + values.selectedCity);
 
 
-        // -------------------  TODO ----------------------------
-        axios.post('/find-rooms', { 
-                dateStart: values.dateStart,
-                dateEnd: values.dateEnd,
+        axios.get('http://localhost:8080/hotel-rent/rooms/search'
+            , { params : {
+                dateStart: values.dateStart.toISOString().split('T')[0],
+                dateEnd: values.dateEnd.toISOString().split('T')[0],
                 minPrice: values.minPrice,
                 maxPrice: values.maxPrice,
-                amountOfPerson: values.amountOfPerson, 
+                amountOfPerson: values.amountOfPerson,
                 selectedCity: values.selectedCity,
-            })
+            }}
+            )
             .then(function (response) {
                 console.log(response);
             })
@@ -172,7 +173,7 @@ const MainPage = (props) => {
 
                     <DatePicker
                       selected={values.dateStart}
-                      dateFormat="MM.dd.yyyy"
+                      dateFormat="yyyy-MM-dd"
                       className="form-control"
                       name="dateStart"
                       onChange={date => setFieldValue('dateStart', date)}
@@ -180,7 +181,7 @@ const MainPage = (props) => {
 
                     <DatePicker
                       selected={values.dateEnd}
-                      dateFormat="MM.dd.yyyy"
+                      dateFormat="yyyy-MM-dd"
                       className="form-control"
                       name="dateEnd"
                       onChange={date => setFieldValue('dateEnd', date)}

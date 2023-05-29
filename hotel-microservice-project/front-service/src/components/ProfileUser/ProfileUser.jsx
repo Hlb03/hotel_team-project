@@ -61,13 +61,12 @@ const ProfileUser = (props) => {
         );
 
 
-        //TODO
-        axios.post('/profile-edit', { 
+        axios.put('http://localhost:8080/hotel-rent/users', {
                 name: values.name,
                 surname: values.surname,
                 nickname: values.nickname,
                 mail: values.mail,
-                yearsOld: values.yearsOld,
+                yearsOld: values.yearsOld.split(' ')[0],    // take only numeric value from field (omit 'роки')
                 phone: values.phone,
                 password: values.password,
                 confirmPassword: values.confirmPassword,      

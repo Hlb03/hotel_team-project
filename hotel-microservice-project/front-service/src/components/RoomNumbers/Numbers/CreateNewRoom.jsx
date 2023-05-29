@@ -65,16 +65,17 @@ const RoomNumbers_1 = (props) => {
     "City: " + values.selectedCity);
 
 
-    //TODO
-    axios.post('/new-room', { 
+    // selectedCity argument is in params, because backend expects an id of city, not the name
+    axios.post('http://localhost:8080/hotel-rent/rooms', {
         price: values.price,
         shortDescription: values.shortDescription,
         longDescription: values.longDescription,
         photoRoom: values.photoRoom, // values.photoRoom.name - назва фото
         // values.photoRoom.type - тип фото 
         // values.photoRoom.size - розмір фото
-        selectedCity: values.selectedCity,
-      })
+    }, { params: {selectedCity: values.selectedCity
+      }}
+    )
       .then(function (response) {
         console.log(response);
       })

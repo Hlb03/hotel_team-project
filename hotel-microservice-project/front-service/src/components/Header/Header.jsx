@@ -94,8 +94,8 @@ const Header = (props) => {
         document.body.style.overflow = 'unset';
 
 
-        // -------------------  TODO ----------------------------
-        axios.post('/auth', { 
+        // TODO: END THIS WHEN SPRING SECURITY WILL BE ADDED TO PROJECT
+        axios.post('/auth', {
               mail: values.mail,
               password: values.password,
             })
@@ -109,9 +109,9 @@ const Header = (props) => {
     }
 
     const onReg = (values) => {
-        alert("Your data: \n" + 
-              "Name: " + values.name + "\n" + 
-              "Surname: " + values.surname + "\n" + 
+        alert("Your data: \n" +
+              "Name: " + values.name + "\n" +
+              "Surname: " + values.surname + "\n" +
               "Nickname: " + values.nickname + "\n" +
               "Mail: " + values.mail + "\n" +
               "YearsOld: " + values.yearsOld + "\n" +
@@ -123,17 +123,19 @@ const Header = (props) => {
         document.body.style.overflow = 'unset';
 
 
-        // -------------------  TODO ----------------------------
-        axios.post('/auth', { 
-              name: values.name,
-              surname: values.surname,
-              nickname: values.nickname,
-              mail: values.mail,
-              yearsOld: values.yearsOld,
-              phone: values.phone,
-              password: values.password,
-              confirmPassword: values.confirmPassword,
-            })
+        axios.post('http://localhost:8080/hotel-rent/users', {
+                    name: values.name,
+                    surname: values.surname,
+                    nickname: values.nickname,
+                    mail: values.mail,
+                    yearsOld: values.yearsOld,
+                    phone: values.phone,
+                    password: values.password
+                }, { params: {
+                    confirmPassword: values.confirmPassword,
+                }
+        }
+            )
             .then(function (response) {
                 console.log(response);
             })
