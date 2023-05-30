@@ -58,14 +58,18 @@ const MainPage = (props) => {
         window.scrollTo(0, 0);
 
         
-        //GET 
-        //TODO
-        axios.get('endpointToGetData', {
+        axios.get('http://localhost:8080/hotel-rent/rooms', {
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json'},
+            params: {
+                'size': '3',
             }
-            }).then(response => {
-                console.log(response.data);
+        }).then(response => {
+                console.log(response.data[0].price);
+                console.log(response.data[0].shortDescription);
+                console.log(response.data[0].longDescription); // DON'T NEED!!! (THIS DESCRIPTION IS PRESENT IN FULL ROOM DESCRIPTION)
+                console.log(response.data[0].amountOfPerson);
+                console.log(response.data[0].rate); // COULD BE NULL (IF SO - JUST RENDER GRAY STARTS)
             }).catch(error => {
                 console.error(error);
             }
