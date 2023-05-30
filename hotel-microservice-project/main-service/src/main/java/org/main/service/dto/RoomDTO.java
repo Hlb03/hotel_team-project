@@ -22,5 +22,5 @@ public class RoomDTO implements Serializable {
     private Object photoRoom;
     private int hotel;
     private Double rate;
-    private List<String> comment;
+    private List<UserResponseDTO> comment;
 }
