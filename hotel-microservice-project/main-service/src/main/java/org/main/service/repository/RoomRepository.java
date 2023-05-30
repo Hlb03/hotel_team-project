@@ -19,7 +19,13 @@ public interface RoomRepository extends JpaRepository<Room, Integer> {
     Page<Room> findAll(Pageable pageable);
 
     @Query("SELECT r FROM Room r LEFT JOIN UserRooms ur ON r.id = ur.room.id " +
-                        "WHERE ((ur.startRent > :startRent AND ur.endRent < :endRent) OR (ur.startRent < :startRent AND ur.startRent < :endRent)) " +
+                        "WHERE (" +
+                            "(ur.startRent > :startRent AND ur.endRent < :endRent)" +
+                            " OR" +
+                            " (ur.startRent < :startRent AND ur.startRent < :endRent) " +
+                            " OR " +
+                            " (ur.startRent is NULL AND ur.endRent is NULL)" +
+                               ") " +
                                 "AND r.price BETWEEN :startPrice AND :endPrice AND r.personAmount >= :personAmount")
     List<Room> findAllByParams(@Param("startRent") Date startDate, @Param("endRent") Date endDate,
                                @Param("startPrice") BigDecimal minPrice, @Param("endPrice") BigDecimal maxPrice,
