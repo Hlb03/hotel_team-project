@@ -17,6 +17,7 @@ CREATE TABLE "user"
     id            SERIAL,
     first_name    VARCHAR(46)   NOT NULL,
     last_name     VARCHAR(46)   NOT NULL,
+    nickname      VARCHAR(24)   NOT NULL,
     login         VARCHAR(46)   NOT NULL UNIQUE,
     password      VARCHAR(46)   NOT NULL,
     balance       NUMERIC(8, 2) DEFAULT 0.0,
@@ -54,7 +55,7 @@ CREATE TABLE "room"
     PRIMARY KEY (id),
     hotel_id      INT REFERENCES hotel (id) ON DELETE CASCADE NOT NULL,
     constraint rate_limits check (total_rate >= 0 and total_rate <= 5),
-    constraint person_amount_check check (person_amount > 1 and person_amount <= 5)
+--     constraint person_amount_check check (person_amount > 1 and person_amount <= 5)
 );
 
 CREATE TABLE "user_has_room"
