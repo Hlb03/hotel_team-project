@@ -20,20 +20,6 @@ const HotelPage = (props) => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-
-
-        //GET 
-        //TODO
-        axios.get('endpointToGetData', {
-            headers: {
-                'Content-Type': 'application/json',
-            }
-            }).then(response => {
-                console.log(response.data);
-            }).catch(error => {
-                console.error(error);
-            }
-        );
     }, []);
 
 
