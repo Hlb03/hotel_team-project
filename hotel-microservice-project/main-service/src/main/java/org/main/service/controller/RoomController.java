@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,13 +45,18 @@ public class RoomController {
                 .toList();
     }
 
+    // TODO: FIX DAY ISSUE (RECEIVES DESIRED DATE -1 DAY FROM FRONT SERVICE
+    // TODO: ADD LOCATION (HOTEL) AS A SEARCH PARAM (NEED TO SEND DATA TO ANTON TO VIEW THE WHOLE AVAILABLE LIST IN DATABASE)
     @GetMapping("/search")
     public List<RoomDTO> findAllSuitableRooms(@RequestParam BigDecimal minPrice, @RequestParam BigDecimal maxPrice,
                                               @RequestParam Date dateStart, @RequestParam Date dateEnd,
                                               @RequestParam int amountOfPerson) {
 
-        System.out.println("SEARCHING PARAMS ARE: " + dateStart + " " + dateEnd);
-        return roomService.findAllByParams(dateStart, dateEnd, minPrice, maxPrice, amountOfPerson)
+        Date start  = Date.valueOf(dateStart.toLocalDate().plusDays(1));
+        Date end = Date.valueOf(dateEnd.toLocalDate().plusDays(1));
+        System.out.println("SEARCHING PARAMS ARE: " + (dateStart.toLocalDate().plusDays(1)) + " " + (dateEnd.toLocalDate().plusDays(1)));
+
+        return roomService.findAllByParams(start, end, minPrice, maxPrice, amountOfPerson)
                 .stream()
                 .map(transform::dtoTaking)
                 .toList();
