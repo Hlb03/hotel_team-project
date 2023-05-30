@@ -33,8 +33,8 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public Page<Room> findAllRooms(int page) {
-        Pageable pageable = PageRequest.of(page - 1, 3, Sort.Direction.DESC, "totalRate");
+    public Page<Room> findAllRooms(int page, int dataAmount) {
+        Pageable pageable = PageRequest.of(page - 1, dataAmount, Sort.Direction.DESC, "totalRate");
         return roomRepository.findAll(pageable);
     }
 

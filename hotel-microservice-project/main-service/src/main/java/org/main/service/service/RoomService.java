@@ -13,7 +13,7 @@ public interface RoomService {
 
     Room findRoomById(int roomId);
 
-    Page<Room> findAllRooms(int page);
+    Page<Room> findAllRooms(int page, int dataAmount);
 
     List<Room> findAllByParams(Date startDate, Date endDate, BigDecimal startPrice, BigDecimal endPrice, int personAmount);
 

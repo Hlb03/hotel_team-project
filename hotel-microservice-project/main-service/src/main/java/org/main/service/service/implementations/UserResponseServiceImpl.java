@@ -3,6 +3,8 @@ package org.main.service.service.implementations;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.main.service.dto.RoomDTO;
+import org.main.service.entity.Room;
+import org.main.service.entity.User;
 import org.main.service.entity.UserResponse;
 import org.main.service.repository.UserResponseRepository;
 import org.main.service.service.UserResponseService;
@@ -22,6 +24,20 @@ public class UserResponseServiceImpl implements UserResponseService {
     @Override
     @Transactional
     public void addNewResponse(UserResponse userResponse) {
+//        System.out.println("USER RESPONSE: " + userResponse);
+        userResponse.setUser(
+                User.builder()
+                        .id(1)
+                        .build()
+        );
+        userResponse.setRoom(
+                Room.builder()
+                        .id(5)
+                        .build()
+        );
+        userResponse.setRate(4.2);
+        System.out.println("USER RESPONSE: " + userResponse);
+
         userResponseRepository.save(userResponse);
 
         RoomDTO roomToUpdate = roomTransform.dtoTaking(
