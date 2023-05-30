@@ -1,5 +1,6 @@
 package org.main.service.transformation;
 
+import lombok.AllArgsConstructor;
 import org.main.service.dto.RoomDTO;
 import org.main.service.entity.Hotel;
 import org.main.service.entity.Room;
@@ -9,7 +10,10 @@ import org.springframework.stereotype.Component;
 import java.io.Serializable;
 
 @Component
+@AllArgsConstructor
 public class RoomTransform implements Serializable {
+
+    private final UserResponseTransform responseTransform;
 
     public RoomDTO dtoTaking(Room room) {
         return RoomDTO.builder()
@@ -21,9 +25,10 @@ public class RoomTransform implements Serializable {
                 .photoRoom(room.getImageReference())
                 .rate(room.getTotalRate())
                 .hotel(room.getHotel().getId())
-                .comment(room.getResponses()
+                .comment(
+                        room.getResponses()
                         .stream()
-                        .map(UserResponse::getComment)
+                        .map(responseTransform::dtoTaking)
                         .toList()
                 ).build();
     }

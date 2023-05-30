@@ -18,7 +18,7 @@ public class UserResponseTransform {
                 .comment(userResponse.getComment())
                 .dateTimeResponse(userResponse.getDateTime())
                 .rate(userResponse.getRate())
-                .userLogin(userResponse.getUser().getLogin())
+                .nickname(userResponse.getUser().getNickname())
                 .build();
     }
 
@@ -31,7 +31,7 @@ public class UserResponseTransform {
                 .user(
                         User.builder()
                                 .id(userResponseDTO.getUserId())
-                                .login(userResponseDTO.getUserLogin())
+                                .nickname(userResponseDTO.getNickname())
                                 .build()
                 )
                 .room(
