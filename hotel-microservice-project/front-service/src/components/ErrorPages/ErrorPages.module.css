@@ -1,0 +1,39 @@
+body{
+    margin: 0;
+  }
+
+
+  .mainWrapper{
+    background-color: #B6A27B;
+  }
+  .mainWrapper h1{
+    margin-top: 0;
+    padding-top: 30px;
+    margin-bottom: 0px;
+
+    font-size: 70px;
+
+    color: #fff;
+
+    text-align: center;
+  }
+
+  .mainWrapper h2{
+    margin-top: 0;
+    padding-top: 20px;
+    font-size: 50px;
+
+    margin-bottom: 50px;
+
+    color: #fff;
+
+    text-align: center;
+  }
+
+  .mainWrapper img{
+    display: block;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    /* align-items: center;
+    justify-self: center; */
+  }

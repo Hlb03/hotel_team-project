@@ -9,6 +9,8 @@ import descriptionPhoto_3 from '../../assets/images/descriptionPhoto_3.png';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
+import axios from 'axios';
+
 
 
 
@@ -18,7 +20,25 @@ const HotelPage = (props) => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-      }, []);
+
+
+        //GET 
+        //TODO
+        axios.get('endpointToGetData', {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+            }).then(response => {
+                console.log(response.data);
+            }).catch(error => {
+                console.error(error);
+            }
+        );
+    }, []);
+
+
+
+    
 
 
   return (

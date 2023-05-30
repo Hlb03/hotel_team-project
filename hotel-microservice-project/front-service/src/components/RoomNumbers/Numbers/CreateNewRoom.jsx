@@ -1,4 +1,4 @@
-import {React, useRef, useState} from 'react';
+import {React, useEffect, useRef, useState} from 'react';
 import s from '../RoomNumbers.module.css';
 
 
@@ -31,6 +31,32 @@ import axios from 'axios';
 
 
 const RoomNumbers_1 = (props) => {
+
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+
+        
+        //GET 
+        //TODO
+        axios.get('endpointToGetData', {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+            }).then(response => {
+                console.log(response.data);
+            }).catch(error => {
+                console.error(error);
+            }
+        );
+    }, []);
+
+
+
+
+
+
+
 
 
     const MAX_FILE_SIZE = 102400; //100KB
@@ -82,10 +108,11 @@ const RoomNumbers_1 = (props) => {
       .catch(function (error) {
         console.log(error);
       }
-    );
-
-    
+    );  
   }
+
+
+
 
 
 

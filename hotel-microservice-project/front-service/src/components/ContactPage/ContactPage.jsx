@@ -9,6 +9,8 @@ import twitter from '../../assets/images/twitter.png';
 
 import Header from '../Header/Header';
 
+import axios from 'axios';
+
 
 
 
@@ -17,7 +19,20 @@ const ContactPage = (props) => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-      }, []);
+
+        //GET 
+        // TODO
+        axios.get('endpointToGetData', {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+            }).then(response => {
+                console.log(response.data);
+            }).catch(error => {
+                console.error(error);
+            }
+        );
+    }, []);
 
 
   return (

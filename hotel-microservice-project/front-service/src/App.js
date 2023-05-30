@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter, Route, Routes, useHistory, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useHistory, Switch, Redirect } from "react-router-dom";
 import React, { useEffect } from 'react';
 import MainPage from './components/MainPage/MainPage';
 import RoomNumbers from './components/RoomNumbers/RoomNumbers';
@@ -17,28 +17,39 @@ import ProfileUser from './components/ProfileUser/ProfileUser';
 import ContactPage from './components/ContactPage/ContactPage';
 import HotelPage from './components/HotelPage/HotelPage';
 
+import Error403Page from './components/ErrorPages/Error403Page';
+import Error404Page from './components/ErrorPages/Error404Page';
+import Error500Page from './components/ErrorPages/Error500Page';
+
 
 function App() {
   return (
       <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/rooms-numbers" element={<RoomNumbers />} />
-        <Route path="/hotel" element={<HotelPage />} />
+        <Route exact path="/" element={<MainPage />} />
+        <Route exact path="/rooms-numbers" element={<RoomNumbers />} />
+        <Route exact path="/hotel" element={<HotelPage />} />
 
-        <Route path="/rooms-numbers/1" element={<RoomNumbers_1 />} />
-        <Route path="/rooms-numbers/2" element={<RoomNumbers_2 />} />
-        <Route path="/rooms-numbers/3" element={<RoomNumbers_3 />} />
-        <Route path="/rooms-numbers/4" element={<RoomNumbers_4 />} />
-        <Route path="/rooms-numbers/5" element={<RoomNumbers_5 />} />
-        <Route path="/rooms-numbers/6" element={<RoomNumbers_6 />} />
+        <Route exact path="/rooms-numbers/1" element={<RoomNumbers_1 />} />
+        <Route exact path="/rooms-numbers/2" element={<RoomNumbers_2 />} />
+        <Route exact path="/rooms-numbers/3" element={<RoomNumbers_3 />} />
+        <Route exact path="/rooms-numbers/4" element={<RoomNumbers_4 />} />
+        <Route exact path="/rooms-numbers/5" element={<RoomNumbers_5 />} />
+        <Route exact path="/rooms-numbers/6" element={<RoomNumbers_6 />} />
 
-        <Route path="/rooms-numbers/create-new-room" element={<CreateNewRoom />} />
+        <Route exact path="/rooms-numbers/create-new-room" element={<CreateNewRoom />} />
 
-        <Route path="/profile" element={<ProfileUser tab="booked-rooms"/>} />
-        <Route path="/profile/personal-data" element={<ProfileUser tab="personal-data"/>} />
+        <Route exact path="/profile" element={<ProfileUser tab="booked-rooms"/>} />
+        <Route exact path="/profile/personal-data" element={<ProfileUser tab="personal-data"/>} />
 
 
-        <Route path="/contact" element={<ContactPage />} />
+        <Route exact path="/contact" element={<ContactPage />} />
+
+
+
+        <Route path="/error-403" element={<Error403Page />} />
+        <Route path="*" element={<Error404Page />} />
+        <Route path="/error-500" element={<Error500Page />} />
+
       </Routes>
   );
 }

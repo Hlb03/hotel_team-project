@@ -111,6 +111,7 @@ body{
   
   .mainWrapper .bookedRoom{
     display: flex;
+    width: 70%;
   }
   .mainWrapper .bookedRoomPhotoRates{
     background-color: #B6A27B;

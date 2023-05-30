@@ -26,6 +26,20 @@ const ProfileUser = (props) => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+
+        
+        //GET 
+        //TODO
+        axios.get('endpointToGetData', {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+            }).then(response => {
+                console.log(response.data);
+            }).catch(error => {
+                console.error(error);
+            }
+        );
     }, []);
 
 
@@ -40,6 +54,8 @@ const ProfileUser = (props) => {
         mail: yup.string().email('Невірна адреса').required(`Поле обов’язкове`),
         nickname: yup.string().typeError('Невірна адреса').required(`Поле обов’язкове`),
         yearsOld: yup.string().typeError('Невірна адреса').required(`Поле обов’язкове`),
+        balance: yup.number().positive('Баланс має бути плюсовим').required('Поле обов’язкове'),
+        
 
         password: yup.string().typeError('Повинен бути текст').required(`Поле обов’язкове`).min(8, "Мінімум 8 символів"),
         confirmPassword: yup.string().min(8, "Мінімум 8 символів").oneOf([yup.ref('password')], 'Паролі не співпадають').required(`Поле обов’язкове`)
@@ -56,6 +72,7 @@ const ProfileUser = (props) => {
             "Mail: " + values.mail + "\n" +
             "YearsOld: " + values.yearsOld + "\n" +
             "Phone: " + values.phone +"\n" +
+            "Balance: " + values.balance +"\n" +
             "Password: " + values.password + "\n" +
             "Confirm Password: " + values.confirmPassword
         );
@@ -68,6 +85,11 @@ const ProfileUser = (props) => {
                 mail: values.mail,
                 yearsOld: values.yearsOld.split(' ')[0],    // take only numeric value from field (omit 'роки')
                 phone: values.phone,
+
+
+                balance: values.balance, //new value for balance
+
+
                 password: values.password,
                 confirmPassword: values.confirmPassword,      
             })
@@ -79,6 +101,7 @@ const ProfileUser = (props) => {
             }
         );
     }
+
 
 
   return (
@@ -118,6 +141,7 @@ const ProfileUser = (props) => {
                             mail: 'hryhoriyonishchenko@gmail.com',
                             yearsOld: '32 роки',
                             phone: '+380985606565',
+                            balance: 300,
                             password: 'Gru02111!',
                             confirmPassword: 'Gru02111!',                
                         }}
@@ -278,6 +302,35 @@ const ProfileUser = (props) => {
                                 />
                             }
                             { touched.phone && errors.phone && <span className={s.errorMessageProfileData}>{errors.phone}</span> }
+
+
+
+
+                            {profileFormAbleToChange ?
+                                <input 
+                                    type={`number`} 
+                                    name={`balance`}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.balance}  
+                                                
+                                    placeholder="Ваш баланс" 
+                                />
+                                : 
+                                <input 
+                                    type={`number`} 
+                                    name={`balance`}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.balance}  
+                                                
+                                    placeholder="Ваш баланс" 
+                                    disabled
+                                />
+                            }
+                            { touched.balance && errors.balance && <span className={s.errorMessageProfileData}>{errors.balance}</span> }
+
+
 
 
 

@@ -29,6 +29,7 @@ import DatePicker from "react-datepicker";
 
 
 import axios from 'axios';
+import { AxiosHeaders } from 'axios';
 
 
 
@@ -38,7 +39,21 @@ const RoomNumbers = (props) => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-      }, []);
+
+        
+        //GET 
+        //TODO
+        axios.get('endpointToGetData', {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+            }).then(response => {
+                console.log(response.data);
+            }).catch(error => {
+                console.error(error);
+            }
+        );
+    }, []);
 
 
 
@@ -84,8 +99,11 @@ const RoomNumbers = (props) => {
                 console.log(error);
             }
         );
+
       }
 
+
+        
 
   return (
     <div>
@@ -265,7 +283,7 @@ const RoomNumbers = (props) => {
                     <span className={s.descriptionOfRoom} >Люкс з гідромасажною ванною</span>
                     <span className={s.priceOfRoom} >Ціна: 1 500 грн</span>
 
-                    <Link to="/rooms-numbers/5" preventScrollReset={true} activeClassName={s.activeLink} ><div className={s.buttonToReserve} >Забронювати</div></Link>
+                    <Link to="/rooms-numbers/6" preventScrollReset={true} activeClassName={s.activeLink} ><div className={s.buttonToReserve} >Забронювати</div></Link>
                 </div>
             </div>
 
