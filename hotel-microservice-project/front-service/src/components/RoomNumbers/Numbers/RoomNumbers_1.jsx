@@ -30,15 +30,20 @@ const RoomNumbers_1 = (props) => {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    
-    //GET 
-    //TODO
-    axios.get('endpointToGetData', {
+
+    //TODO: CHANGE URL (IT HAS A TO TAKE INFO ABOUT ROOM ID FROM USER WHEN HE/SHE CLICKS ON CERTAIN ROOM)
+    axios.get('http://localhost:8080/hotel-rent/rooms/1', {
         headers: {
             'Content-Type': 'application/json',
         }
         }).then(response => {
-            console.log(response.data);
+            console.log(response.data.id); // add it to post params to connect comment and room
+            console.log(response.data.price);
+            console.log(response.data.shortDescription);
+            console.log(response.data.rate);
+            console.log(response.data.amountOfPerson);
+            console.log(`${response.data.comment[0].nickname}   (${response.data.comment[0].dateTimeResponse})`) // first row of comment (user_nickname (*date_of_comment))
+            console.log(`${response.data.comment[0].comment}     ${response.data.comment[0].rate}`) // this is a comment itself + rate for comment
         }).catch(error => {
             console.error(error);
         }
@@ -62,8 +67,8 @@ const RoomNumbers_1 = (props) => {
 
 
 
-    // TODO
-    axios.post('new-comment', {
+    // TODO: ADD OVER HERE RATE VALUE (STARS) WITH NAME `rate` + Room_id, WHICH YOU SHOULD TAKE FROM GET REQUEST, name this id `room`
+    axios.post('http://localhost:8080/hotel-rent/response', {
             comment: values.commentInput,
         })
         .then(function (response) {

@@ -24,19 +24,44 @@ import axios from 'axios';
 
 const ProfileUser = (props) => {
 
+    // request for user credentials
     useEffect(() => {
         window.scrollTo(0, 0);
 
-        
-        //GET 
-        //TODO
-        axios.get('endpointToGetData', {
+        axios.get('http://localhost:8080/hotel-rent/users', {
             headers: {
                 'Content-Type': 'application/json',
             }
             }).then(response => {
-                console.log(response.data);
+                console.log(response.data.name);
+                console.log(response.data.surname);
+                console.log(response.data.nickname);
+                console.log(response.data.mail);
+                console.log(response.data.yearsOld);
+                console.log(response.data.phone);
+                console.log(response.data.balance);
+                console.log(response.data.password); // this don't put into form. just leave default value for all users
             }).catch(error => {
+                console.error(error);
+            }
+        );
+    }, []);
+
+    // request for user booked rooms
+    useEffect(() => {
+        window.scrollTo(0, 0);
+
+        axios.get('http://localhost:8080/hotel-rent/user-rooms', {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }).then(response => {
+            console.log(response.data[0].startRent);
+            console.log(response.data[0].endRent);
+            console.log(response.data[0].roomDTO.price);
+            console.log(response.data[0].roomDTO.shortDescription);
+            console.log(response.data[0].roomDTO.rate); //could be null - if so (gray stars)
+        }).catch(error => {
                 console.error(error);
             }
         );
@@ -83,13 +108,9 @@ const ProfileUser = (props) => {
                 surname: values.surname,
                 nickname: values.nickname,
                 mail: values.mail,
-                yearsOld: values.yearsOld.split(' ')[0],    // take only numeric value from field (omit 'роки')
+                yearsOld: values.yearsOld.split(' ')[0],
                 phone: values.phone,
-
-
                 balance: values.balance, //new value for balance
-
-
                 password: values.password,
                 confirmPassword: values.confirmPassword,      
             })
@@ -308,7 +329,7 @@ const ProfileUser = (props) => {
 
                             {profileFormAbleToChange ?
                                 <input 
-                                    type={`number`} 
+                                    type={`number`}
                                     name={`balance`}
                                     onChange={handleChange}
                                     onBlur={handleBlur}

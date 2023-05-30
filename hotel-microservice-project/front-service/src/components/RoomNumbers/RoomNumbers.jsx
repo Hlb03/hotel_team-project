@@ -40,15 +40,21 @@ const RoomNumbers = (props) => {
     useEffect(() => {
         window.scrollTo(0, 0);
 
-        
-        //GET 
-        //TODO
-        axios.get('endpointToGetData', {
+
+        axios.get('http://localhost:8080/hotel-rent/rooms', {
             headers: {
                 'Content-Type': 'application/json',
+            },
+            params: {
+                'size': '6',
             }
             }).then(response => {
-                console.log(response.data);
+                console.log(response.data[0].id) // THIS IS VALUE SHOULD BE IN REQUEST URL IF USER PRESS 'Забронювати' BUTTON
+                console.log(response.data[0].price);
+                console.log(response.data[0].shortDescription);
+                console.log(response.data[0].longDescription); // DON'T NEED!!! (THIS DESCRIPTION IS PRESENT IN FULL ROOM DESCRIPTION)
+                console.log(response.data[0].amountOfPerson);
+                console.log(response.data[0].rate); // COULD BE NULL (IF SO - JUST RENDER GRAY STARTS)
             }).catch(error => {
                 console.error(error);
             }
@@ -69,31 +75,34 @@ const RoomNumbers = (props) => {
         dateEnd: yup.date().nullable().required(`Дата виїзду обов'язкова`),
         maxPrice: yup.string().typeError('Повинен бути текст').required(`Всі поля обов’язкові!`),
         amountOfPerson: yup.string().typeError('Повинен бути текст').required(`Всі поля обов’язкові!`)
-        
+
       })
-    
-    
+
+
       const bookingRoomFunc = (values) => {
-        alert("Data: \n" + 
+        alert("Data: \n" +
         "Date start: " + values.dateStart + '\n' +
         "Date end: " + values.dateEnd + '\n' +
         "minPrice: " + values.minPrice + '\n' +
-        "maxPrice: " + values.maxPrice +'\n' + 
-        "Amount of person: " + values.amountOfPerson +'\n' + 
+        "maxPrice: " + values.maxPrice +'\n' +
+        "Amount of person: " + values.amountOfPerson +'\n' +
         "City: " + values.selectedCity);
-        
-        
+
+
         // -------------------  TODO ----------------------------
-        axios.post('/find-rooms', { 
-                dateStart: values.dateStart,
-                dateEnd: values.dateEnd,
+        axios.get('http://localhost:8080/hotel-rent/rooms/search', {
+            params: {
+                dateStart: values.dateStart.toISOString().split('T')[0],
+                dateEnd: values.dateEnd.toISOString().split('T')[0],
                 minPrice: values.minPrice,
                 maxPrice: values.maxPrice,
-                amountOfPerson: values.amountOfPerson, 
+                amountOfPerson: values.amountOfPerson,
                 selectedCity: values.selectedCity,
+            }
             })
             .then(function (response) {
                 console.log(response);
+                console.log(response.data);
             })
             .catch(function (error) {
                 console.log(error);
@@ -103,7 +112,7 @@ const RoomNumbers = (props) => {
       }
 
 
-        
+
 
   return (
     <div>
@@ -113,7 +122,7 @@ const RoomNumbers = (props) => {
 
         <div className={s.bannerBlock}>
             <img src={mainBanner} alt="" />
-            <h2>Нехай <br /> 
+            <h2>Нехай <br />
                 ваша подорож почнеться з <br />
                 комфорту з мережою <br />
                 готелів "Україна"</h2>
@@ -128,14 +137,14 @@ const RoomNumbers = (props) => {
                     dateEnd: '',
                     minPrice: '',
                     maxPrice: '',
-                    amountOfPerson: '',                    
+                    amountOfPerson: '',
                 }}
                 validateOnBlur
                 onSubmit={(values) => bookingRoomFunc(values)}
                 validationSchema={validationsSchemaBookingRoom}
             >
             {({ values, errors, touched, handleChange, handleBlur, setFieldValue, handleSubmit, isValid, dirty }) => (
-            <div className={s.formWrapper}>            
+            <div className={s.formWrapper}>
             <form className={s.formBookingRoom}>
                 <div className={s.formBookingRoomInputWrapper}>
                     <img src={iconLocation} alt="" />
@@ -152,7 +161,7 @@ const RoomNumbers = (props) => {
                             <option value="uzhhorod">Ужгород</option>
                             <option value="vinnitsa">Вінниця</option>
                             <option value="chernihiv">Чернігів</option>
-                            <option value="cherkasy">Черкаси</option>  
+                            <option value="cherkasy">Черкаси</option>
                             <option value="sumy">Суми</option>
                             <option value="poltava">Полтава</option>
                             <option value="kirovohrad">Кіровоград</option>
@@ -199,23 +208,23 @@ const RoomNumbers = (props) => {
                     <input type="text" name="amountOfPerson"  onChange={handleChange}/>
                 </div>
 
-                
+
 
                 <div className={s.buttonToFind} onClick={handleSubmit}>Пошук</div>
             </form>
 
 
             <span className={s.errorMessageForm}>
-            { touched.dateStart && errors.dateStart || touched.dateEnd && errors.dateEnd || 
-                touched.minPrice && errors.minPrice || touched.maxPrice && errors.maxPrice 
-                || touched.amountOfPerson && errors.amountOfPerson && 
+            { touched.dateStart && errors.dateStart || touched.dateEnd && errors.dateEnd ||
+                touched.minPrice && errors.minPrice || touched.maxPrice && errors.maxPrice
+                || touched.amountOfPerson && errors.amountOfPerson &&
                 <span > Всі поля обов’язкові! </span> }
             </span>
 
             </div>
 
-            
-            
+
+
             )}
         </Formik>
 
@@ -296,10 +305,10 @@ const RoomNumbers = (props) => {
 
 
 
-    
+
 
         <Footer />
-        
+
 
     </div>
   )

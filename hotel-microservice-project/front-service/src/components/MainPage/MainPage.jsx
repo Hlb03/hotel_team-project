@@ -65,6 +65,7 @@ const MainPage = (props) => {
                 'size': '3',
             }
         }).then(response => {
+                console.log(response.data[0].id) // THIS IS VALUE SHOULD BE IN REQUEST URL IF USER PRESS 'Забронювати' BUTTON
                 console.log(response.data[0].price);
                 console.log(response.data[0].shortDescription);
                 console.log(response.data[0].longDescription); // DON'T NEED!!! (THIS DESCRIPTION IS PRESENT IN FULL ROOM DESCRIPTION)

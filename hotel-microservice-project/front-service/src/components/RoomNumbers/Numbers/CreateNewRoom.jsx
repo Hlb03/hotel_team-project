@@ -37,14 +37,14 @@ const RoomNumbers_1 = (props) => {
         window.scrollTo(0, 0);
 
         
-        //GET 
-        //TODO
-        axios.get('endpointToGetData', {
+        // THIS IS THE LIST OF ALL
+        axios.get('http://localhost:8080/hotel-rent/hotels', {
             headers: {
                 'Content-Type': 'application/json',
             }
             }).then(response => {
-                console.log(response.data);
+                console.log(response.data[0].name + ` (${response.data[0].locationName})`);
+                console.log(response.data[0].location) // This is location id, that send to backend while creating a new room. Name it `location`
             }).catch(error => {
                 console.error(error);
             }
@@ -91,7 +91,7 @@ const RoomNumbers_1 = (props) => {
     "City: " + values.selectedCity);
 
 
-    // selectedCity argument is in params, because backend expects an id of city, not the name
+    // NEW FIELD IS NEEDED WITH NAME 'amountOfPerson', validate min value = 1, max value = 5
     axios.post('http://localhost:8080/hotel-rent/rooms', {
         price: values.price,
         shortDescription: values.shortDescription,
@@ -99,7 +99,7 @@ const RoomNumbers_1 = (props) => {
         photoRoom: values.photoRoom, // values.photoRoom.name - назва фото
         // values.photoRoom.type - тип фото 
         // values.photoRoom.size - розмір фото
-    }, { params: {selectedCity: values.selectedCity
+    }, { params: {selectedCity: values.selectedCity // MOVE THIS TO `data` AND NAME IT AS `location`, it represents hotel id, where new room will be located
       }}
     )
       .then(function (response) {
