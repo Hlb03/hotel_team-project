@@ -38,8 +38,9 @@ public class RoomController {
     }
 
     @GetMapping
-    public List<RoomDTO> getAllRooms(@RequestParam(name = "page", defaultValue = "1") int page) {
-        return roomService.findAllRooms(page)
+    public List<RoomDTO> getAllRooms(@RequestParam(name = "page", defaultValue = "1") int page,
+                                     @RequestParam int size) {
+        return roomService.findAllRooms(page, size)
                 .stream()
                 .map(transform::dtoTaking)
                 .toList();

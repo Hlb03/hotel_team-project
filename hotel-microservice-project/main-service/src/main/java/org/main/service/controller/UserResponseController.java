@@ -14,6 +14,7 @@ import java.math.RoundingMode;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/response")
 @AllArgsConstructor
@@ -22,6 +23,8 @@ public class UserResponseController {
     private final UserResponseService userResponseService;
     private final UserResponseTransform userResponseTransform;
 
+
+    // TODO: FINISH THIS WITH AUTHORIZED USER. GET HIS CREDENTIALS AND PUT 'EM INTO userResponseDTO OBJECT + CHECK WHETHER ROOM ID IS SENT + RATE
     @PostMapping
     public ResponseEntity<Integer> createNewResponse(@RequestBody UserResponseDTO userResponse) {
         userResponseService.addNewResponse(
@@ -39,7 +42,7 @@ public class UserResponseController {
     }
 
     @PutMapping
-    public ResponseEntity<Integer> updateResponse(@ModelAttribute UserResponseDTO response) {
+    public ResponseEntity<Integer> updateResponse(@RequestBody UserResponseDTO response) {
         userResponseService.updateResponse(
                 userResponseTransform.entityTake(response)
         );

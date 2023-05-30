@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/users")
 @AllArgsConstructor
@@ -32,10 +32,11 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping("/{userId}")
-    public UserDTO findUserById(@PathVariable int userId) {
+    //TODO: THIS REQUEST SHOULD BE WITH USER CREDENTIALS WHICH I SHOULD TAKE FROM MY BACKEND
+    @GetMapping
+    public UserDTO findUserById() {
         return userTransform.dtoTaking(
-                userService.findUserById(userId)
+                userService.findUserById(23)
         );
     }
 

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/user-rooms")
 @AllArgsConstructor
@@ -28,9 +29,10 @@ public class UserRoomsController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping("/{userId}")
-    public List<UserRoomsDTO> findAllUserRooms(@PathVariable int userId) {
-        return userRoomsService.findAllUserRooms(userId)
+    // TODO: INFO ABOUT USER ROOMS SHOULD BE BASED ON SESSION BEAN THAT STORES AUTHORIZED USER INFO
+    @GetMapping
+    public List<UserRoomsDTO> findAllUserRooms() {
+        return userRoomsService.findAllUserRooms(1)
                 .stream()
                 .map(userRoomsTransform::dtoTaking)
                 .collect(Collectors.toList());
