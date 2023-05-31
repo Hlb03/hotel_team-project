@@ -1,9 +1,11 @@
 package org.mail.service.service;
 
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 import org.mail.service.mail_types.GeneralMail;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,14 +20,23 @@ public class MailSendService {
         this.mailSender = mailSender;
     }
 
-    public void sendMessage(String to, GeneralMail mail, String url) {
-        SimpleMailMessage message = new SimpleMailMessage();
+    public void sendMessage(String to, String userLastName, GeneralMail mail, String activationCode) {
+        String tempReceiver = "gfietisov@gmail.com";
 
-        message.setFrom(mailFrom);
-        message.setTo(to);
-        message.setSubject(mail.getMailHeader());
-        message.setText(mail.getMailText() + "\n\n" + url);
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
 
-        mailSender.send(message);
+        String code = "<h3 style='font-weight: bold; color: blue'>" + activationCode + "</h3>";
+
+        try {
+            helper.setTo(tempReceiver);
+            helper.setFrom(mailFrom);
+            helper.setSubject(mail.getMailHeader() + userLastName);
+            helper.setText(mail.getMailText() + "<br><br><br>" + code, true);
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+
+        mailSender.send(mimeMessage);
     }
 }

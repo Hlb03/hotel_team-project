@@ -13,11 +13,12 @@ public class MailController {
     private final MailSendService mailService;
     private final ActivationMail activationMail;
 
-
-    // Params: activation code, user To receive message, name of receiver
-    @PostMapping("/activate/{activationCode}")
-    public String activateAccount(@PathVariable String activationCode, @RequestParam String receiver) {
-        mailService.sendMessage(receiver, activationMail, "http://MAIN-SERVICE/hotel-rent/users/1");
+    @PostMapping("/activate")
+    public String activateAccount(@RequestParam String receiver,
+                                  @RequestParam String username,
+                                  @RequestParam String activationCode) {
+        System.out.println("INPUT PARAMS: " + activationCode + " " + receiver + " " + username);
+        mailService.sendMessage(receiver, username, activationMail, activationCode);
 
         return "Message was sent";
     }
