@@ -1,7 +1,6 @@
 package org.main.service.controller;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j;
 import org.main.service.dto.UserDTO;
 import org.main.service.exceptions.IncorrectPasswordsException;
 import org.main.service.service.UserService;
@@ -27,6 +26,7 @@ public class UserController {
                     userTransform.entityTake(userDTO), confirmPassword
             );
         } catch (IncorrectPasswordsException e) {
+            System.out.println("PASSWORDS ARE NOT THE SAME WHILE REGISTRATING A NEW USER");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
         return ResponseEntity.status(HttpStatus.CREATED).build();

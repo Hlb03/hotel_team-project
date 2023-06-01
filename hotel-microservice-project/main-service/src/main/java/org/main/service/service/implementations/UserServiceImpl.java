@@ -6,10 +6,12 @@ import org.main.service.entity.User;
 import org.main.service.exceptions.IncorrectPasswordsException;
 import org.main.service.repository.UserRepository;
 import org.main.service.service.UserService;
+import org.main.service.utilities.RandomStringGenerator;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -17,6 +19,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final RestTemplate restTemplate;
+    private final RandomStringGenerator stringGenerator;
 
     @Override
     @Transactional
@@ -25,11 +28,12 @@ public class UserServiceImpl implements UserService {
             throw new IncorrectPasswordsException("USER PASSWORD IN THE FORM ARE DIFFERENT (" + user.getPassword() + " and " + confirmPassword + ")");
 
         user.setBalance(new BigDecimal(0));
-        userRepository.save(user);
-        restTemplate.postForLocation("http://MAILING/hotel-rent/mail/activate/activationCode?receiver=gfietisov@gmail.com&username="
-                + user.getLastName()
-//                        + user.getLogin()
-                , null);
+//        userRepository.save(user);
+        restTemplate.postForLocation("http://MAILING/hotel-rent/mail/activate?" +
+                                                    "receiver=" + user.getLogin() +
+                                                    "&username=" + user.getLastName() +
+                                                    "&activationCode=" + stringGenerator.generateRandomString(15),
+                null);
 
     }
 
