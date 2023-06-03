@@ -54,7 +54,7 @@ CREATE TABLE "room"
     person_amount INT NOT NULL,
     PRIMARY KEY (id),
     hotel_id      INT REFERENCES hotel (id) ON DELETE CASCADE NOT NULL,
-    constraint rate_limits check (total_rate >= 0 and total_rate <= 5),
+    constraint rate_limits check (total_rate >= 0 and total_rate <= 5)
 --     constraint person_amount_check check (person_amount > 1 and person_amount <= 5)
 );
 
@@ -83,6 +83,3 @@ CREATE TABLE "user_response"
 );
 
 INSERT INTO "role" (rolename) VALUES ('USER'), ('ADMIN');
-
-ALTER TABLE "user_response"
-ALTER COLUMN date_time DROP NOT NULL;
