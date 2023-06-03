@@ -108,10 +108,15 @@ body{
 
 
 /* ---------- Booked Room ---------- */
+
+
+.mainWrapper .bookedRoomWrapper{
+  width: 70%;
+}
   
   .mainWrapper .bookedRoom{
     display: flex;
-    width: 70%;
+    width: 100%;
   }
   .mainWrapper .bookedRoomPhotoRates{
     background-color: #B6A27B;
@@ -128,11 +133,11 @@ body{
     width: 45%;
   }
   .mainWrapper .bookedRoomPhotoRates .iconStars{
-    width: 30%;
+    width: 50%;
 
     margin: 0 auto;
-    margin-top: 4px;
-    margin-bottom: 25px;
+    margin-top: -30px;
+    margin-bottom: -55px;
   }
   .mainWrapper .bookedRoomPhotoRates .descriptionOfRoom{
     text-align: center;
@@ -145,6 +150,11 @@ body{
   .mainWrapper .bookedRoomPhotoRates .priceOfRoom{
     text-align: center;
     font-size: 29px;
+    margin-bottom: 20px;
+  }
+  .mainWrapper .bookedRoomPhotoRates .dateOfVisiting{
+    text-align: center;
+    font-size: 23px;
     margin-bottom: 20px;
   }
   .mainWrapper .bookedRoomPhotoRates .buttonToReserved{

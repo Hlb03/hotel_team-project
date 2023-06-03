@@ -4,13 +4,8 @@ import { BrowserRouter, Route, Routes, useHistory, Switch, Redirect } from "reac
 import React, { useEffect } from 'react';
 import MainPage from './components/MainPage/MainPage';
 import RoomNumbers from './components/RoomNumbers/RoomNumbers';
+import RoomNumbersPage from './components/RoomNumbers//Numbers/RoomNumbersPage';
 
-import RoomNumbers_1 from './components/RoomNumbers/Numbers/RoomNumbers_1';
-import RoomNumbers_2 from './components/RoomNumbers/Numbers/RoomNumbers_2';
-import RoomNumbers_3 from './components/RoomNumbers/Numbers/RoomNumbers_3';
-import RoomNumbers_4 from './components/RoomNumbers/Numbers/RoomNumbers_4';
-import RoomNumbers_5 from './components/RoomNumbers/Numbers/RoomNumbers_5';
-import RoomNumbers_6 from './components/RoomNumbers/Numbers/RoomNumbers_6';
 
 import CreateNewRoom from './components/RoomNumbers/Numbers/CreateNewRoom';
 import ProfileUser from './components/ProfileUser/ProfileUser';
@@ -29,12 +24,7 @@ function App() {
         <Route exact path="/rooms-numbers" element={<RoomNumbers />} />
         <Route exact path="/hotel" element={<HotelPage />} />
 
-        <Route exact path="/rooms-numbers/1" element={<RoomNumbers_1 />} />
-        <Route exact path="/rooms-numbers/2" element={<RoomNumbers_2 />} />
-        <Route exact path="/rooms-numbers/3" element={<RoomNumbers_3 />} />
-        <Route exact path="/rooms-numbers/4" element={<RoomNumbers_4 />} />
-        <Route exact path="/rooms-numbers/5" element={<RoomNumbers_5 />} />
-        <Route exact path="/rooms-numbers/6" element={<RoomNumbers_6 />} />
+        <Route path={'/rooms-numbers/number/'} element={<RoomNumbersPage/>} />
 
         <Route exact path="/rooms-numbers/create-new-room" element={<CreateNewRoom />} />
 

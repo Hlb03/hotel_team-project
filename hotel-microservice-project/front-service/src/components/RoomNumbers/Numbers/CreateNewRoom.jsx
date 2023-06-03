@@ -32,6 +32,26 @@ import axios from 'axios';
 
 const RoomNumbers_1 = (props) => {
 
+    const [listOfCities, setListOfCities] = useState(
+        [
+            {   
+                name: "Україна",
+                location: "kyiv",
+                locationName: "Київ"
+            },
+            {
+                name: "Україна",
+                location: "khmelnytskyi",
+                locationName: "Хмельницький"
+            },
+            {   
+                name: "Україна",
+                location: "zhytomyr",
+                locationName: "Житомир"
+            }
+        ]
+    );
+
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -45,6 +65,9 @@ const RoomNumbers_1 = (props) => {
             }).then(response => {
                 console.log(response.data[0].name + ` (${response.data[0].locationName})`);
                 console.log(response.data[0].location) // This is location id, that send to backend while creating a new room. Name it `location`
+            
+                
+                setListOfCities(response.data);
             }).catch(error => {
                 console.error(error);
             }
@@ -77,7 +100,6 @@ const RoomNumbers_1 = (props) => {
     
   })
 
-  var fs = require("fs");
 
 
   const createNewRoomFunc = (values) => {
@@ -121,10 +143,6 @@ const RoomNumbers_1 = (props) => {
     <div>
 
        <Header />
-
-
-
-
 
 
         
@@ -199,33 +217,14 @@ const RoomNumbers_1 = (props) => {
 
                     <div className={s.selectHotelWrapper}>
                         <label>Виберіть готель в якому знаходиться номер:</label>
+
                         <select name="selectedCity" onChange={handleChange}>
-                            <option value="kyiv" selected>Київ</option>
-                            <option value="khmelnytskyi">Хмельницький</option>
-                            <option value="zhytomyr">Житомир</option>
-                            <option value="lviv">Львів</option>
-                            <option value="ternopil">Тернопіль</option>
-                            <option value="chernivtsi">Чернівці</option>
-                            <option value="rivne">Рівне</option>
-                            <option value="lutsk">Луцьк</option>
-                            <option value="ivanoFrankivsk">Івано-Франківськ</option>
-                            <option value="uzhhorod">Ужгород</option>
-                            <option value="vinnitsa">Вінниця</option>
-                            <option value="chernihiv">Чернігів</option>
-                            <option value="cherkasy">Черкаси</option>  
-                            <option value="sumy">Суми</option>
-                            <option value="poltava">Полтава</option>
-                            <option value="kirovohrad">Кіровоград</option>
-                            <option value="odesa">Одеса</option>
-                            <option value="mykolaiv">Миколаїв</option>
-                            <option value="dnipropetrovsk">Дніпропетровськ</option>
-                            <option value="kharkiv">Харків</option>
-                            <option value="kherson">Херсон</option>
-                            <option value="zaporizhzhia">Запоріжжя</option>
-                            <option value="donetsk">Донецьк</option>
-                            <option value="luhansk">Луганськ</option>
-                            <option value="crimea">Крим</option>
+                            {listOfCities.map( city => (
+                                <option value={city.location}>{city.name} ( {city.locationName} )</option>                    
+                            ))}
                         </select>
+
+
                     </div>
 
                     <div className={s.buttonAddNewRoom} onClick={handleSubmit}>Створити</div>
@@ -235,89 +234,8 @@ const RoomNumbers_1 = (props) => {
             </Formik>   
         </div>
 
-
-
-
-
-
-
-
-
-        <div className={s.roomsInHotelWrapper}>
-            <h2>Номери</h2>
-            <h4>Готель пропонує гостям різноманіття номерів, починаючи від категорії «Стандарт» до «Президентського»</h4>
-
-            <div className={s.roomsWrapper}>
-                <div className={s.room_1}>
-                    <img className={s.photoRoom} src={photoRoom_1} alt="" />
-                    <img className={s.iconStars} src={iconStars_5} alt="" />
-                    <span className={s.descriptionOfRoom} >Номер з ліжком розміру king-size і балконом</span>
-                    <span className={s.priceOfRoom} >Ціна: 3 300 грн</span>
-
-                    <Link to='/rooms-numbers/1' preventScrollReset={true} activeClassName={s.activeLink} ><div className={s.buttonToReserve} >Забронювати</div></Link>
-                </div>
-
-                <div className={s.room_2}>
-                    <img className={s.photoRoom} src={photoRoom_2} alt="" />
-                    <img className={s.iconStars} src={iconStars_5} alt="" />
-                    <span className={s.descriptionOfRoom} >Номер-студіо з гідромасажною ванною</span>
-                    <span className={s.priceOfRoom} >Ціна: 1 400 грн</span>
-
-                    <Link to='/rooms-numbers/2' preventScrollReset={true} activeClassName={s.activeLink} ><div className={s.buttonToReserve} >Забронювати</div></Link>
-                </div>
-
-                <div className={s.room_3} >
-                    <img className={s.photoRoom} src={photoRoom_3} alt="" />
-                    <img className={s.iconStars} src={iconStars_5} alt="" />
-                    <span className={s.descriptionOfRoom} >Люкс з гідромасажною ванною</span>
-                    <span className={s.priceOfRoom} >Ціна: 1 500 грн</span>
-
-                    <Link to='/rooms-numbers/3' preventScrollReset={true} activeClassName={s.activeLink} ><div className={s.buttonToReserve} >Забронювати</div></Link>
-                </div>
-            </div>
-
-
-
-            <div className={s.roomsWrapper}>
-                <div className={s.room_1}>
-                    <img className={s.photoRoom} src={photoRoom_4} alt="" />
-                    <img className={s.iconStars} src={iconStars_5} alt="" />
-                    <span className={s.descriptionOfRoom} >Номер з ліжком розміру king-size і балконом</span>
-                    <span className={s.priceOfRoom} >Ціна: 3 300 грн</span>
-
-                    <Link to='/rooms-numbers/4' preventScrollReset={true} activeClassName={s.activeLink} ><div className={s.buttonToReserve} >Забронювати</div></Link>
-                </div>
-
-                <div className={s.room_2}>
-                    <img className={s.photoRoom} src={photoRoom_5} alt="" />
-                    <img className={s.iconStars} src={iconStars_5} alt="" />
-                    <span className={s.descriptionOfRoom} >Номер-студіо з гідромасажною ванною</span>
-                    <span className={s.priceOfRoom} >Ціна: 1 400 грн</span>
-
-                    <Link to='/rooms-numbers/5' preventScrollReset={true} activeClassName={s.activeLink} ><div className={s.buttonToReserve} >Забронювати</div></Link>
-                </div>
-
-                <div className={s.room_3} >
-                    <img className={s.photoRoom} src={photoRoom_6} alt="" />
-                    <img className={s.iconStars} src={iconStars_5} alt="" />
-                    <span className={s.descriptionOfRoom} >Люкс з гідромасажною ванною</span>
-                    <span className={s.priceOfRoom} >Ціна: 1 500 грн</span>
-
-                    <Link to='/rooms-numbers/6' preventScrollReset={true} activeClassName={s.activeLink} ><div className={s.buttonToReserve} >Забронювати</div></Link>
-                </div>
-            </div>
-
-
-            <div className={s.buttonAddNewRoom}>Додати номер</div>
-        </div>
-
-
-
-
-
-
     
-<Footer />
+        <Footer />
         
 
     </div>

@@ -1,15 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './ProfileUser.module.css';
 
 
 
 import photoRoom_1 from '../../assets/images/photoRoom_1.png';
+import photoRoom_2 from '../../assets/images/photoRoom_2.png';
+import photoRoom_3 from '../../assets/images/photoRoom_3.png';
+import photoRoom_4 from '../../assets/images/photoRoom_4.png';
+import photoRoom_5 from '../../assets/images/photoRoom_5.png';
+import photoRoom_6 from '../../assets/images/photoRoom_6.png';
 import iconStars_5 from '../../assets/images/iconStars_5.png';
 
 
 import { NavLink, Route, Routes } from 'react-router-dom';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+
+
+import star1 from '../../assets/images/star1.png';
+import star2 from '../../assets/images/star2.png';
+import star3 from '../../assets/images/star3.png';
+import star4 from '../../assets/images/star4.png';
+import star5 from '../../assets/images/star5.png';
 
 
 
@@ -23,6 +35,32 @@ import axios from 'axios';
 
 
 const ProfileUser = (props) => {
+
+    const [name, setName] = useState('Anton');
+    const [surname, setSurname] = useState("Sadlovskiy");
+    const [nickname, setNickname] = useState("antonsadlovskiy");
+    const [mail, setMail] = useState("antonsadlov@gmail.com");
+    const [yearsOld, setYearsOld] = useState("20");
+    const [phone, setPhone] = useState("0960175470");
+    const [balance, setBalance] = useState(3000);
+    const [password, setPassword] = useState("A12345678");
+
+
+    
+
+    const [amountBookedRooms, setAmountBookedRooms] = useState([1]);
+    const [images, setImages] = useState([photoRoom_1, photoRoom_2, photoRoom_3, photoRoom_4, photoRoom_5, photoRoom_6]);
+
+    const [startRent, setStartRent] = useState(["14.03.2023"]);
+    const [endRent, setEndRent] = useState(["20.03.2023"]);
+    const [price, setPrice] = useState([3200]);
+    const [shortDescription, setShortDescription] = useState(["Номер з ліжком розміру king-size і балконом", "Номер-студіо з гідромасажною ванною", "Люкс з гідромасажною ванною"]);
+    const [rate, setRate] = useState([2,4,1]);
+    const [amountOfPerson, setAmountOfPerson] = useState([3,4,2]);
+    
+    
+
+
 
     // request for user credentials
     useEffect(() => {
@@ -41,6 +79,17 @@ const ProfileUser = (props) => {
                 console.log(response.data.phone);
                 console.log(response.data.balance);
                 console.log(response.data.password); // this don't put into form. just leave default value for all users
+            
+                
+                setName(response.data.name);
+                setSurname(response.data.surname);
+                setNickname(response.data.nickname);
+                setMail(response.data.mail);
+                setYearsOld(response.data.yearsOld);
+                setPhone(response.data.phone);
+                setBalance(response.data.balance);
+                setPassword(response.data.password);
+            
             }).catch(error => {
                 console.error(error);
             }
@@ -61,6 +110,16 @@ const ProfileUser = (props) => {
             console.log(response.data[0].roomDTO.price);
             console.log(response.data[0].roomDTO.shortDescription);
             console.log(response.data[0].roomDTO.rate); //could be null - if so (gray stars)
+
+
+            setAmountBookedRooms(response.data);
+
+            setStartRent(response.data[0].startRent);
+            setEndRent(response.data[0].endRent);
+            setPrice(response.data[0].roomDTO.price);
+            setShortDescription(response.data[0].roomDTO.shortDescription);
+            setRate(response.data[0].roomDTO.rate);
+
         }).catch(error => {
                 console.error(error);
             }
@@ -141,30 +200,54 @@ const ProfileUser = (props) => {
             </div>
 
             {props.tab === 'booked-rooms' ? 
-                <div className={s.bookedRoom}>
-                    <img className={s.photoRoomBooked} src={photoRoom_1} alt="" width='60%'/>
-                    <div className={s.bookedRoomPhotoRates}>
-                        <img className={s.iconStars} src={iconStars_5} alt=""  />
-                        <span className={s.descriptionOfRoom} >Номер з ліжком розміру king-size і балконом</span>
-                        <span className={s.priceOfRoom}><i>Ціна: 3 300 грн</i></span>
 
-                        <div className={s.buttonToReserved} >Заброньовано</div>
-                        <div className={s.buttonToCancel} >Відмінити бронь</div>
-                    </div>
-                </div> 
+                <div className={s.bookedRoomWrapper}>  
+                    {amountBookedRooms.map( el => (
+
+
+                        <div className={s.bookedRoom}>
+                            <img className={s.photoRoomBooked} src={images[el-1]} alt="" width='60%'/>
+                            <div className={s.bookedRoomPhotoRates}>
+                                <img className={s.iconStars} src={
+                                    (() => {
+                                        switch (rate[el-1]) {
+                                        case 1:   return star1;
+                                        case 2:   return star2;
+                                        case 3:   return star3;
+                                        case 4:   return star4;
+                                        case 5:   return star5;
+                                        default:      return star5;
+                                        }
+                                    })()
+                                
+                                } alt=""  />
+                                
+                                <span className={s.descriptionOfRoom} >{shortDescription[el-1]}</span>
+                                <span className={s.priceOfRoom}><i>Ціна: {price[el-1]} грн ({amountOfPerson[el-1]}-х місний)</i></span>
+                                <span className={s.dateOfVisiting}>Заїд: {startRent}, виїзд: {endRent}</span>
+
+                                <div className={s.buttonToReserved} >Заброньовано</div>
+                                <div className={s.buttonToCancel} >Відмінити бронь</div>
+                            </div>
+                        </div> 
+                    
+            
+                    ))}
+                 </div>
+                
                 : 
 
                 <Formik
                         initialValues={{
-                            name: 'Григорій',
-                            surname: 'Онищенко',
-                            nickname: 'Gru02',
-                            mail: 'hryhoriyonishchenko@gmail.com',
-                            yearsOld: '32 роки',
-                            phone: '+380985606565',
-                            balance: 300,
-                            password: 'Gru02111!',
-                            confirmPassword: 'Gru02111!',                
+                            name: name,
+                            surname: surname,
+                            nickname: nickname,
+                            mail: mail,
+                            yearsOld: yearsOld,
+                            phone: phone,
+                            balance: balance,
+                            password: password,
+                            confirmPassword: password,                
                         }}
                         validateOnBlur
                         onSubmit={(values) => profileDataFunc(values)}

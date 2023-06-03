@@ -277,8 +277,8 @@ body{
     width: 30%;
 
     margin: 0 auto;
-    margin-top: 4px;
-    margin-bottom: 4px;
+    margin-top: -21px;
+    margin-bottom: -21px;
   }
   .roomsInHotelWrapper .roomsWrapper .room_1 .descriptionOfRoom, .roomsInHotelWrapper .roomsWrapper .room_2 .descriptionOfRoom, .roomsInHotelWrapper .roomsWrapper .room_3 .descriptionOfRoom{
     text-align: center;
