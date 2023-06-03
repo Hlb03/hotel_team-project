@@ -194,37 +194,39 @@ body{
     display: flex;
 
     justify-content: center;
+
+    flex-wrap: wrap;
   }
-  .roomsInHotelWrapper .roomsWrapper .room_1, .roomsInHotelWrapper .roomsWrapper .room_2{
+  .roomsInHotelWrapper .roomsWrapper .roomItem{
     margin-right: 10px;
   }
-  .roomsInHotelWrapper .roomsWrapper .room_1, .roomsInHotelWrapper .roomsWrapper .room_2, .roomsInHotelWrapper .roomsWrapper .room_3{
+  .roomsInHotelWrapper .roomsWrapper .roomItem{
     background-color: #B6A27B;
 
     display: flex;
     flex-direction: column;
+
+    width: 400px;
+    margin-bottom: 10px;
   }
   
-  .roomsInHotelWrapper .roomsWrapper .room_1, .roomsInHotelWrapper .roomsWrapper .room_2, .roomsInHotelWrapper .roomsWrapper .room_3{
-    width: 400px;
-  }
-  .roomsInHotelWrapper .roomsWrapper .room_1 .photoRoom, .roomsInHotelWrapper .roomsWrapper .room_2 .photoRoom, .roomsInHotelWrapper .roomsWrapper .room_3 .photoRoom{
+  .roomsInHotelWrapper .roomsWrapper .roomItem .photoRoom{
     width: 100%;
   }
-  .roomsInHotelWrapper .roomsWrapper .room_1 .iconStars, .roomsInHotelWrapper .roomsWrapper .room_2 .iconStars, .roomsInHotelWrapper .roomsWrapper .room_3 .iconStars{
+  .roomsInHotelWrapper .roomsWrapper .roomItem .iconStars, .roomsInHotelWrapper .roomsWrapper .room_2 .iconStars, .roomsInHotelWrapper .roomsWrapper .room_3 .iconStars{
     width: 30%;
 
     margin: 0 auto;
-    margin-top: 4px;
-    margin-bottom: 4px;
+    margin-top: -29px;
+    margin-bottom: -29px;
   }
-  .roomsInHotelWrapper .roomsWrapper .room_1 .descriptionOfRoom, .roomsInHotelWrapper .roomsWrapper .room_2 .descriptionOfRoom, .roomsInHotelWrapper .roomsWrapper .room_3 .descriptionOfRoom{
+  .roomsInHotelWrapper .roomsWrapper .roomItem .descriptionOfRoom, .roomsInHotelWrapper .roomsWrapper .room_2 .descriptionOfRoom, .roomsInHotelWrapper .roomsWrapper .room_3 .descriptionOfRoom{
     text-align: center;
   }
-  .roomsInHotelWrapper .roomsWrapper .room_1 .priceOfRoom, .roomsInHotelWrapper .roomsWrapper .room_2 .priceOfRoom, .roomsInHotelWrapper .roomsWrapper .room_3 .priceOfRoom{
+  .roomsInHotelWrapper .roomsWrapper .roomItem .priceOfRoom, .roomsInHotelWrapper .roomsWrapper .room_2 .priceOfRoom, .roomsInHotelWrapper .roomsWrapper .room_3 .priceOfRoom{
     text-align: center;
   }
-  .roomsInHotelWrapper .roomsWrapper .room_1 .buttonToReserve, .roomsInHotelWrapper .roomsWrapper .room_2 .buttonToReserve, .roomsInHotelWrapper .roomsWrapper .room_3 .buttonToReserve{
+  .roomsInHotelWrapper .roomsWrapper .roomItem .buttonToReserve, .roomsInHotelWrapper .roomsWrapper .room_2 .buttonToReserve, .roomsInHotelWrapper .roomsWrapper .room_3 .buttonToReserve{
     background-color: #222222;
     width: 70%;
     margin: 0 auto;
@@ -299,8 +301,8 @@ body{
     width: 50%;
 
     margin: 0 auto;
-    margin-top: 4px;
-    margin-bottom: 25px;
+    margin-top: -104px;
+    margin-bottom: -85px;
   }
   .aboutRoomWrapper .aboutRoom .aboutRoomPhotoRates .descriptionOfRoom{
     text-align: center;
@@ -418,18 +420,29 @@ body{
     padding-left: 15px;
     padding-bottom: 10px;
 }
+
 .listOfComments .comment h5{
     margin: 0;
     font-size: 21px;
     padding-top: 7px;
     margin-bottom: 10px;
+
+    display: flex;
 }
 .listOfComments .comment h5 span{
+  
   padding-left: 10px;
 
   font-weight: 400;
   font-size: 17px;
+  margin-top: 3px;
 
+}
+.listOfComments .comment h5 img{
+  width: 105px;
+  margin-top: -40px;
+  margin-left: 9px;
+  margin-bottom: -40px;
 }
 
 

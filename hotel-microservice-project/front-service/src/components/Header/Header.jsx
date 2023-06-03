@@ -4,7 +4,8 @@ import s from './Header.module.css';
 
 import iconGlobus from '../../assets/images/iconGlobus.png';
 import iconHotel from '../../assets/images/iconHotel.png';
-import { NavLink, unstable_HistoryRouter, useHistory } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import ModalRegAuth from './Modals/ModalRegAuth';
 
 
@@ -38,7 +39,7 @@ const customStyles = {
       border: '1px solid #875897',
       background: '#fff',
       overflowY: 'auto',
-      height: "79%",
+      height: "82%",
       WebkitOverflowScrolling: 'touch',
       borderRadius: '30px',
       outline: 'none',
@@ -50,9 +51,19 @@ const customStyles = {
 
 const Header = (props) => {
 
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         window.scrollTo(0, 0);
+
+        // alert(props.modalAfterRoom);
+
+        // if(props.modalAfterRoom == "login"){
+        //     openLoginForm();
+        // } else if (props.modalAfterRoom == "reg"){
+        //     openRegistrationForm();
+        // }
     }, []);
 
 
@@ -63,8 +74,12 @@ const Header = (props) => {
     const [loginFormIsOpen, setLoginFormIsOpen] = React.useState(false);
 
     let openRegistrationForm = () => {
+        navigate("/", { login: true, reg: false });
+
         setRegistrationFormIsOpen(true);
         document.body.style.overflow = 'hidden';
+
+        
     }
     let closeRegistrationForm = () => {
       setRegistrationFormIsOpen(false);
@@ -74,6 +89,8 @@ const Header = (props) => {
     let openLoginForm = () => {
         setLoginFormIsOpen(true);
         document.body.style.overflow = 'hidden';
+
+        navigate("/", { login: false, reg: true });
       }
     let closeLoginForm = () => {
         setLoginFormIsOpen(false);

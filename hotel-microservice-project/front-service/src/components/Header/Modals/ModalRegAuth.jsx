@@ -254,6 +254,11 @@ const ModalRegAuth = ({ type, isOpen, onAfterOpen, onRequestClose, style, conten
                                 </form>
 
 
+                                    <span className={s.textUnderFormReg}><i>При відправленні даної 
+                                        форми, протягом наступних декількох хвилин на вказану поштову 
+                                        адресу прийде активаційний код</i></span>
+
+
                                     <div className={!isValid || !dirty ? s.regButton_DeActive : s.regButton} onClick={handleSubmit}>
                                            <span className={s.reg_button_text}>Зареєструватись</span>
                                     </div>
