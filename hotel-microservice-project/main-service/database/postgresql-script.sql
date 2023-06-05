@@ -12,6 +12,10 @@ CREATE TABLE "role"
     rolename VARCHAR(46) PRIMARY KEY NOT NULL UNIQUE
 );
 
+CREATE TABLE "account_status" (
+    status VARCHAR(46) PRIMARY KEY NOT NULL UNIQUE
+);
+
 CREATE TABLE "user"
 (
     id            SERIAL,
@@ -19,12 +23,13 @@ CREATE TABLE "user"
     last_name     VARCHAR(46)   NOT NULL,
     nickname      VARCHAR(24)   NOT NULL,
     login         VARCHAR(46)   NOT NULL UNIQUE,
-    password      VARCHAR(46)   NOT NULL,
+    password      VARCHAR(60)   NOT NULL,
     balance       NUMERIC(8, 2) DEFAULT 0.0,
     age           INT,
     phone_number  VARCHAR(46),
     PRIMARY KEY (id),
-    role_rolename VARCHAR(46) REFERENCES role (rolename) ON DELETE CASCADE NOT NULL ,
+    role_rolename VARCHAR(46) REFERENCES role (rolename) ON DELETE CASCADE NOT NULL,
+    "account_status" VARCHAR(46) REFERENCES account_status (status) ON DELETE CASCADE NOT NULL,
     constraint balance_check check (balance >= 0)
 );
 
@@ -83,3 +88,5 @@ CREATE TABLE "user_response"
 );
 
 INSERT INTO "role" (rolename) VALUES ('USER'), ('ADMIN');
+
+INSERT INTO "account_status" VALUES ('ACTIVE'), ('NOT ACTIVATED'), ('BLOCKED');
