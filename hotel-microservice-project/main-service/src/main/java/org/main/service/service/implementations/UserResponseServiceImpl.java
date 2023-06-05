@@ -24,15 +24,9 @@ public class UserResponseServiceImpl implements UserResponseService {
     @Override
     @Transactional
     public void addNewResponse(UserResponse userResponse) {
-//        System.out.println("USER RESPONSE: " + userResponse);
         userResponse.setUser(
                 User.builder()
-                        .id(1)
-                        .build()
-        );
-        userResponse.setRoom(
-                Room.builder()
-                        .id(5)
+                        .id(23)
                         .build()
         );
         userResponse.setRate(4.2);
