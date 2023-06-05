@@ -44,20 +44,11 @@ import { AxiosHeaders } from 'axios';
 
 const RoomNumbers = (props) => {
 
-    const [amountRoomsArray, setAmountRoomsArray] = useState([]);
-    const [amountRooms, setAmountRooms] = useState(6);
 
-    for (let i = 1; i <= amountRooms; i++) {
-        amountRoomsArray.push(i);
-    }
+    const [roomsArray, setRoomsArray] = useState([]);
 
-
-    const [id, setId] = useState([1, 2, 3, 4, 5, 6]);
     const [images, setImages] = useState([photoRoom_1, photoRoom_2, photoRoom_3, photoRoom_4, photoRoom_5, photoRoom_6]);
-    const [price, setPrice] = useState([3300, 1400, 1500, 3400, 1400, 3600]);
-    const [shortDescription, setShortDescription] = useState(["Номер з ліжком розміру king-size і балконом", "Номер-студіо з гідромасажною ванною", , "Люкс з гідромасажною ванною", "Номер двохмісний", "Номер стандарт", "Номер трьохмісний"]);
-    const [amountOfPerson, setAmountOfPerson] = useState([2,3,1,2,4,3]);
-    const [rate, setRate] = useState([2,4,1,5,3,4,5]);
+
 
 
 
@@ -82,18 +73,7 @@ const RoomNumbers = (props) => {
                 console.log(response.data[0].rate); // COULD BE NULL (IF SO - JUST RENDER GRAY STARTS)
            
      
-                setAmountRooms(response.data.length);
-                setId(response.data[0].id);
-                setPrice(response.data[0].price);
-                setShortDescription(response.data[0].shortDescription);
-                setAmountOfPerson(response.data[0].amountOfPerson);
-                setRate(response.data[0].rate);
-
-
-                
-                for (let i = 1; i <= amountRooms; i++) {
-                    amountRoomsArray.push(i);
-                }
+                setRoomsArray(response.data);
 
             
             }).catch(error => {
@@ -278,29 +258,29 @@ const RoomNumbers = (props) => {
             <h4>Готель пропонує гостям різноманіття номерів, починаючи від категорії «Стандарт» до «Президентського»</h4>
 
             <div className={s.roomsWrapper}>
-                {amountRoomsArray.map( el => (   
+                {roomsArray.map( room => (
                     <div className={s.roomItem}>
-                        <img className={s.photoRoom} src={images[el-1]} alt="" />
+                        <img className={s.photoRoom} src={images[room.id-1]} alt="" />
                         <img className={s.iconStars} src={
                             (() => {
-                                switch (rate[el-1]) {
-                                  case 1:   return star1;
-                                  case 2:   return star2;
-                                  case 3:   return star3;
-                                  case 4:   return star4;
-                                  case 5:   return star5;
-                                  default:      return star5;
+                                switch (room.rate) {
+                                case 1:   return star1;
+                                case 2:   return star2;
+                                case 3:   return star3;
+                                case 4:   return star4;
+                                case 5:   return star5;
+                                default:      return star5;
                                 }
-                              })()
+                            })()
                         
                         } alt="" />
-                        <span className={s.descriptionOfRoom} >{shortDescription[el-1]}</span>
-                        <span className={s.priceOfRoom} >Ціна: {price[el-1]} грн ({amountOfPerson[el-1]}-х місний)</span>
+                        <span className={s.descriptionOfRoom} >{room.shortDescription}</span>
+                        <span className={s.priceOfRoom} >Ціна: {room.price} грн ({room.amountOfPerson}-х місний)</span>
 
-                        
-                        <Link to={"/rooms-numbers/number?number="+el} state={{number: el}} preventScrollReset={true} activeClassName={s.activeLink} ><div className={s.buttonToReserve}>Забронювати</div></Link>
+                        <Link to={"/rooms-numbers/number?number="+room.id} state={{number: room.id}} preventScrollReset={true} activeClassName={s.activeLink} ><div className={s.buttonToReserve}>Забронювати</div></Link>
                     </div>
                 ))}
+                
             </div>
 
 

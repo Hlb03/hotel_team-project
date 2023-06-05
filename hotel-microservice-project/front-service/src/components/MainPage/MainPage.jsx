@@ -66,23 +66,16 @@ const MainPage = (props) => {
 
     const { state } = useLocation();
 
+
+    const [roomsArray, setRoomsArray] = useState([]);
+  
+    const [images, setImages] = useState([photoRoom_1, photoRoom_2, photoRoom_3]);
+
+
+
     const [modalAfterRoom, setModalAfterRoom] = useState("");
 
     
-    const [amountRoomsArray, setAmountRoomsArray] = useState([]);
-    const [amountRooms, setAmountRooms] = useState(3);
-
-    for (let i = 1; i <= amountRooms; i++) {
-        amountRoomsArray.push(i);
-    }
-
-    const [id, setId] = useState([1, 2, 3]);
-
-    const [images, setImages] = useState([photoRoom_1, photoRoom_2, photoRoom_3]);
-    const [price, setPrice] = useState([3300, 1400, 1500]);
-    const [shortDescription, setShortDescription] = useState(["Номер з ліжком розміру king-size і балконом", "Номер-студіо з гідромасажною ванною", "Люкс з гідромасажною ванною"]);
-    const [amountOfPerson, setAmountOfPerson] = useState([2,3,1]);
-    const [rate, setRate] = useState([2,4,1]);
 
 
     useEffect(() => {
@@ -96,8 +89,6 @@ const MainPage = (props) => {
             }
         }
 
-        // alert(amountRoomsArray[0]);
-
         
         axios.get('http://localhost:8080/hotel-rent/rooms', {
             headers: {
@@ -106,26 +97,8 @@ const MainPage = (props) => {
                 'size': '3',
             }
         }).then(response => {
-                console.log(response.data[0].id) // THIS IS VALUE SHOULD BE IN REQUEST URL IF USER PRESS 'Забронювати' BUTTON
-                console.log(response.data[0].price);
-                console.log(response.data[0].shortDescription);
-                console.log(response.data[0].amountOfPerson);
-                console.log(response.data[0].rate); // COULD BE NULL (IF SO - JUST RENDER GRAY STARTS)
-                
-
-
-                setAmountRooms(response.data.length);
-                setId(response.data[0].id);
-                setPrice(response.data[0].price);
-                setShortDescription(response.data[0].shortDescription);
-                setAmountOfPerson(response.data[0].amountOfPerson);
-                setRate(response.data[0].rate);
-
-
-                
-                for (let i = 1; i <= amountRooms; i++) {
-                    amountRoomsArray.push(i);
-                }
+               
+                setRoomsArray(response.data);
 
             }).catch(error => {
                 console.error(error);
@@ -157,6 +130,9 @@ const MainPage = (props) => {
         "maxPrice: " + values.maxPrice +'\n' + 
         "Amount of person: " + values.amountOfPerson +'\n' + 
         "City: " + values.selectedCity);
+
+
+        
 
 
 
@@ -326,52 +302,29 @@ const MainPage = (props) => {
 
 
             <div className={s.roomsWrapper}>
-            
-                {amountRoomsArray.map( el => (
-                    
+                {roomsArray.map( room => (
                     <div className={s.room_1}>
-                        <img className={s.photoRoom} src={images[el-1]} alt="" />
+                        <img className={s.photoRoom} src={images[room.id-1]} alt="" />
                         <img className={s.iconStars} src={
                             (() => {
-                                switch (rate[el-1]) {
-                                  case 1:   return star1;
-                                  case 2:   return star2;
-                                  case 3:   return star3;
-                                  case 4:   return star4;
-                                  case 5:   return star5;
-                                  default:      return star5;
+                                switch (room.rate) {
+                                case 1:   return star1;
+                                case 2:   return star2;
+                                case 3:   return star3;
+                                case 4:   return star4;
+                                case 5:   return star5;
+                                default:      return star5;
                                 }
-                              })()
+                            })()
                         
                         } alt="" />
-                        <span className={s.descriptionOfRoom} >{shortDescription[el-1]}</span>
-                        <span className={s.priceOfRoom} >Ціна: {price[el-1]} грн ({amountOfPerson[el-1]}-х місний)</span>
+                        <span className={s.descriptionOfRoom} >{room.shortDescription}</span>
+                        <span className={s.priceOfRoom} >Ціна: {room.price} грн ({room.amountOfPerson}-х місний)</span>
 
-                        <Link to={"/rooms-numbers/number?number="+el} state={{number: el}} preventScrollReset={true} activeClassName={s.activeLink} ><div className={s.buttonToReserve}>Забронювати</div></Link>
+                        <Link to={"/rooms-numbers/number?number="+room.id} state={{number: room.id}} preventScrollReset={true} activeClassName={s.activeLink} ><div className={s.buttonToReserve}>Забронювати</div></Link>
                     </div>
-        
                 ))}
-            </div>
-
-            {/* 
-                    <div className={s.room_2}>
-                        <img className={s.photoRoom} src={photoRoom_2} alt="" />
-                        <img className={s.iconStars} src={iconStars_5} alt="" />
-                        <span className={s.descriptionOfRoom} >Номер-студіо з гідромасажною ванною</span>
-                        <span className={s.priceOfRoom} >Ціна: 1 400 грн</span>
-
-                        <Link to='/rooms-numbers/2' preventScrollReset={true} activeClassName={s.activeLink} ><div className={s.buttonToReserve}>Забронювати</div></Link>
-                    </div>
-
-                    <div className={s.room_3} >
-                        <img className={s.photoRoom} src={photoRoom_3} alt="" />
-                        <img className={s.iconStars} src={iconStars_5} alt="" />
-                        <span className={s.descriptionOfRoom} >Люкс з гідромасажною ванною</span>
-                        <span className={s.priceOfRoom} >Ціна: 1 500 грн</span>
-
-                        <Link to='/rooms-numbers/3' preventScrollReset={true} activeClassName={s.activeLink} ><div className={s.buttonToReserve}>Забронювати</div></Link>
-                    </div> */}
-            
+            </div>      
         </div>
 
 
