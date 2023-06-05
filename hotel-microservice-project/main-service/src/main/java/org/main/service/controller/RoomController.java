@@ -32,7 +32,7 @@ public class RoomController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping("/{roomId}")
+    @GetMapping("/info/{roomId}")
     public RoomDTO findRoomById(@PathVariable int roomId) {
         return transform.dtoTaking(roomService.findRoomById(roomId));
     }

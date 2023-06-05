@@ -9,7 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000/**")
+@CrossOrigin
 @RestController
 @RequestMapping("/users")
 @AllArgsConstructor
@@ -43,7 +44,7 @@ public class UserController {
     @GetMapping("/login/{userLogin}")
     public UserDTO findUserByLogin(@PathVariable String userLogin) {
         return userTransform.dtoTaking(
-                userService.findUserByLogin(userLogin)
+                userService.findUserByLogin(userLogin).get() // TODO: should add Optional in data convert
         );
     }
 
