@@ -41,6 +41,10 @@ public class User implements Serializable {
     @Column(name = "role_rolename")
     private Role role;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "account_status")
+    private AccountStatus status;
+
     @OneToMany(mappedBy = "user")
     private List<UserResponse> responses;
 
