@@ -36,6 +36,8 @@ import axios from 'axios';
 
 const ProfileUser = (props) => {
 
+    const [userBookedRoomArray, setUserBookedRoomArray] = useState([]);
+
     const [name, setName] = useState('Anton');
     const [surname, setSurname] = useState("Sadlovskiy");
     const [nickname, setNickname] = useState("antonsadlovskiy");
@@ -112,13 +114,7 @@ const ProfileUser = (props) => {
             console.log(response.data[0].roomDTO.rate); //could be null - if so (gray stars)
 
 
-            setAmountBookedRooms(response.data);
-
-            setStartRent(response.data[0].startRent);
-            setEndRent(response.data[0].endRent);
-            setPrice(response.data[0].roomDTO.price);
-            setShortDescription(response.data[0].roomDTO.shortDescription);
-            setRate(response.data[0].roomDTO.rate);
+            setUserBookedRoomArray(response.data);
 
         }).catch(error => {
                 console.error(error);
@@ -202,15 +198,15 @@ const ProfileUser = (props) => {
             {props.tab === 'booked-rooms' ? 
 
                 <div className={s.bookedRoomWrapper}>  
-                    {amountBookedRooms.map( el => (
+                    {userBookedRoomArray.map( room => (
 
 
                         <div className={s.bookedRoom}>
-                            <img className={s.photoRoomBooked} src={images[el-1]} alt="" width='60%'/>
+                            <img className={s.photoRoomBooked} src={images[room.id-1]} alt="" width='60%'/>
                             <div className={s.bookedRoomPhotoRates}>
                                 <img className={s.iconStars} src={
                                     (() => {
-                                        switch (rate[el-1]) {
+                                        switch (room.roomDTO.rate) {
                                         case 1:   return star1;
                                         case 2:   return star2;
                                         case 3:   return star3;
@@ -222,9 +218,9 @@ const ProfileUser = (props) => {
                                 
                                 } alt=""  />
                                 
-                                <span className={s.descriptionOfRoom} >{shortDescription[el-1]}</span>
-                                <span className={s.priceOfRoom}><i>Ціна: {price[el-1]} грн ({amountOfPerson[el-1]}-х місний)</i></span>
-                                <span className={s.dateOfVisiting}>Заїд: {startRent}, виїзд: {endRent}</span>
+                                <span className={s.descriptionOfRoom} >{room.roomDTO.shortDescription}</span>
+                                <span className={s.priceOfRoom}><i>Ціна: {room.roomDTO.price} грн ({room.roomDTO.amountOfPerson}-х місний)</i></span>
+                                <span className={s.dateOfVisiting}>Заїд: {room.startRent}, виїзд: {room.endRent}</span>
 
                                 <div className={s.buttonToReserved} >Заброньовано</div>
                                 <div className={s.buttonToCancel} >Відмінити бронь</div>
