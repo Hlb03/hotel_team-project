@@ -163,7 +163,8 @@ const ProfileUser = (props) => {
                 surname: values.surname,
                 nickname: values.nickname,
                 mail: values.mail,
-                yearsOld: values.yearsOld.split(' ')[0],
+                // yearsOld: values.yearsOld.split(' ')[0], // this is required in case of adding "років" after year value
+                yearsOld: values.yearsOld,
                 phone: values.phone,
                 balance: values.balance, //new value for balance
                 password: values.password,
