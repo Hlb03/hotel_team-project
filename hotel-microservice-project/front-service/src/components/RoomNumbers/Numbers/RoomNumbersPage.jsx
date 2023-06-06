@@ -79,9 +79,6 @@ const RoomNumbersPage = (props) => {
     console.log(state.number);
 
 
-    // if(!state.number){
-    //     navigate("/");
-    // }
 
     //TODO: CHANGE URL (IT HAS A TO TAKE INFO ABOUT ROOM ID FROM USER WHEN HE/SHE CLICKS ON CERTAIN ROOM)
     axios.get('http://localhost:8080/hotel-rent/rooms/'+state.number, {
@@ -90,36 +87,9 @@ const RoomNumbersPage = (props) => {
         }
         }).then(response => {
 
-            // if (state.number == 2){
-            //     setId(response.data.id);
-            //     setPrice(response.data.price);
-            //     setShortDescription(response.data.shortDescription);
-            //     setLongDescription(response.data.longDescription);
-            //     setAmountOfPerson(response.data.amountOfPerson);
-            //     setRate(response.data.rate);
-            // }
-            // console.log(response); // add it to post params to connect comment and room
-            // console.log(response.data.id); // add it to post params to connect comment and room
-            // console.log(response.data.price);
-            // console.log(response.data.shortDescription);
-            // console.log(response.data.longDescription);
-            // console.log(response.data.rate);
-            // console.log(response.data.amountOfPerson);
-
             console.log(response.data.comment[0].nickname);
 
             setComments(response.data.comment);
-
-
-            // {bookedRoomUser.map( bookedRoom => (
-
-            //     console.log("kkk");
-            // )}
-            // setAmountComments(response.data.comment);
-            // setCommentNickname(response.data.comment[0].nickname);
-            // setCommentDateTimeResponse(response.data.comment[0].dateTimeResponse);
-            // setCommentText(response.data.comment[0].comment);
-            // setCommentRate(response.data.comment[0].rate);
 
         }).catch(error => {
             console.error(error);
@@ -232,37 +202,21 @@ const RoomNumbersPage = (props) => {
                 
 
 
-            {/* {bookedRoomUser.map( bookedRoom => (
-                        
-                   
-            <div className={s.aboutRoom}>
-                <img className={s.photoRoomAbout} src={images[state.number-1]} alt="" width='55%'/>
-                <div className={s.aboutRoomPhotoRates}>
-                    <img className={s.iconStars} src={
-                        (() => {
-                            switch (bookedRoom.rate) {
-                              case 1:   return star1;
-                              case 2:   return star2;
-                              case 3:   return star3;
-                              case 4:   return star4;
-                              case 5:   return star5;
-                              default:      return star5;
-                            }
-                        })()
-                    } alt=""  />
-
-                    <span className={s.descriptionOfRoom} >{bookedRoom.shortDescription}</span>
-                    <span className={s.priceOfRoom}><i>Ціна: {price} грн ({bookedRoom.amountOfPerson}-х місний)</i></span>
-
-                    <div className={s.buttonToReserve} >Забронювати</div>
-                </div>
-            </div>
-             ))} */}
-
 
             <div className={s.aboutRoomDescription}>
                 <h3>Опис</h3>
-                <p> {longDescription}</p>
+
+                {roomsArrayPage.map( room => (
+                    <div>
+                        {room.id === state.number ?
+                            <p> {room.longDescription}</p>
+                            :
+                            null
+                        }
+                    </div>
+
+                ))}
+                
 
                 
                 
