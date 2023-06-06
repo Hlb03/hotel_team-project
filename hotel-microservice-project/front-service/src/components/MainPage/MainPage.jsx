@@ -304,10 +304,10 @@ const MainPage = (props) => {
             <div className={s.roomsWrapper}>
                 {roomsArray.map( room => (
                     <div className={s.room_1}>
-                        <img className={s.photoRoom} src={images[room.id-1]} alt="" />
+                        <img className={s.photoRoom} src={images[1]} alt="" />
                         <img className={s.iconStars} src={
                             (() => {
-                                switch (room.rate) {
+                                switch (Math.round(room.rate)) {
                                 case 1:   return star1;
                                 case 2:   return star2;
                                 case 3:   return star3;
