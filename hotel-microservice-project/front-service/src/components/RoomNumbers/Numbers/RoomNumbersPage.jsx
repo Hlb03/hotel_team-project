@@ -81,7 +81,7 @@ const RoomNumbersPage = (props) => {
 
 
     //TODO: CHANGE URL (IT HAS A TO TAKE INFO ABOUT ROOM ID FROM USER WHEN HE/SHE CLICKS ON CERTAIN ROOM)
-    axios.get('http://localhost:8080/hotel-rent/rooms/'+state.number, {
+    axios.get('http://localhost:8080/hotel-rent/rooms/info/'+state.number, {
         headers: {
             'Content-Type': 'application/json',
         }
