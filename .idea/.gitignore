@@ -6,3 +6,12 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+
+../individual_works/
+../Lab1/
+../Lab2/
+../Lab3/
+../Lab4/
+../Lab5/
+
+../hotel-microservice-project/mail-service/src/main/resources/application.properties
