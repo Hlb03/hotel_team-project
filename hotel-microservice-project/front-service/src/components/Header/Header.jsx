@@ -98,10 +98,6 @@ const Header = (props) => {
     }
 
 
-
-
-
-
     const onAuth = (values) => {
         alert("Your data: \n" + 
               "Email: " + values.mail + "\n" + 
@@ -110,9 +106,7 @@ const Header = (props) => {
         
         document.body.style.overflow = 'unset';
 
-
-        // TODO: END THIS WHEN SPRING SECURITY WILL BE ADDED TO PROJECT
-        axios.post('/auth', {
+        axios.post('http://localhost:8080/hotel-rent/auth', {
               mail: values.mail,
               password: values.password,
             })
@@ -140,13 +134,13 @@ const Header = (props) => {
         document.body.style.overflow = 'unset';
 
 
-        axios.post('http://localhost:8080/hotel-rent/users', {
+        axios.post('http://localhost:8080/hotel-rent/registration', {
                     name: values.name,
                     surname: values.surname,
                     nickname: values.nickname,
                     mail: values.mail,
                     yearsOld: values.yearsOld,
-                    phone: values.phone,
+                    phone: values.phone + " phone",
                     password: values.password
                 }, { params: {
                     confirmPassword: values.confirmPassword,
