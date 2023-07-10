@@ -7,13 +7,9 @@ import java.util.Optional;
 
 public interface UserService {
 
-    void addNewUser(User user, String confirmPassword) throws IncorrectPasswordsException;
-
-    User findUserById(int userId);
-
     Optional<User> findUserByLogin(String userLogin);
 
-    void updateUser(User user);
+    void updateUser(User user, String username);
 
     void deleteUserById(int userId);
 }
