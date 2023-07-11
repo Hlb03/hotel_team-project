@@ -4,7 +4,8 @@ import lombok.AllArgsConstructor;
 import org.main.service.dto.UserDTO;
 import org.main.service.service.UserService;
 import org.main.service.transformation.UserTransform;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -26,15 +27,17 @@ public class UserController {
     }
 
     @PutMapping
-    public ResponseEntity<Integer> updateUser(@RequestBody UserDTO userDTO, Principal principal) {
+    @ResponseStatus(HttpStatus.OK)
+    public void updateUser(@RequestBody UserDTO userDTO, Principal principal) {
         System.out.println("USER CREDENTIALS TO UPDATE: " + userDTO);
         userService.updateUser(
                 userTransform.entityTake(userDTO), principal.getName()
         );
-        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("drop/{userId}")
+    @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasAuthority('DELETE')")
     public void deleteUser(@PathVariable int userId) {
         userService.deleteUserById(userId);
     }

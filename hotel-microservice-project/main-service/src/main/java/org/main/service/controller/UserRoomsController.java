@@ -6,8 +6,10 @@ import org.main.service.service.UserRoomsService;
 import org.main.service.transformation.UserRoomsTransform;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,33 +23,36 @@ public class UserRoomsController {
     private final UserRoomsTransform userRoomsTransform;
 
     @PostMapping
-    public ResponseEntity<Integer> rentNewRoom(@RequestBody UserRoomsDTO userRoomsDTO,
-                                               @RequestParam int roomId) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public void rentNewRoom(@RequestBody UserRoomsDTO userRoomsDTO,
+                                               @RequestParam int roomId, Principal principal) {
         userRoomsService.addNewRoomToUser(
-                userRoomsTransform.entityTake(userRoomsDTO, roomId)
+                userRoomsTransform.entityTake(userRoomsDTO, roomId), principal.getName()
         );
-        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     // TODO: INFO ABOUT USER ROOMS SHOULD BE BASED ON SESSION BEAN THAT STORES AUTHORIZED USER INFO
     @GetMapping
-    public List<UserRoomsDTO> findAllUserRooms() {
-        return userRoomsService.findAllUserRooms(1)
+    public List<UserRoomsDTO> findAllUserRooms(Principal principal) {
+        return userRoomsService.findAllUserRooms(principal.getName())
                 .stream()
                 .map(userRoomsTransform::dtoTaking)
                 .collect(Collectors.toList());
     }
 
     @PutMapping
-    public ResponseEntity<Integer> updateUserRooms(@RequestBody UserRoomsDTO userRoomsDTO,
+    @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasAuthority('WRITE')")
+    public void updateUserRooms(@RequestBody UserRoomsDTO userRoomsDTO,
                                                    @RequestParam int roomId) {
         userRoomsService.updateUserRoom(
                 userRoomsTransform.entityTake(userRoomsDTO, roomId)
         );
-        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/drop/{userRoomId}")
+    @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasAuthority('DELETE')")
     public void deleteUsersRoomById(@PathVariable int userRoomId) {
         userRoomsService.deleteUserRoomById(userRoomId);
     }

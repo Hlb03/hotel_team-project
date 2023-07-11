@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -15,12 +16,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
-import java.io.IOException;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 @AllArgsConstructor
 public class WebSecurityConfig {
 
@@ -32,14 +31,15 @@ public class WebSecurityConfig {
     @Bean
     protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-//                .addFilterAt(createLoginFilter(), UsernamePasswordAuthenticationFilter.class)
                 .csrf().disable()
                 .authorizeHttpRequests( requests -> requests
-//                        .requestMatchers("/**", HttpMethod.GET, HttpMethod.POST, HttpMethod.PUT, HttpMethod.DELETE).permitAll() // TODO: temp decision while Anton is creating UI
-                                .requestMatchers("/rooms/**", HttpMethod.GET).permitAll()
-                                .requestMatchers("/response/room/*", HttpMethod.GET).permitAll()
-                                .requestMatchers("/registration", HttpMethod.POST).permitAll()
-                                .requestMatchers("/auth", HttpMethod.POST).permitAll()
+//                        .requestMatchers("/**", HttpMethod.GET, HttpMethod.POST, HttpMethod.PUT, HttpMethod.DELETE).permitAll() // temp decision while Anton is creating UI
+
+                                .requestMatchers(HttpMethod.GET, "/rooms/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/response/room/*").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/registration").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/auth").permitAll()
+
                                 .anyRequest().authenticated()
                 )
                 // TODO: Not sure whether token based application should contain this function (in case should -> set expiration time in token to now)
@@ -51,7 +51,7 @@ public class WebSecurityConfig {
 //                })
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))) // create exception controller advice
                 .authenticationProvider(daoAuthenticationProvider())
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))   // REST applications doesn't support default Spring sessions (via cookies)
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // REST applications doesn't support default Spring sessions (via cookies)
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }

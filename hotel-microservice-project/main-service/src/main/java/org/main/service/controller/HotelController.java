@@ -7,6 +7,7 @@ import org.main.service.service.HotelService;
 import org.main.service.transformation.HotelTransform;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,17 +17,18 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/hotels")
 @AllArgsConstructor
+@PreAuthorize("hasAuthority('WRITE')")
 public class HotelController {
 
     private final HotelService hotelService;
     private final HotelTransform transform;
 
     @PostMapping
-    public ResponseEntity<Integer> createNewHotel(@RequestBody HotelDTO hotelDTO) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createNewHotel(@RequestBody HotelDTO hotelDTO) {
         System.out.println("HOTEL IS: " + hotelDTO);
         Hotel hotel = transform.entityTake(hotelDTO);
         hotelService.addNewHotel(hotel);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping("/{hotelId}")
@@ -60,12 +62,13 @@ public class HotelController {
     }
 
     @PutMapping
-    public ResponseEntity<Integer> updateHotelInfo(@RequestBody HotelDTO hotelDTO) {
+    @ResponseStatus(HttpStatus.OK)
+    public void updateHotelInfo(@RequestBody HotelDTO hotelDTO) {
         hotelService.updateHotel(transform.entityTake(hotelDTO));
-        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/drop/{hotelId}")
+    @ResponseStatus(HttpStatus.OK)
     public void deleteHotel(@PathVariable int hotelId) {
         hotelService.deleteHotelById(hotelId);
     }

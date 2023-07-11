@@ -6,6 +6,7 @@ import org.main.service.service.RoomService;
 import org.main.service.transformation.RoomTransform;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -26,10 +27,11 @@ public class RoomController {
 
 
     @PostMapping
-    public ResponseEntity<Integer> addNewRoom(@RequestBody RoomDTO room, @RequestParam String selectedCity) {
-        System.out.println("NEW ROOM INFO " + room + " and is located in " + selectedCity);
+    @ResponseStatus(HttpStatus.CREATED)
+    @PreAuthorize("hasAuthority('WRITE')")
+    public void addNewRoom(@RequestBody RoomDTO room) {
+        System.out.println("NEW ROOM INFO " + room);
         roomService.addNewRoom(transform.entityTake(room));
-        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping("/info/{roomId}")
@@ -52,12 +54,7 @@ public class RoomController {
     public List<RoomDTO> findAllSuitableRooms(@RequestParam BigDecimal minPrice, @RequestParam BigDecimal maxPrice,
                                               @RequestParam Date dateStart, @RequestParam Date dateEnd,
                                               @RequestParam int amountOfPerson) {
-
-        Date start  = Date.valueOf(dateStart.toLocalDate().plusDays(1));
-        Date end = Date.valueOf(dateEnd.toLocalDate().plusDays(1));
-        System.out.println("SEARCHING PARAMS ARE: " + (dateStart.toLocalDate().plusDays(1)) + " " + (dateEnd.toLocalDate().plusDays(1)));
-
-        return roomService.findAllByParams(start, end, minPrice, maxPrice, amountOfPerson)
+        return roomService.findAllByParams(dateStart, dateEnd, minPrice, maxPrice, amountOfPerson)
                 .stream()
                 .map(transform::dtoTaking)
                 .toList();
@@ -72,12 +69,15 @@ public class RoomController {
     }
 
     @PutMapping
-    public ResponseEntity<Integer> updateRoomInfo(@RequestBody RoomDTO room) {
+    @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasAuthority('WRITE')")
+    public void updateRoomInfo(@RequestBody RoomDTO room) {
         roomService.updateRoom(transform.entityTake(room));
-        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/drop/{roomId}")
+    @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasAuthority('DELETE')")
     public void deleteRoom(@PathVariable int roomId) {
         roomService.deleteRoom(roomId);
     }

@@ -7,10 +7,12 @@ import org.main.service.service.UserResponseService;
 import org.main.service.transformation.UserResponseTransform;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,13 +26,13 @@ public class UserResponseController {
     private final UserResponseTransform userResponseTransform;
 
 
-    // TODO: FINISH THIS WITH AUTHORIZED USER. GET HIS CREDENTIALS AND PUT 'EM INTO userResponseDTO OBJECT + CHECK WHETHER ROOM ID IS SENT + RATE
+    // TODO: FRONT SIDE SHOULD ALSO SEND A REAL RATE
     @PostMapping
-    public ResponseEntity<Integer> createNewResponse(@RequestBody UserResponseDTO userResponse) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createNewResponse(@RequestBody UserResponseDTO userResponse, Principal principal) {
         userResponseService.addNewResponse(
-                userResponseTransform.entityTake(userResponse)
+                userResponseTransform.entityTake(userResponse), principal.getName()
         );
-        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping("/room/{roomId}")
@@ -42,14 +44,17 @@ public class UserResponseController {
     }
 
     @PutMapping
-    public ResponseEntity<Integer> updateResponse(@RequestBody UserResponseDTO response) {
+    @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasAuthority('WRITE')")
+    public void updateResponse(@RequestBody UserResponseDTO response) {
         userResponseService.updateResponse(
                 userResponseTransform.entityTake(response)
         );
-        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/drop/{responseId}")
+    @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasAuthority('DELETE')")
     public void deleteResponse(@PathVariable int responseId) {
         userResponseService.deleteResponse(responseId);
     }
