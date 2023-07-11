@@ -1,4 +1,4 @@
-package org.main.service.transformation;
+package org.main.service.mapper;
 
 import org.main.service.dto.LocationDTO;
 import org.main.service.entity.Location;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.io.Serializable;
 
 @Component
-public class LocationTransform implements Serializable {
+public class LocationMapper implements Serializable {
 
     public LocationDTO dtoTaking(Location location) {
         return LocationDTO.builder()

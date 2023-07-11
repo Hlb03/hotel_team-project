@@ -1,4 +1,4 @@
-package org.main.service.transformation;
+package org.main.service.mapper;
 
 import org.main.service.dto.UserResponseDTO;
 import org.main.service.entity.Room;
@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Component
-public class UserResponseTransform {
+public class UserResponseMapper {
 
     public UserResponseDTO dtoTaking(UserResponse userResponse) {
         return UserResponseDTO.builder()

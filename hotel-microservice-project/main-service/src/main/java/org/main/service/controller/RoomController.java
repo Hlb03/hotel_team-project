@@ -3,15 +3,13 @@ package org.main.service.controller;
 import lombok.AllArgsConstructor;
 import org.main.service.dto.RoomDTO;
 import org.main.service.service.RoomService;
-import org.main.service.transformation.RoomTransform;
+import org.main.service.mapper.RoomMapper;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.sql.Date;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,7 +21,7 @@ import java.util.stream.Collectors;
 public class RoomController {
 
     private final RoomService roomService;
-    private final RoomTransform transform;
+    private final RoomMapper roomMapper;
 
 
     @PostMapping
@@ -31,12 +29,12 @@ public class RoomController {
     @PreAuthorize("hasAuthority('WRITE')")
     public void addNewRoom(@RequestBody RoomDTO room) {
         System.out.println("NEW ROOM INFO " + room);
-        roomService.addNewRoom(transform.entityTake(room));
+        roomService.addNewRoom(roomMapper.entityTake(room));
     }
 
     @GetMapping("/info/{roomId}")
     public RoomDTO findRoomById(@PathVariable int roomId) {
-        return transform.dtoTaking(roomService.findRoomById(roomId));
+        return roomMapper.dtoTaking(roomService.findRoomById(roomId));
     }
 
     @GetMapping
@@ -44,7 +42,7 @@ public class RoomController {
                                      @RequestParam int size) {
         return roomService.findAllRooms(page, size)
                 .stream()
-                .map(transform::dtoTaking)
+                .map(roomMapper::dtoTaking)
                 .toList();
     }
 
@@ -56,7 +54,7 @@ public class RoomController {
                                               @RequestParam int amountOfPerson) {
         return roomService.findAllByParams(dateStart, dateEnd, minPrice, maxPrice, amountOfPerson)
                 .stream()
-                .map(transform::dtoTaking)
+                .map(roomMapper::dtoTaking)
                 .toList();
     }
 
@@ -64,7 +62,7 @@ public class RoomController {
     public List<RoomDTO> findAllHotelRooms(@PathVariable int hotelId) {
         return roomService.findAllRoomsInHotel(hotelId)
                 .stream()
-                .map(transform::dtoTaking)
+                .map(roomMapper::dtoTaking)
                 .collect(Collectors.toList());
     }
 
@@ -72,7 +70,7 @@ public class RoomController {
     @ResponseStatus(HttpStatus.OK)
     @PreAuthorize("hasAuthority('WRITE')")
     public void updateRoomInfo(@RequestBody RoomDTO room) {
-        roomService.updateRoom(transform.entityTake(room));
+        roomService.updateRoom(roomMapper.entityTake(room));
     }
 
     @DeleteMapping("/drop/{roomId}")

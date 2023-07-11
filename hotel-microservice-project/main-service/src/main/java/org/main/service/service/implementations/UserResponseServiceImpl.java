@@ -3,13 +3,11 @@ package org.main.service.service.implementations;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.main.service.dto.RoomDTO;
-import org.main.service.entity.Room;
-import org.main.service.entity.User;
 import org.main.service.entity.UserResponse;
 import org.main.service.repository.UserResponseRepository;
 import org.main.service.service.UserResponseService;
 import org.main.service.service.UserService;
-import org.main.service.transformation.RoomTransform;
+import org.main.service.mapper.RoomMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +18,7 @@ public class UserResponseServiceImpl implements UserResponseService {
 
     private final UserResponseRepository userResponseRepository;
     private final RoomServiceImpl roomService;
-    private final RoomTransform roomTransform;
+    private final RoomMapper roomTransform;
     private final UserService userService;
 
     @Override

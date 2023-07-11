@@ -1,19 +1,18 @@
-package org.main.service.transformation;
+package org.main.service.mapper;
 
 import org.main.service.dto.UserRoomsDTO;
 import org.main.service.entity.Room;
-import org.main.service.entity.User;
 import org.main.service.entity.UserRooms;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserRoomsTransform {
+public class UserRoomsMapper {
 
-    private final RoomTransform roomTransform;
+    private final RoomMapper roomTransform;
 
     @Autowired
-    public UserRoomsTransform(RoomTransform roomTransform) {
+    public UserRoomsMapper(RoomMapper roomTransform) {
         this.roomTransform = roomTransform;
     }
 
@@ -33,11 +32,6 @@ public class UserRoomsTransform {
                 .id(userRoomsDTO.getId())
                 .startRent(userRoomsDTO.getStartRent())
                 .endRent(userRoomsDTO.getEndRent())
-                .user(
-                        User.builder()
-                                .id(userRoomsDTO.getUserId())
-                                .build()
-                )
                 .room(
                         Room.builder()
                                 .id(roomId)

@@ -1,19 +1,18 @@
-package org.main.service.transformation;
+package org.main.service.mapper;
 
 import lombok.AllArgsConstructor;
 import org.main.service.dto.RoomDTO;
 import org.main.service.entity.Hotel;
 import org.main.service.entity.Room;
-import org.main.service.entity.UserResponse;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 
 @Component
 @AllArgsConstructor
-public class RoomTransform implements Serializable {
+public class RoomMapper implements Serializable {
 
-    private final UserResponseTransform responseTransform;
+    private final UserResponseMapper responseTransform;
 
     public RoomDTO dtoTaking(Room room) {
         return RoomDTO.builder()

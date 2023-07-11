@@ -3,9 +3,8 @@ package org.main.service.controller;
 import lombok.AllArgsConstructor;
 import org.main.service.dto.UserRoomsDTO;
 import org.main.service.service.UserRoomsService;
-import org.main.service.transformation.UserRoomsTransform;
+import org.main.service.mapper.UserRoomsMapper;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,14 +19,14 @@ import java.util.stream.Collectors;
 public class UserRoomsController {
 
     private final UserRoomsService userRoomsService;
-    private final UserRoomsTransform userRoomsTransform;
+    private final UserRoomsMapper userRoomsMapper;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void rentNewRoom(@RequestBody UserRoomsDTO userRoomsDTO,
                                                @RequestParam int roomId, Principal principal) {
         userRoomsService.addNewRoomToUser(
-                userRoomsTransform.entityTake(userRoomsDTO, roomId), principal.getName()
+                userRoomsMapper.entityTake(userRoomsDTO, roomId), principal.getName()
         );
     }
 
@@ -36,7 +35,7 @@ public class UserRoomsController {
     public List<UserRoomsDTO> findAllUserRooms(Principal principal) {
         return userRoomsService.findAllUserRooms(principal.getName())
                 .stream()
-                .map(userRoomsTransform::dtoTaking)
+                .map(userRoomsMapper::dtoTaking)
                 .collect(Collectors.toList());
     }
 
@@ -46,7 +45,7 @@ public class UserRoomsController {
     public void updateUserRooms(@RequestBody UserRoomsDTO userRoomsDTO,
                                                    @RequestParam int roomId) {
         userRoomsService.updateUserRoom(
-                userRoomsTransform.entityTake(userRoomsDTO, roomId)
+                userRoomsMapper.entityTake(userRoomsDTO, roomId)
         );
     }
 

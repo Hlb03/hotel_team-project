@@ -3,7 +3,7 @@ package org.main.service.controller;
 import lombok.AllArgsConstructor;
 import org.main.service.dto.UserDTO;
 import org.main.service.service.UserService;
-import org.main.service.transformation.UserTransform;
+import org.main.service.mapper.UserMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -17,11 +17,11 @@ import java.security.Principal;
 public class UserController {
 
     private final UserService userService;
-    private final UserTransform userTransform;
+    private final UserMapper userMapper;
 
     @GetMapping
     public UserDTO getUserAuthorizedUserInfo(Principal principal) {
-        return userTransform.dtoTaking(
+        return userMapper.dtoTaking(
                 userService.findUserByLogin(principal.getName()).get()
         );
     }
@@ -31,7 +31,7 @@ public class UserController {
     public void updateUser(@RequestBody UserDTO userDTO, Principal principal) {
         System.out.println("USER CREDENTIALS TO UPDATE: " + userDTO);
         userService.updateUser(
-                userTransform.entityTake(userDTO), principal.getName()
+                userMapper.entityTake(userDTO), principal.getName()
         );
     }
 

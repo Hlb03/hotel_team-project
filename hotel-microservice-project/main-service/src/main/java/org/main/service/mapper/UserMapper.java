@@ -1,4 +1,4 @@
-package org.main.service.transformation;
+package org.main.service.mapper;
 
 import org.main.service.dto.UserDTO;
 import org.main.service.entity.Role;
@@ -6,7 +6,7 @@ import org.main.service.entity.User;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserTransform {
+public class UserMapper {
 
     public UserDTO dtoTaking(User user) {
         return UserDTO.builder()
