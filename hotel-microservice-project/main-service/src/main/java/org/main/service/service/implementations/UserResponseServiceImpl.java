@@ -8,6 +8,7 @@ import org.main.service.entity.User;
 import org.main.service.entity.UserResponse;
 import org.main.service.repository.UserResponseRepository;
 import org.main.service.service.UserResponseService;
+import org.main.service.service.UserService;
 import org.main.service.transformation.RoomTransform;
 import org.springframework.stereotype.Service;
 
@@ -20,14 +21,13 @@ public class UserResponseServiceImpl implements UserResponseService {
     private final UserResponseRepository userResponseRepository;
     private final RoomServiceImpl roomService;
     private final RoomTransform roomTransform;
+    private final UserService userService;
 
     @Override
     @Transactional
-    public void addNewResponse(UserResponse userResponse) {
+    public void addNewResponse(UserResponse userResponse, String username) {
         userResponse.setUser(
-                User.builder()
-                        .id(23)
-                        .build()
+                userService.findUserByLogin(username).get()
         );
         userResponse.setRate(4.2);
         System.out.println("USER RESPONSE: " + userResponse);

@@ -5,9 +5,9 @@ import org.main.service.entity.UserRooms;
 import java.util.List;
 
 public interface UserRoomsService {
-    void addNewRoomToUser(UserRooms userRooms);
+    void addNewRoomToUser(UserRooms userRooms, String username);
 
-    List<UserRooms> findAllUserRooms(int userId);
+    List<UserRooms> findAllUserRooms(String username);
 
     void updateUserRoom(UserRooms userRooms);
 

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserResponseService {
 
-    void addNewResponse(UserResponse userResponse);
+    void addNewResponse(UserResponse userResponse, String username);
 
     List<UserResponse> findAllResponsesOnRoom(int roomId);
 

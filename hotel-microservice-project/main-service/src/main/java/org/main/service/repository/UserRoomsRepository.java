@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface UserRoomsRepository extends JpaRepository<UserRooms, Integer> {
-    List<UserRooms> getUserRoomsByUserId(int userId);
+    List<UserRooms> getUserRoomsByUserLogin(String login);
 }

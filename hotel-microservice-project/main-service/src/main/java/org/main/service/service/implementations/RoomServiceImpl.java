@@ -38,9 +38,15 @@ public class RoomServiceImpl implements RoomService {
         return roomRepository.findAll(pageable);
     }
 
+    // TODO: FIX DAY ISSUE (RECEIVES DESIRED DATE -1 DAY FROM FRONT SERVICE
+    // TODO: ADD LOCATION (HOTEL) AS A SEARCH PARAM (NEED TO SEND DATA TO ANTON TO VIEW THE WHOLE AVAILABLE LIST IN DATABASE)
     @Override
     public List<Room> findAllByParams(Date startDate, Date endDate, BigDecimal startPrice, BigDecimal endPrice, int personAmount) {
-        return roomRepository.findAllByParams(startDate, endDate, startPrice, endPrice, personAmount);
+        Date start  = Date.valueOf(startDate.toLocalDate().plusDays(1));
+        Date end = Date.valueOf(endDate.toLocalDate().plusDays(1));
+        System.out.println("SEARCHING PARAMS ARE: " + (startDate.toLocalDate().plusDays(1)) + " " + (endDate.toLocalDate().plusDays(1)));
+
+        return roomRepository.findAllByParams(start, end, startPrice, endPrice, personAmount);
     }
 
     @Override
