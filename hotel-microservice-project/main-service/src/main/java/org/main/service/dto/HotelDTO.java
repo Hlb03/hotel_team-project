@@ -18,5 +18,4 @@ public class HotelDTO implements Serializable {
     private String name;
     private int location;
     private String locationName;
-//    List<RoomDTO> rooms;
 }

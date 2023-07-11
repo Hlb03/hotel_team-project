@@ -16,6 +16,5 @@ public class UserRoomsDTO implements Serializable {
     private int id;
     private Date startRent;
     private Date endRent;
-    private int userId;
     private RoomDTO roomDTO;
 }
