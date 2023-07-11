@@ -121,8 +121,11 @@ const RoomNumbers_1 = (props) => {
         photoRoom: values.photoRoom, // values.photoRoom.name - назва фото
         // values.photoRoom.type - тип фото 
         // values.photoRoom.size - розмір фото
-    }, { params: {selectedCity: values.selectedCity // MOVE THIS TO `data` AND NAME IT AS `location`, it represents hotel id, where new room will be located
-      }}
+    }
+        // MOVE THIS TO `data` AND NAME IT AS `location`, it represents hotel id, where new room will be located
+        // {params: {selectedCity: values.selectedCity
+      // }
+    // }
     )
       .then(function (response) {
         console.log(response);

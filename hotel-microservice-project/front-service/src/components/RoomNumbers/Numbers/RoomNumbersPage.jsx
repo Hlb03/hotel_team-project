@@ -79,8 +79,6 @@ const RoomNumbersPage = (props) => {
     console.log(state.number);
 
 
-
-    //TODO: CHANGE URL (IT HAS A TO TAKE INFO ABOUT ROOM ID FROM USER WHEN HE/SHE CLICKS ON CERTAIN ROOM)
     axios.get('http://localhost:8080/hotel-rent/rooms/info/'+state.number, {
         headers: {
             'Content-Type': 'application/json',
@@ -138,7 +136,7 @@ const RoomNumbersPage = (props) => {
 
 
 
-    // TODO: ADD OVER HERE RATE VALUE (STARS) WITH NAME `rate` + Room_id, WHICH YOU SHOULD TAKE FROM GET REQUEST, name this id `room`
+    // TODO: ADD OVER HERE RATE VALUE (STARS) WITH NAME `rate` (THIS IS NOT IMPLEMENTED IN FRONT SIDE)
     axios.post('http://localhost:8080/hotel-rent/response', {
             id: id,
             comment: values.commentInput,
