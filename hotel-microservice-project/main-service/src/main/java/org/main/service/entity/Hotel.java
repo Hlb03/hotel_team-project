@@ -3,15 +3,16 @@ package org.main.service.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
-public class Hotel implements Serializable {
+public class Hotel {
     @Id
     @SequenceGenerator(sequenceName = "hotel_id_seq", name = "hotel_id_seq", allocationSize = 1)
     @GeneratedValue(generator = "hotel_id_seq", strategy = GenerationType.SEQUENCE)
@@ -29,5 +30,18 @@ public class Hotel implements Serializable {
     @Override
     public String toString() {
         return String.format("Hotel with name %s has id %d", name, id);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Hotel hotel = (Hotel) o;
+        return id == hotel.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

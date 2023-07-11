@@ -1,21 +1,20 @@
 package org.main.service.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
-public class Room implements Serializable {
+public class Room {
     @Id
     @SequenceGenerator(name = "room_id_seq", sequenceName = "room_id_seq", allocationSize = 1)
     @GeneratedValue(generator = "room_id_seq", strategy = GenerationType.SEQUENCE)
@@ -46,4 +45,17 @@ public class Room implements Serializable {
 
     @OneToMany(mappedBy = "room")
     private List<UserRooms> userRooms;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Room room = (Room) o;
+        return id == room.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }
