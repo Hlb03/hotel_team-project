@@ -20,10 +20,12 @@ There are 4 independent microservices available:
 - Spring Cloud Netflix;
 - Spring Security (with JWT);
 - Maven;
+- Docker (Docker-compose);
 - Lombok;
 - PostgreSQL;
 - Postman;
 - Figma;
+
 
         Executors:
 - Bohdana O. (Designer)
