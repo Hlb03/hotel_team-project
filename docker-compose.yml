@@ -1,0 +1,60 @@
+version: '3'
+
+services:
+
+  eureka-service:
+    container_name: 'eureka-container'
+    build:
+      context: ./hotel-microservice-project/eureka-service
+    healthcheck:
+      test: ["CMD", "wget", "http://eureka-service:8761"]
+      timeout: 10s
+      interval: 10s
+      retries: 5
+    ports:
+      - '8761:8761'
+
+  mail-service:
+    container_name: 'mail-container'
+    build:
+      context: ./hotel-microservice-project/mail-service
+      dockerfile: Dockerfile
+#    ports:
+#      - '8081:8081'
+    depends_on:
+      eureka-service:
+        condition: service_healthy
+
+  postgres:
+    container_name: 'postgres'
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: hotel-rent
+    volumes:
+      - ./hotel-microservice-project/main-service/database/postgresql-script.sql:/docker-entrypoint-initdb.d/postgresql-script.sql
+      - ./hotel-microservice-project/main-service/database/postgres-data:/var/lib/postgresql/data
+#    ports:
+#      - '5433:5432'
+    depends_on:
+      eureka-service:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  main-service:
+    container_name: 'main-container'
+    build:
+      context: ./hotel-microservice-project/main-service
+    ports:
+      - '8080:8080'
+    depends_on:
+      eureka-service:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+
