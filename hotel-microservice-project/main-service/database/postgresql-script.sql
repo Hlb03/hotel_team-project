@@ -1,11 +1,15 @@
-DROP DATABASE "hotel-rent";
+/*
+    COMMENTED SQL STATEMENTS ARE DEDICATED TO MANUAL DB CREATION
+*/
 
-CREATE DATABASE "hotel-rent"
-    WITH
-    OWNER = hlb_03
-    ENCODING = 'UTF8'
-    CONNECTION LIMIT = -1
-    IS_TEMPLATE = False;
+-- DROP DATABASE "hotel-rent";
+
+-- CREATE DATABASE "hotel-rent"
+--     WITH
+--     OWNER = postgres
+--     ENCODING = 'UTF8'
+--     CONNECTION LIMIT = -1
+--     IS_TEMPLATE = False;
 
 CREATE TABLE "role"
 (
@@ -25,8 +29,8 @@ CREATE TABLE "user"
     login         VARCHAR(46)   NOT NULL UNIQUE,
     password      VARCHAR(60)   NOT NULL,
     balance       NUMERIC(8, 2) DEFAULT 0.0,
-    age           INT,
-    phone_number  VARCHAR(46),
+    age           INT DEFAULT 0,
+    phone_number  VARCHAR(46) DEFAULT 'NOT_MENTIONED',
     PRIMARY KEY (id),
     role_rolename VARCHAR(46) REFERENCES role (rolename) ON DELETE CASCADE NOT NULL,
     "account_status" VARCHAR(46) REFERENCES account_status (status) ON DELETE CASCADE NOT NULL,
@@ -90,3 +94,6 @@ CREATE TABLE "user_response"
 INSERT INTO "role" (rolename) VALUES ('USER'), ('ADMIN');
 
 INSERT INTO "account_status" VALUES ('ACTIVE'), ('NOT ACTIVATED'), ('BLOCKED');
+
+INSERT INTO "user" (first_name, last_name, nickname, "login", "password", role_rolename, account_status)
+    VALUES ('Admin', 'Superuser', 'admin', 'admin@gmail.com', '$2a$12$AB4U2oNnczM8Ht/ZaO.43.Ze2bE3ok.vZiwZshT9AuesW3rorMGSy', 'ADMIN', 'ACTIVE');
