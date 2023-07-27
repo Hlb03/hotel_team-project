@@ -9,11 +9,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.main.service.utilities.JsonTokenUtil;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 import java.util.stream.Collectors;
@@ -36,8 +38,10 @@ public class JwtFilter extends OncePerRequestFilter {
                 username = jsonToken.getUsernameFromToken(token);
             } catch (ExpiredJwtException e) {
                 System.out.println("Token is already expired, please authorize again");
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Provided authentication token is already expired. Log in again");
             } catch (SignatureException e) {
                 System.out.println("Signature exception doesn't match original ones");
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Provided token is invalid.");
             }
         }
 
