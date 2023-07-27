@@ -3,6 +3,7 @@ package org.main.service.service.implementations;
 import lombok.AllArgsConstructor;
 import org.main.service.entity.AccountStatus;
 import org.main.service.entity.User;
+import org.main.service.exceptions.InvalidActivationCodeException;
 import org.main.service.repository.UserRepository;
 import org.main.service.service.UserService;
 import org.main.service.utilities.RandomStringGenerator;

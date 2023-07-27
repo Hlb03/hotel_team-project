@@ -2,8 +2,8 @@ package org.main.service.controller;
 
 import lombok.AllArgsConstructor;
 import org.main.service.dto.UserDTO;
-import org.main.service.service.UserService;
 import org.main.service.mapper.UserMapper;
+import org.main.service.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
