@@ -3,9 +3,13 @@ package org.main.service.service.implementations;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.main.service.configuration.UserDetailsServiceImpl;
+import org.main.service.dto.AuthenticationRequestDTO;
+import org.main.service.dto.RegistrationRequestDTO;
 import org.main.service.entity.AccountStatus;
+import org.main.service.entity.Role;
 import org.main.service.entity.User;
 import org.main.service.exceptions.IncorrectPasswordsException;
+import org.main.service.exceptions.LoginAlreadyRegisteredException;
 import org.main.service.repository.UserRepository;
 import org.main.service.service.AuthenticationService;
 import org.main.service.utilities.JsonTokenUtil;
@@ -34,37 +38,57 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     @Transactional
-    public void registerUser(User user, String confirmPassword) throws IncorrectPasswordsException {
-        if (!user.getPassword().equals(confirmPassword)) throw new IncorrectPasswordsException(
-                "USER PASSWORD IN THE FORM ARE DIFFERENT (" + user.getPassword() + " and " + confirmPassword + ")"
+    public void registerUser(RegistrationRequestDTO requestDTO) throws IncorrectPasswordsException, LoginAlreadyRegisteredException {
+        if (!requestDTO.getPassword().equals(requestDTO.getConfirmPassword()))
+            throw new IncorrectPasswordsException(
+                    String.format("USER PASSWORD IN THE FORM ARE DIFFERENT (%s and %s).", requestDTO.getPassword(), requestDTO.getConfirmPassword())
+            );
+
+        if (userRepository.getUserByLogin(requestDTO.getMail()).isPresent())
+            throw new LoginAlreadyRegisteredException(
+                    String.format("Login %s is already taken. Please, try another one.", requestDTO.getMail())
+            );
+
+        String activationCode = stringGenerator.generateRandomString(20);
+        userRepository.save(
+                User.builder()
+                        .firstName(requestDTO.getName())
+                        .lastName(requestDTO.getSurname())
+                        .nickname(requestDTO.getNickname())
+                        .login(requestDTO.getMail())
+                        .password(encoder.encode(requestDTO.getPassword()))
+                        .balance(new BigDecimal(0))
+                        .activationCode(activationCode)
+                        .role(Role.USER)
+                        .status(AccountStatus.NOT_ACTIVATED)
+                        .build()
         );
 
-        user.setBalance(new BigDecimal(0));
-        user.setStatus(AccountStatus.ACTIVE); // TODO: CHANGE IT TO NOT_ACTIVATED WHEN Anton WILL MAKE MODAL WINDOW FOR ACTIVATION CODE
-        user.setPassword(encoder.encode(user.getPassword()));
-        userRepository.save(user);
         restTemplate.postForLocation("http://MAILING/hotel-rent/mail/activate?" +
-                        "receiver=" + user.getLogin() +
-                        "&username=" + user.getLastName() +
-                        "&activationCode=" + stringGenerator.generateRandomString(15), // TODO: SAVE ACTIVATION CODE IN DB (& ACTIVATE USER IF REQUESTED)
-                null);
-
+                        "receiver={login}" +
+                        "&username={lastName}" +
+                        "&activationCode={activationCode}", // TODO: SAVE ACTIVATION CODE IN DB (& ACTIVATE USER IF REQUESTED)
+                null,
+                requestDTO.getMail(),
+                requestDTO.getSurname(),
+                activationCode);
     }
 
     @Override
-    public String authenticateUser(User user) {
-        System.out.println("USER CREDENTIALS: " + user);
+    public String authenticateUser(AuthenticationRequestDTO requestDTO) {
+        System.out.println("USER CREDENTIALS: " + requestDTO);
         try {
             manager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            user.getLogin(),
-                            user.getPassword()
+                            requestDTO.getMail(),
+                            requestDTO.getPassword()
                     )
             );
         } catch (BadCredentialsException e) {
             System.out.println("Invalid credentials for user authentication");
+            // TODO: INVESTIGATE WHETHER I SHOULD CREATE CUSTOM EXCEPTION, OR JUST THROW NEW ResponseStatusException
         }
-        UserDetails userDetails = userDetailsService.loadUserByUsername(user.getLogin());
+        UserDetails userDetails = userDetailsService.loadUserByUsername(requestDTO.getMail());
         return jsonToken.generateToken(userDetails);
     }
 }
