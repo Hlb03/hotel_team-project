@@ -39,6 +39,7 @@ public class WebSecurityConfig {
                                 .requestMatchers(HttpMethod.GET, "/response/room/*").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/registration").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/auth").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/activate-account/*").permitAll()
 
                                 .anyRequest().authenticated()
                 )
