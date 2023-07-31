@@ -14,6 +14,7 @@ import org.main.service.repository.UserRepository;
 import org.main.service.service.AuthenticationService;
 import org.main.service.utilities.JsonTokenUtil;
 import org.main.service.utilities.RandomStringGenerator;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,6 +22,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
 
@@ -67,7 +69,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         restTemplate.postForLocation("http://MAILING/hotel-rent/mail/activate?" +
                         "receiver={login}" +
                         "&username={lastName}" +
-                        "&activationCode={activationCode}", // TODO: SAVE ACTIVATION CODE IN DB (& ACTIVATE USER IF REQUESTED)
+                        "&activationCode={activationCode}",
                 null,
                 requestDTO.getMail(),
                 requestDTO.getSurname(),
@@ -86,6 +88,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             );
         } catch (BadCredentialsException e) {
             System.out.println("Invalid credentials for user authentication");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid credentials for user authentication");
             // TODO: INVESTIGATE WHETHER I SHOULD CREATE CUSTOM EXCEPTION, OR JUST THROW NEW ResponseStatusException
         }
         UserDetails userDetails = userDetailsService.loadUserByUsername(requestDTO.getMail());

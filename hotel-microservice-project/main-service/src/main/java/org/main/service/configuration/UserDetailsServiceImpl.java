@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @AllArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -21,14 +23,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("USER WITH LOGIN " + username + " WASN'T FOUND"));
 
         System.out.println("AUTHORIZING USER WITH PARAMS: " + user);
-        boolean accountStatus = user.getStatus().equals(AccountStatus.ACTIVE);
 
         return org.springframework.security.core.userdetails.User
                 .builder()
                 .username(username)
                 .password(user.getPassword())
                 .authorities(user.getRole().getAuthorities())
-                .disabled(!accountStatus)
+                .disabled(!(user.getStatus()).equals(AccountStatus.ACTIVE))
+                .accountLocked(user.getStatus().equals(AccountStatus.BLOCKED))
                 .build();
     }
 }
