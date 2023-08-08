@@ -1,6 +1,7 @@
 package org.main.service.controller;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.main.service.dto.HotelDTO;
 import org.main.service.entity.Hotel;
 import org.main.service.service.HotelService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/hotels")
@@ -25,23 +27,19 @@ public class HotelController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void createNewHotel(@RequestBody HotelDTO hotelDTO) {
-        System.out.println("HOTEL IS: " + hotelDTO);
+        log.info("HOTEL IS: " + hotelDTO);
         Hotel hotel = hotelMapper.entityTake(hotelDTO);
         hotelService.addNewHotel(hotel);
     }
 
     @GetMapping("/{hotelId}")
     public HotelDTO getHotelInfo(@PathVariable int hotelId) {
-        Hotel hotel = hotelService.findHotelById(hotelId);
-        HotelDTO hotelDTO = hotelMapper.dtoTaking(hotel);
-        System.out.println("HOTEL IS: " + hotel);
-        return hotelDTO;
+        return hotelMapper.dtoTaking(hotelService.findHotelById(hotelId));
     }
 
     @GetMapping("/name/{hotelName}")
     public HotelDTO getHotelInfo(@PathVariable String hotelName) {
-        Hotel hotel = hotelService.findHotelByName(hotelName);
-        return hotelMapper.dtoTaking(hotel);
+        return hotelMapper.dtoTaking(hotelService.findHotelByName(hotelName));
     }
 
     @GetMapping("/location/{locationId}")

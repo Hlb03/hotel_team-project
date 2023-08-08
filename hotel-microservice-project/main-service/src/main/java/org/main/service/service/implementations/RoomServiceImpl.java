@@ -1,6 +1,7 @@
 package org.main.service.service.implementations;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.main.service.entity.Hotel;
 import org.main.service.entity.Room;
 import org.main.service.repository.RoomRepository;
@@ -15,6 +16,7 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class RoomServiceImpl implements RoomService {
@@ -25,6 +27,7 @@ public class RoomServiceImpl implements RoomService {
     public void addNewRoom(Room room) {
         room.setHotel(Hotel.builder().id(1).build());
         roomRepository.save(room);
+        log.info("New room was created with params: " + room);
     }
 
     @Override
@@ -44,7 +47,7 @@ public class RoomServiceImpl implements RoomService {
     public List<Room> findAllByParams(Date startDate, Date endDate, BigDecimal startPrice, BigDecimal endPrice, int personAmount) {
         Date start  = Date.valueOf(startDate.toLocalDate().plusDays(1));
         Date end = Date.valueOf(endDate.toLocalDate().plusDays(1));
-        System.out.println("SEARCHING PARAMS ARE: " + (startDate.toLocalDate().plusDays(1)) + " " + (endDate.toLocalDate().plusDays(1)));
+        log.info("SEARCHING PARAMS ARE: " + (startDate.toLocalDate().plusDays(1)) + " " + (endDate.toLocalDate().plusDays(1)));
 
         return roomRepository.findAllByParams(start, end, startPrice, endPrice, personAmount);
     }

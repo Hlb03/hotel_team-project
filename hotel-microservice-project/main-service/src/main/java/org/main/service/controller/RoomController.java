@@ -1,6 +1,7 @@
 package org.main.service.controller;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.main.service.dto.RoomDTO;
 import org.main.service.service.RoomService;
 import org.main.service.mapper.RoomMapper;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
+@Slf4j
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/rooms")
@@ -28,7 +30,7 @@ public class RoomController {
     @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize("hasAuthority('WRITE')")
     public void addNewRoom(@RequestBody RoomDTO room) {
-        System.out.println("NEW ROOM INFO " + room);
+        log.info("NEW ROOM INFO " + room);
         roomService.addNewRoom(roomMapper.entityTake(room));
     }
 

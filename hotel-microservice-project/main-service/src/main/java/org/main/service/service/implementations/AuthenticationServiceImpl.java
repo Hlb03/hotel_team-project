@@ -2,6 +2,7 @@ package org.main.service.service.implementations;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.main.service.configuration.UserDetailsServiceImpl;
 import org.main.service.dto.AuthenticationRequestDTO;
 import org.main.service.dto.RegistrationRequestDTO;
@@ -25,6 +26,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class AuthenticationServiceImpl implements AuthenticationService {
@@ -40,15 +42,19 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     @Transactional
     public void registerUser(RegistrationRequestDTO requestDTO) throws IncorrectPasswordsException, LoginAlreadyRegisteredException {
-        if (userRepository.getUserByLogin(requestDTO.getMail()).isPresent())
+        if (userRepository.getUserByLogin(requestDTO.getMail()).isPresent()) {
+            log.info(String.format("Failed to register user with login %s%n", requestDTO.getMail()));
             throw new LoginAlreadyRegisteredException(
                     String.format("Login %s is already taken. Please, try another one.", requestDTO.getMail())
             );
+        }
 
-        if (!requestDTO.getPassword().equals(requestDTO.getConfirmPassword()))
+        if (!requestDTO.getPassword().equals(requestDTO.getConfirmPassword())) {
+            log.info(String.format("Failed to register %s user because of incorrect passwords%n", requestDTO.getMail()));
             throw new IncorrectPasswordsException(
                     String.format("User password in the form are different (%s and %s), please check them.", requestDTO.getPassword(), requestDTO.getConfirmPassword())
             );
+        }
 
         String activationCode = stringGenerator.generateRandomString(20);
         userRepository.save(
@@ -77,7 +83,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public String authenticateUser(AuthenticationRequestDTO requestDTO) throws AuthenticationException {
-        System.out.println("USER CREDENTIALS: " + requestDTO);
+        log.debug("User credentials: " + requestDTO);
         try {
             manager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -86,7 +92,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                     )
             );
         } catch (BadCredentialsException e) {
-            System.out.printf("Invalid credentials for user %s authentication%n", requestDTO.getMail());
+            log.error(String.format("Invalid credentials for user %s authentication%n", requestDTO.getMail()));
             throw new AuthenticationException("Invalid credentials for user authentication. Please check for mistakes presence.");
         }
         UserDetails userDetails = userDetailsService.loadUserByUsername(requestDTO.getMail());

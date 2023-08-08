@@ -3,6 +3,7 @@ package org.main.service.utilities;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @Component
 public class JsonTokenUtil {
 
@@ -34,7 +36,7 @@ public class JsonTokenUtil {
                 .toList();
 
         claims.put("authorities", authorities);
-        System.out.println("TOKEN IS FORMED WITH: " + userDetails);
+        log.debug("TOKEN IS FORMED WITH: " + userDetails);
 
         return Jwts.builder()
                 .addClaims(claims)

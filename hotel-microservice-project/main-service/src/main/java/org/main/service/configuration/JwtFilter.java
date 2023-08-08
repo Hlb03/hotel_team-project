@@ -7,11 +7,11 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.main.service.utilities.JsonTokenUtil;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -20,6 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.io.IOException;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Configuration
 @RequiredArgsConstructor
 public class JwtFilter extends OncePerRequestFilter {
@@ -37,10 +38,10 @@ public class JwtFilter extends OncePerRequestFilter {
             try {
                 username = jsonToken.getUsernameFromToken(token);
             } catch (ExpiredJwtException e) {
-                System.out.println("Token is already expired, please authorize again");
+                log.info("Token is already expired, please authorize again");
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Provided authentication token is already expired. Log in again");
             } catch (SignatureException e) {
-                System.out.println("Signature exception doesn't match original ones");
+                log.info("Signature exception doesn't match original ones");
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Provided token is invalid.");
             }
         }
@@ -58,7 +59,7 @@ public class JwtFilter extends OncePerRequestFilter {
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         }
 
-        System.out.println("AUTHENTICATION: " + SecurityContextHolder.getContext().getAuthentication());
+        log.info("AUTHENTICATION: " + SecurityContextHolder.getContext().getAuthentication());
         doFilter(request, response, filterChain);
     }
 }

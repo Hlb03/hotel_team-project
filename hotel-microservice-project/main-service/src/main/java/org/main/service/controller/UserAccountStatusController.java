@@ -1,6 +1,7 @@
 package org.main.service.controller;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.main.service.exceptions.InvalidActivationCodeException;
 import org.main.service.service.AccountStatusService;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+@Slf4j
 @RestController
 @AllArgsConstructor
 public class UserAccountStatusController {
@@ -23,7 +25,7 @@ public class UserAccountStatusController {
         try {
             accountStatusService.activateUserAccount(activationCode);
         } catch (InvalidActivationCodeException e) {
-            System.out.println("FAILED TO ACTIVATE ACCOUNT. WRONG ACTIVATION KEY");
+            log.info("FAILED TO ACTIVATE ACCOUNT. WRONG ACTIVATION KEY");
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }

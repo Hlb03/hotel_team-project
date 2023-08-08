@@ -29,8 +29,7 @@ public class LocationController {
 
     @GetMapping("/{locationName}")
     public LocationDTO findLocationByName(@PathVariable String locationName) {
-        Location location = locationService.findLocationByName(locationName);
-        return locationMapper.dtoTaking(location);
+        return locationMapper.dtoTaking(locationService.findLocationByName(locationName));
     }
 
     @GetMapping

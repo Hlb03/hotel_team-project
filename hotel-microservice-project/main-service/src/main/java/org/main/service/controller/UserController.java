@@ -1,6 +1,7 @@
 package org.main.service.controller;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.main.service.dto.UserDTO;
 import org.main.service.mapper.UserMapper;
 import org.main.service.service.UserService;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
+@Slf4j
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/users")
@@ -29,7 +31,7 @@ public class UserController {
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public void updateUser(@RequestBody UserDTO userDTO, Principal principal) {
-        System.out.println("USER CREDENTIALS TO UPDATE: " + userDTO);
+        log.info("USER CREDENTIALS TO UPDATE: " + userDTO);
         userService.updateUser(
                 userMapper.entityTake(userDTO), principal.getName()
         );

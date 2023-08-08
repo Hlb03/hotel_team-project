@@ -1,6 +1,7 @@
 package org.main.service.service.implementations;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.main.service.entity.AccountStatus;
 import org.main.service.entity.User;
 import org.main.service.exceptions.InvalidActivationCodeException;
@@ -8,6 +9,7 @@ import org.main.service.repository.UserRepository;
 import org.main.service.service.AccountStatusService;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class AccountStatusServiceImpl implements AccountStatusService {
@@ -22,7 +24,7 @@ public class AccountStatusServiceImpl implements AccountStatusService {
                 ));
         user.setActivationCode(null);
         user.setStatus(AccountStatus.ACTIVE);
-        System.out.println("ACTIVATING USER ACCOUNT WITH LOGIN " + user.getLogin());
+        log.info("ACTIVATING USER ACCOUNT WITH LOGIN " + user.getLogin());
         userRepository.save(user);
     }
 

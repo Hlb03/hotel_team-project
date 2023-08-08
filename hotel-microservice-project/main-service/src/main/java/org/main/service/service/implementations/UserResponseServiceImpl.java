@@ -2,6 +2,7 @@ package org.main.service.service.implementations;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.main.service.dto.RoomDTO;
 import org.main.service.entity.UserResponse;
 import org.main.service.repository.UserResponseRepository;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class UserResponseServiceImpl implements UserResponseService {
@@ -28,7 +30,7 @@ public class UserResponseServiceImpl implements UserResponseService {
                 userService.findUserByLogin(username).get()
         );
         userResponse.setRate(4.2);
-        System.out.println("USER RESPONSE: " + userResponse);
+        log.info("User left response on the room: " + userResponse);
 
         userResponseRepository.save(userResponse);
 

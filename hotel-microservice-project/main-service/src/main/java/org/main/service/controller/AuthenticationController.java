@@ -1,6 +1,7 @@
 package org.main.service.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.main.service.dto.AuthenticationRequestDTO;
 import org.main.service.dto.RegistrationRequestDTO;
 import org.main.service.dto.TokenDTO;
@@ -12,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+@Slf4j
 @CrossOrigin("http://localhost:3000")
 @RestController
 @RequiredArgsConstructor
@@ -22,12 +24,12 @@ public class AuthenticationController {
     @PostMapping("/registration")
     @ResponseStatus(HttpStatus.CREATED)
     public void addNewUser(@RequestBody RegistrationRequestDTO requestDTO) {
-        System.out.println("USER DATA FROM FRONT SERVICE IS: \n" + requestDTO);
+        log.info("USER DATA FROM FRONT SERVICE IS: \n" + requestDTO);
 
         try {
             authenticationService.registerUser(requestDTO);
         } catch (IncorrectPasswordsException | LoginAlreadyRegisteredException e) {
-            System.out.println(e.getMessage());
+            log.info(e.getMessage());
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }

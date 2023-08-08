@@ -17,10 +17,6 @@ public class HotelMapper {
                 .id(hotel.getId())
                 .name(hotel.getName())
                 .location(hotel.getLocation().getId())
-//                .rooms(hotel.getRooms()
-//                        .stream()
-//                        .map(roomTransform::dtoTaking)
-//                        .collect(Collectors.toList()))
                 .locationName(hotel.getLocation().getName())
                 .build();
     }
@@ -34,10 +30,6 @@ public class HotelMapper {
                                 .id(hotelDTO.getLocation())
                                 .build()
                 )
-//                .rooms(hotelDTO.getRooms()
-//                        .stream()
-//                        .map(roomTransform::entityTake)
-//                        .collect(Collectors.toList()))
                 .build();
     }
 }
