@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.main.service.dto.AuthenticationRequestDTO;
 import org.main.service.dto.RegistrationRequestDTO;
 import org.main.service.dto.TokenDTO;
+import org.main.service.exceptions.AuthenticationException;
 import org.main.service.exceptions.IncorrectPasswordsException;
 import org.main.service.exceptions.LoginAlreadyRegisteredException;
 import org.main.service.service.AuthenticationService;
@@ -34,6 +35,10 @@ public class AuthenticationController {
     @PostMapping("/auth")
     @ResponseStatus(HttpStatus.OK)
     public TokenDTO authenticateUser(@RequestBody AuthenticationRequestDTO requestDTO) {
-        return new TokenDTO(authenticationService.authenticateUser(requestDTO));
+        try {
+            return new TokenDTO(authenticationService.authenticateUser(requestDTO));
+        } catch (AuthenticationException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid credentials for user authentication. Please check for mistakes presence.");
+        }
     }
 }
