@@ -27,7 +27,6 @@ public class WebSecurityConfig {
     private final UserDetailsServiceImpl userService;
     private final JwtFilter jwtFilter;
 
-    // TODO: add end points based on roles
     @Bean
     protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
@@ -40,7 +39,7 @@ public class WebSecurityConfig {
                                 .requestMatchers(HttpMethod.POST, "/registration").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/auth").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/activate-account/*").permitAll()
-
+                                .requestMatchers("/error").permitAll() // Spring Boot 3.0 also applies security to error dispatches
                                 .anyRequest().authenticated()
                 )
                 // TODO: Not sure whether token based application should contain this function (in case should -> set expiration time in token to now)
@@ -50,7 +49,7 @@ public class WebSecurityConfig {
 //                    logout.clearAuthentication(true);
 //                    logout.deleteCookies("JSESSIONID");
 //                })
-                .exceptionHandling(exception -> exception.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))) // create exception controller advice
+//                .exceptionHandling(exception -> exception.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))) // create exception controller advice
                 .authenticationProvider(daoAuthenticationProvider())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // REST applications doesn't support default Spring sessions (via cookies)
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
