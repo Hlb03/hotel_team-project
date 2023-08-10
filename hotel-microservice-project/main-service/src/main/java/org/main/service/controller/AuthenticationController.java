@@ -40,7 +40,7 @@ public class AuthenticationController {
         try {
             return new TokenDTO(authenticationService.authenticateUser(requestDTO));
         } catch (AuthenticationException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid credentials for user authentication. Please check for mistakes presence.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
 }

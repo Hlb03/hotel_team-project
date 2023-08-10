@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.main.service.configuration.UserDetailsServiceImpl;
 import org.main.service.dto.AuthenticationRequestDTO;
+import org.main.service.dto.MailRequestDTO;
 import org.main.service.dto.RegistrationRequestDTO;
 import org.main.service.entity.AccountStatus;
 import org.main.service.entity.Role;
@@ -16,6 +17,8 @@ import org.main.service.repository.UserRepository;
 import org.main.service.service.AuthenticationService;
 import org.main.service.utilities.JsonTokenUtil;
 import org.main.service.utilities.RandomStringGenerator;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,6 +28,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
+import java.net.URI;
 
 @Slf4j
 @Service
@@ -71,14 +75,12 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                         .build()
         );
 
-        restTemplate.postForLocation("http://MAILING/hotel-rent/mail/activate?" +
-                        "receiver={login}" +
-                        "&username={lastName}" +
-                        "&activationCode={activationCode}",
-                null,
-                requestDTO.getMail(),
-                requestDTO.getSurname(),
+        ResponseEntity<String> response = restTemplate.postForEntity("http://MAILING/hotel-rent/mail/activate/{activationCode}",
+                new MailRequestDTO(requestDTO.getSurname(), requestDTO.getMail()),
+                String.class,
                 activationCode);
+
+        System.out.println("RESPONSE: " + response.getStatusCode() + " status code " + response.getBody());
     }
 
     @Override
