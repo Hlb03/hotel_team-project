@@ -17,7 +17,6 @@ import org.main.service.repository.UserRepository;
 import org.main.service.service.AuthenticationService;
 import org.main.service.utilities.JsonTokenUtil;
 import org.main.service.utilities.RandomStringGenerator;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -28,7 +27,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
-import java.net.URI;
 
 @Slf4j
 @Service
@@ -80,7 +78,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 String.class,
                 activationCode);
 
-        System.out.println("RESPONSE: " + response.getStatusCode() + " status code " + response.getBody());
+        log.info("RESPONSE: " + response.getStatusCode() + " status code " + response.getBody());
     }
 
     @Override
