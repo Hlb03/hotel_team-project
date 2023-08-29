@@ -30,7 +30,6 @@ public class UserRoomsController {
         );
     }
 
-    // TODO: INFO ABOUT USER ROOMS SHOULD BE BASED ON SESSION BEAN THAT STORES AUTHORIZED USER INFO
     @GetMapping
     public List<UserRoomsDTO> findAllUserRooms(Principal principal) {
         return userRoomsService.findAllUserRooms(principal.getName())
