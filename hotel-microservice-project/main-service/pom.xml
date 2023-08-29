@@ -62,6 +62,10 @@
             <artifactId>jaxb-impl</artifactId>
             <version>2.2.5-b10</version>
         </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
