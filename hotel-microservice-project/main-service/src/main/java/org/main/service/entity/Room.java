@@ -33,7 +33,7 @@ public class Room {
     @Column(name = "img_reference")
     private String imageReference;
 
-    @Column(name = "total_rate")
+    @Column(name = "total_rate", columnDefinition = "NUMERIC(2,1)")
     private Double totalRate;
 
     @ManyToOne(fetch = FetchType.LAZY)

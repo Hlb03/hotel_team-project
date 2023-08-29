@@ -92,16 +92,3 @@ CREATE TABLE "user_response"
     room_id   INT REFERENCES room (id) ON DELETE CASCADE   NOT NULL,
     constraint rate_limits check (rate > 0 and rate <= 5)
 );
-
-INSERT INTO "role" (rolename)
-VALUES ('USER'),
-       ('ADMIN');
-
-INSERT INTO "account_status"
-VALUES ('ACTIVE'),
-       ('NOT_ACTIVATED'),
-       ('BLOCKED');
-
-INSERT INTO "user" (first_name, last_name, nickname, "login", "password", role_rolename, account_status)
-VALUES ('Admin', 'Superuser', 'admin', 'admin@gmail.com',
-        '$2a$12$AB4U2oNnczM8Ht/ZaO.43.Ze2bE3ok.vZiwZshT9AuesW3rorMGSy', 'ADMIN', 'ACTIVE');

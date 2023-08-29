@@ -26,6 +26,7 @@ public class UserResponse {
     @Column(name = "date_time")
     private Timestamp dateTime;
 
+    @Column(columnDefinition = "NUMERIC(2,1)")
     private double rate;
 
     @ManyToOne(fetch = FetchType.LAZY)
