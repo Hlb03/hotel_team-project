@@ -74,7 +74,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         );
 
         ResponseEntity<String> response = restTemplate.postForEntity("http://MAILING/hotel-rent/mail/activate/{activationCode}",
-                new MailRequestDTO(requestDTO.getSurname(), requestDTO.getMail()),
+                new MailRequestDTO(requestDTO.getName(), requestDTO.getSurname(), requestDTO.getNickname(), requestDTO.getMail()),
                 String.class,
                 activationCode);
 
