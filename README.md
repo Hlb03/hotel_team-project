@@ -8,7 +8,7 @@ Administrator can create new rooms, delete comments.
 There are 4 independent microservices available:
 - Front service (UI);
 - Main service (interacts with database and implements almost the whole application logic);
-- Mail service (send activation account mails after registration process);
+- Mail service (send activation account mails after registration process and save users in NoSQL db for the further mailing);
 - Eureka-service (connects back-end services with each other).
 
         Technology stack:
@@ -23,6 +23,8 @@ There are 4 independent microservices available:
 - Docker (Docker-compose);
 - Lombok;
 - PostgreSQL;
+- MongoDB;
+- Flyway;
 - Postman;
 - Figma;
 
