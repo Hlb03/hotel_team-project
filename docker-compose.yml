@@ -14,15 +14,40 @@ services:
     ports:
       - '8761:8761'
 
+  rabbitmq:
+    container_name: 'rabbit_mq'
+    image: rabbitmq:3.11.23-management-alpine
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: password
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      timeout: 30s
+      interval: 30s
+      retries: 5
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+
+  mongo:
+    container_name: "mongo_db"
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongo_user
+      MONGO_INITDB_ROOT_PASSWORD: mongo_password
+    ports:
+      - '27017:27017'
+
   mail-service:
     container_name: 'mail-container'
     build:
       context: ./hotel-microservice-project/mail-service
       dockerfile: Dockerfile
-#    ports:
-#      - '8081:8081'
+    ports:
+      - '8081:8081'
     depends_on:
-      eureka-service:
+#      eureka-service:
+      rabbitmq:
         condition: service_healthy
 
   postgres:
@@ -35,13 +60,14 @@ services:
     volumes:
       - ./hotel-microservice-project/main-service/database/postgresql-script.sql:/docker-entrypoint-initdb.d/postgresql-script.sql
       - ./hotel-microservice-project/main-service/database/postgres-data:/var/lib/postgresql/data
-#    ports:
-#      - '5433:5432'
+    ports:
+      - '5433:5432'
     depends_on:
-      eureka-service:
+#      eureka-service:
+      rabbitmq:
         condition: service_healthy
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d hotel-rent"]
       interval: 10s
       timeout: 10s
       retries: 5
@@ -53,7 +79,8 @@ services:
     ports:
       - '8080:8080'
     depends_on:
-      eureka-service:
+#      eureka-service:
+      rabbitmq:
         condition: service_healthy
       postgres:
         condition: service_healthy
