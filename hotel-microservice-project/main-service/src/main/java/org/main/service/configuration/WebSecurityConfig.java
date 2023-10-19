@@ -1,10 +1,9 @@
 package org.main.service.configuration;
 
-import jakarta.ws.rs.HttpMethod;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -14,7 +13,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -49,7 +47,6 @@ public class WebSecurityConfig {
 //                    logout.clearAuthentication(true);
 //                    logout.deleteCookies("JSESSIONID");
 //                })
-//                .exceptionHandling(exception -> exception.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))) // create exception controller advice
                 .authenticationProvider(daoAuthenticationProvider())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // REST applications doesn't support default Spring sessions (via cookies)
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)

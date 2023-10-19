@@ -15,16 +15,15 @@ import org.main.service.exceptions.IncorrectPasswordsException;
 import org.main.service.exceptions.LoginAlreadyRegisteredException;
 import org.main.service.repository.UserRepository;
 import org.main.service.service.AuthenticationService;
+import org.main.service.service.RabbitMQMessageService;
 import org.main.service.utilities.JsonTokenUtil;
 import org.main.service.utilities.RandomStringGenerator;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
 
@@ -34,7 +33,8 @@ import java.math.BigDecimal;
 public class AuthenticationServiceImpl implements AuthenticationService {
 
     private final BCryptPasswordEncoder encoder;
-    private final RestTemplate restTemplate;
+    private final RabbitMQMessageService messageService;
+    //    private final RestTemplate restTemplate;
     private final RandomStringGenerator stringGenerator;
     private final AuthenticationManager manager;
     private final JsonTokenUtil jsonToken;
@@ -73,12 +73,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                         .build()
         );
 
-        ResponseEntity<String> response = restTemplate.postForEntity("http://MAILING/hotel-rent/mail/activate/{activationCode}",
-                new MailRequestDTO(requestDTO.getName(), requestDTO.getSurname(), requestDTO.getNickname(), requestDTO.getMail()),
-                String.class,
-                activationCode);
-
-        log.info("RESPONSE: " + response.getStatusCode() + " status code " + response.getBody());
+        messageService.sendMessage(
+                new MailRequestDTO(requestDTO.getName(), requestDTO.getSurname(), requestDTO.getNickname(), requestDTO.getMail(), activationCode)
+        );
+        log.info("User was added to db and message was sent!");
     }
 
     @Override

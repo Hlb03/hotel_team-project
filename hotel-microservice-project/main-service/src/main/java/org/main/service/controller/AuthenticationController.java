@@ -23,8 +23,8 @@ public class AuthenticationController {
 
     @PostMapping("/registration")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addNewUser(@RequestBody RegistrationRequestDTO requestDTO) {
-        log.info("USER DATA FROM FRONT SERVICE IS: \n" + requestDTO);
+    public String addNewUser(@RequestBody RegistrationRequestDTO requestDTO) {
+        log.info("\nUSER DATA FROM FRONT SERVICE IS: \n" + requestDTO);
 
         try {
             authenticationService.registerUser(requestDTO);
@@ -32,6 +32,10 @@ public class AuthenticationController {
             log.info(e.getMessage());
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
+
+        return String.format("Your account was successfully registered. " +
+                "In a few minutes you will receive message on %s with activation code.",
+                requestDTO.getMail());
     }
 
     @PostMapping("/auth")
