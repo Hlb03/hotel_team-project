@@ -1,6 +1,5 @@
 package org.mail.service.service;
 
-import jakarta.mail.MessagingException;
 import org.mail.service.dto.MailRequestDTO;
 import org.mail.service.exception.MailSendingException;
 import org.mail.service.exception.UserAlreadyExistsException;
